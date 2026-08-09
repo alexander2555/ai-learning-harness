@@ -4,32 +4,18 @@ Version: 0.1 Draft
 
 Parent Documents
 
-- 00-Vision.md
-- 02-Core-Principles.md
-- 07-Competency-Model.md
-- 08-Memory-Model.md
-- 09-Decision-Engine.md
-- 00-Learning-Model.md
-- 01-Socratic-Method.md
-- 02-Assessment.md
-- 03-Competency-Evaluation.md
-- 04-Learning-Debt.md
-- 05-Automation-Level.md
-- 06-Quiz-Strategy.md
-- 07-Definition-of-Done.md
 - 00-Development-Methodology.md
-- 01-Development-Workflow.md
-- 02-Change-Management.md
-- 03-Documentation-Methodology.md
-- 04-Testing-Methodology.md
-- 05-Review-Methodology.md
-- 06-Integration-Methodology.md
 - 07-Compliance-and-Traceability.md
 - 08-Development-Definition-of-Done.md
 
 Related Documents
 
-- ADR-001
+- 03-Documentation-Methodology.md
+- 04-Testing-Methodology.md
+- 05-Review-Methodology.md
+- 06-Integration-Methodology.md
+- 12-ADR.md
+- ADR-001-Separation-of-Application-and-Learning-Infrastructure.md
 
 ---
 
@@ -39,7 +25,9 @@ This document defines how development work is prepared for later system validati
 
 Development Validation Preparation establishes the conditions required for Stage 6 Validation without performing that validation itself.
 
-It provides a transition boundary between:
+It provides a preparation baseline that is established during Stage 3 and consumed later during Stage 6 Validation.
+
+The planned project sequence remains:
 
 ```text
 Stage 3 — Development Methodology
@@ -51,7 +39,9 @@ Stage 5 — Harness Implementation
 Stage 6 — Validation
 ```
 
-This document MUST NOT redefine validation criteria that belong to Stage 6.
+Development Validation Preparation contributes to this sequence by defining how development work and evidence SHOULD be prepared for later validation.
+
+It MUST NOT initiate Stage 6, bypass Stage 4 or Stage 5, or redefine validation criteria that belong to Stage 6.
 
 ---
 
@@ -372,11 +362,11 @@ This document only prepares the information needed to define and execute it.
 
 ---
 
-## 18. Validation Readiness
+## 18. Validation Preparation Readiness
 
-The project MAY be considered prepared for Stage 6 when:
+Development validation preparation MAY be considered ready when:
 
-- the validation baseline is identifiable;
+- the intended validation baseline can be identified;
 - applicable requirements are known;
 - relevant authoritative documents are available;
 - required development evidence is collected;
@@ -385,13 +375,22 @@ The project MAY be considered prepared for Stage 6 when:
 - significant uncertainties are identified;
 - repository state is sufficiently understood.
 
-Validation readiness MUST NOT be interpreted as validation success.
+Preparation readiness means that the development methodology has established the information and evidence expected to support later Stage 6 Validation.
+
+It MUST NOT be interpreted as:
+
+- authorization to enter Stage 6 immediately;
+- completion of Stage 4 or Stage 5;
+- validation success;
+- system acceptance.
+
+Additional evidence produced during Stage 4 or Stage 5 MAY be required before Stage 6 begins.
 
 ---
 
 ## 19. Readiness Checklist
 
-Before entering Stage 6, the following SHOULD be reviewed:
+As part of preparing development evidence for later Stage 6 Validation, the following SHOULD be reviewed where applicable:
 
 ```text
 [ ] Validation baseline is identifiable.
@@ -413,15 +412,15 @@ Before entering Stage 6, the following SHOULD be reviewed:
 [ ] No unapproved architectural changes are hidden in implementation.
 ```
 
-This checklist is a preparation mechanism.
+This checklist is a development preparation mechanism.
 
-It MUST NOT become the Stage 6 validation specification.
+It MUST NOT be interpreted as authorization to enter Stage 6 or as the Stage 6 validation specification.
 
 ---
 
 ## 20. Preparation Review
 
-A preparation review SHOULD determine whether the project is ready to transition into validation.
+A preparation review SHOULD determine whether the development baseline, evidence, and supporting information are sufficiently prepared for later Stage 6 Validation.
 
 The review SHOULD focus on:
 
@@ -432,68 +431,108 @@ The review SHOULD focus on:
 - repository integrity;
 - architectural consistency.
 
-The review SHOULD NOT pre-approve validation results.
+The preparation review MUST NOT:
+
+- initiate Stage 6;
+- substitute for Stage 6 Validation;
+- pre-approve validation results;
+- imply completion of Stage 4 or Stage 5.
+
+Findings that require additional work SHOULD be handled through the applicable development process.
 
 ---
 
-## 21. Transition to Stage 6
+## 21. Deferred Validation Handoff
 
-Once preparation is complete, the project may transition to:
+The outputs of Development Validation Preparation SHOULD be preserved for later use during Stage 6 Validation.
 
-```text
-Stage 6 — Validation
-```
+The handoff SHOULD preserve:
 
-The transition SHOULD preserve:
-
-- the identified baseline;
+- the identified development baseline;
 - available evidence;
 - known issues;
 - documented exceptions;
-- traceability information.
+- traceability information;
+- material uncertainties.
+
+This handoff is conceptual and deferred.
+
+Completion of Development Validation Preparation MUST NOT cause a direct lifecycle transition from Stage 3 to Stage 6.
+
+The project sequence remains:
+
+```text
+Stage 3 — Development Methodology
+        ↓
+Stage 4 — Prompt Architecture
+        ↓
+Stage 5 — Harness Implementation
+        ↓
+Stage 6 — Validation
+```
+
+Stage 4 and Stage 5 MAY produce additional requirements, implementation artifacts, evidence, issues, and validation inputs.
+
+Those artifacts SHOULD be incorporated into the eventual Stage 6 validation baseline through the applicable development and validation processes.
 
 Stage 6 MAY identify additional preparation requirements.
 
-Such findings SHOULD be handled explicitly rather than silently modifying the preparation baseline.
+Such findings SHOULD be handled explicitly rather than silently changing previously established evidence or decisions.
 
 ---
 
 ## 22. Stage Boundary
 
-Development Validation Preparation is the final document in Stage 3.
+Development Validation Preparation is the final methodology document in Stage 3.
 
-The responsibility boundary is:
+Its responsibility boundary is:
 
 ```text
 Stage 3
 Development Methodology
         ↓
-Preparation for Validation
+Development Validation Preparation
         ↓
+Prepared Development Baseline
+        │
+        │ preserved for later use
+        ▼
 Stage 6
 Validation
 ```
 
+This relationship represents responsibility and evidence flow.
+
+It MUST NOT be interpreted as the project lifecycle sequence.
+
+The lifecycle sequence remains:
+
+Stage 3
+↓
+Stage 4
+↓
+Stage 5
+↓
+Stage 6
+
 Stage 3 MUST NOT perform:
 
-- final system validation;
-- acceptance testing;
-- final architectural certification;
-- final educational effectiveness evaluation.
+final system validation;
+acceptance testing;
+final architectural certification;
+final educational effectiveness evaluation.
 
 Those activities belong to Stage 6.
 
----
-
 ## 23. Relationship to Stage 4
 
-Completion of Stage 3 does not authorize implementation.
-
-The next planned stage after Stage 3 is:
+Completion of Stage 3 transitions the project to the next planned stage:
 
 ```text
 Stage 4 — Prompt Architecture
 ```
+
+Completion of Stage 3 does not authorize Harness implementation or Stage 6 Validation.
 
 Prompt Architecture MUST be developed as a separate stage.
 
