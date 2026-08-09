@@ -4,19 +4,6 @@ Version: 0.1 Draft
 
 Parent Documents
 
-- 00-Vision.md
-- 02-Core-Principles.md
-- 07-Competency-Model.md
-- 08-Memory-Model.md
-- 09-Decision-Engine.md
-- 00-Learning-Model.md
-- 01-Socratic-Method.md
-- 02-Assessment.md
-- 03-Competency-Evaluation.md
-- 04-Learning-Debt.md
-- 05-Automation-Level.md
-- 06-Quiz-Strategy.md
-- 07-Definition-of-Done.md
 - 00-Development-Methodology.md
 
 Related Documents
@@ -28,8 +15,7 @@ Related Documents
 - 06-Integration-Methodology.md
 - 07-Compliance-and-Traceability.md
 - 08-Development-Definition-of-Done.md
-- 09-Development-Validation-Preparation.md
-- ADR-001
+- ADR-001-Separation-of-Application-and-Learning-Infrastructure.md
 
 ---
 
@@ -314,7 +300,134 @@ Appropriate verification remains mandatory.
 
 ---
 
-## 13. Incremental Verification
+## 13. Repository Change Conventions
+
+Repository changes SHOULD preserve a clear and reviewable relationship between the intended development change and the resulting repository state.
+
+The repository workflow SHOULD follow these principles:
+
+- changes SHOULD have a clearly identifiable purpose and scope;
+- unrelated changes SHOULD NOT be combined without a justified reason;
+- repository changes SHOULD remain small enough to review effectively where practical;
+- the resulting repository state SHOULD remain coherent;
+- required documentation and verification artifacts SHOULD evolve with the change;
+- material changes SHOULD remain traceable to their relevant requirements, decisions, or development context;
+- generated, temporary, or accidental artifacts SHOULD NOT be included unless intentionally required;
+- repository history SHOULD provide enough context to understand material changes without duplicating authoritative project documentation.
+
+ALH Development Methodology does not prescribe a specific branching strategy, hosting platform, commit convention, or pull-request implementation.
+
+Such conventions MAY be adopted as project-level practices provided they remain consistent with this methodology.
+
+### 13.1 Change Isolation
+
+A repository change SHOULD represent one coherent development purpose where practical.
+
+A change SHOULD NOT mix unrelated:
+
+- features;
+- defect corrections;
+- refactoring;
+- documentation changes;
+- architectural changes.
+
+Related supporting changes MAY be included when they are necessary to keep the repository coherent or to satisfy the Development Definition of Done.
+
+If unrelated work is discovered during implementation, it SHOULD normally be handled as a separate change.
+
+### 13.2 Repository State
+
+Before a change is considered ready for review or integration, the affected repository state SHOULD be inspected.
+
+The inspection SHOULD consider, where applicable:
+
+- intended files are present;
+- obsolete artifacts are removed;
+- filenames and paths follow established project conventions;
+- internal references remain valid;
+- generated or temporary files are handled intentionally;
+- no unrelated or accidental changes are included;
+- repository responsibility boundaries remain intact.
+
+Repository inspection MUST NOT rely on assumed file state when the actual repository state can be verified.
+
+### 13.3 Change History
+
+Material repository changes SHOULD leave sufficient history to understand:
+
+- what changed;
+- why the change was made;
+- the intended scope;
+- relevant decisions or requirements where necessary.
+
+The exact mechanism MAY include:
+
+- commits;
+- change records;
+- issues;
+- pull requests;
+- equivalent repository mechanisms.
+
+This methodology does not require every mechanism for every change.
+
+History SHOULD be proportional to the significance and risk of the change.
+
+### 13.4 Reviewable Changes
+
+Changes SHOULD be structured so that a reviewer can reasonably determine:
+
+- the intended purpose;
+- the affected scope;
+- whether unrelated modifications are present;
+- what verification supports the change;
+- whether documentation or traceability updates are required.
+
+Large changes SHOULD be decomposed when decomposition improves reviewability without creating artificial or unsafe intermediate states.
+
+Change size MUST NOT be optimized mechanically at the expense of coherence.
+
+### 13.5 Integration Discipline
+
+Repository changes MUST satisfy applicable review, testing, documentation, compliance, and integration requirements before they are treated as completed development work.
+
+The repository mechanism used to integrate a change MUST NOT bypass:
+
+- required review;
+- required verification;
+- architectural governance;
+- applicable educational-methodology constraints.
+
+The specific integration mechanism remains a project-level implementation choice unless established by an applicable project decision.
+
+### 13.6 Architectural Changes
+
+A repository change MUST NOT be used to introduce an architectural decision silently.
+
+If implementation reveals the need to change an accepted architectural decision, the change MUST follow the established ADR process before the conflicting architectural change is treated as accepted.
+
+Repository history MAY provide evidence of the implementation of an accepted ADR.
+
+It MUST NOT substitute for the ADR itself.
+
+### 13.7 AI-Assisted Repository Changes
+
+AI-generated or AI-modified repository changes MUST be subject to the same development requirements as human-authored changes.
+
+Before review or integration, AI-assisted changes SHOULD be checked for:
+
+- unintended files or modifications;
+- stale or invented references;
+- naming inconsistencies;
+- accidental scope expansion;
+- unsupported assumptions about repository state;
+- missing tests or documentation;
+- violations of established responsibility boundaries.
+
+AI output MUST NOT be treated as evidence that the repository state is correct without verification.
+
+---
+
+## 14. Incremental Verification
 
 Verification SHOULD begin during implementation rather than being postponed entirely until the end.
 
@@ -334,7 +447,7 @@ Failures discovered during verification SHOULD feed back into implementation or 
 
 ---
 
-## 14. Handling Discovered Problems
+## 15. Handling Discovered Problems
 
 Development frequently exposes additional problems.
 
@@ -353,7 +466,7 @@ A problem that is not necessary for the current change SHOULD normally be record
 
 ---
 
-## 15. Review Preparation
+## 16. Review Preparation
 
 Before review, the developer SHOULD ensure that the change has:
 
@@ -374,7 +487,7 @@ Detailed review responsibilities are defined separately by the Review Methodolog
 
 ---
 
-## 16. Review
+## 17. Review
 
 A change SHOULD undergo an appropriate review before completion.
 
@@ -400,7 +513,7 @@ Review findings SHOULD be resolved, explicitly deferred, or classified before th
 
 ---
 
-## 17. Documentation and Traceability
+## 18. Documentation and Traceability
 
 After implementation and review, durable project information SHOULD be recorded in the appropriate authoritative artifact.
 
@@ -419,7 +532,7 @@ Where an existing document already defines the relevant rule, the change SHOULD 
 
 ---
 
-## 18. Final Verification
+## 19. Final Verification
 
 Before completion, the developer SHOULD perform final verification appropriate to the change.
 
@@ -443,7 +556,7 @@ Passing development verification does not constitute Stage 6 Validation.
 
 ---
 
-## 19. Completion Decision
+## 20. Completion Decision
 
 A development change MAY be considered complete when:
 
@@ -462,7 +575,7 @@ Detailed completion criteria are defined in:
 
 ---
 
-## 20. Workflow for Architectural Changes
+## 21. Workflow for Architectural Changes
 
 When implementation reveals a possible architectural change, the workflow becomes:
 
@@ -492,7 +605,7 @@ If the proposed architectural change is rejected, implementation MUST return to 
 
 ---
 
-## 21. Workflow for Methodological Findings
+## 22. Workflow for Methodological Findings
 
 When implementation reveals a potential educational or development-methodology issue, the workflow SHOULD be:
 
@@ -516,7 +629,7 @@ Where the finding would require architectural change, ADR governance takes prece
 
 ---
 
-## 22. Workflow for Defects
+## 23. Workflow for Defects
 
 A defect SHOULD follow the same fundamental workflow:
 
@@ -546,7 +659,7 @@ Refactoring unrelated areas SHOULD be deferred unless required for a safe or mai
 
 ---
 
-## 23. Workflow for Documentation Changes
+## 24. Workflow for Documentation Changes
 
 Documentation-only changes MAY use a reduced workflow when they have no material architectural or methodological impact.
 
@@ -572,7 +685,7 @@ Documentation changes that alter an accepted architectural decision MUST NOT be 
 
 ---
 
-## 24. Workflow for AI-Generated Documentation
+## 25. Workflow for AI-Generated Documentation
 
 AI MAY assist in drafting project documentation.
 
@@ -593,7 +706,7 @@ AI-generated documentation MUST NOT introduce invented project decisions or refe
 
 ---
 
-## 25. Workflow Re-entry
+## 26. Workflow Re-entry
 
 The workflow is iterative.
 
@@ -619,7 +732,7 @@ The workflow MUST NOT force implementation to continue under assumptions that ar
 
 ---
 
-## 26. Workflow Completion State
+## 27. Workflow Completion State
 
 A completed development change SHOULD result in:
 
@@ -644,7 +757,7 @@ Completion MUST NOT imply that:
 
 ---
 
-## 27. Development Workflow Summary
+## 28. Development Workflow Summary
 
 The standard workflow is:
 

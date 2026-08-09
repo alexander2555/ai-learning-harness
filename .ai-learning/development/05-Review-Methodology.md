@@ -4,32 +4,18 @@ Version: 0.1 Draft
 
 Parent Documents
 
-- 00-Vision.md
-- 02-Core-Principles.md
-- 07-Competency-Model.md
-- 08-Memory-Model.md
-- 09-Decision-Engine.md
-- 00-Learning-Model.md
-- 01-Socratic-Method.md
-- 02-Assessment.md
-- 03-Competency-Evaluation.md
-- 04-Learning-Debt.md
-- 05-Automation-Level.md
-- 06-Quiz-Strategy.md
-- 07-Definition-of-Done.md
 - 00-Development-Methodology.md
 - 01-Development-Workflow.md
-- 02-Change-Management.md
-- 03-Documentation-Methodology.md
 - 04-Testing-Methodology.md
 
 Related Documents
 
+- 02-Change-Management.md
+- 03-Documentation-Methodology.md
 - 06-Integration-Methodology.md
 - 07-Compliance-and-Traceability.md
 - 08-Development-Definition-of-Done.md
-- 09-Development-Validation-Preparation.md
-- ADR-001
+- 12-ADR.md
 
 ---
 
