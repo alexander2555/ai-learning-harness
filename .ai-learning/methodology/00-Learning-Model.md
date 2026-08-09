@@ -8,9 +8,6 @@ Parent Documents
 - 02-Core-Principles.md
 - 07-Competency-Model.md
 - 08-Memory-Model.md
-
-Related Documents
-
 - 09-Decision-Engine.md
 
 ---
