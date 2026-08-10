@@ -12,6 +12,7 @@ Parent Documents
 - 05-Educational-Instruction-Model.md
 - 06-Prompt-Artifact-Model.md
 - 07-Compliance-and-Traceability.md
+- 08-Development-Definition-of-Done.md
 - 09-Development-Validation-Preparation.md
 
 Related Documents
@@ -19,7 +20,6 @@ Related Documents
 - 03-System-Architecture.md
 - 04-Agent-Pipeline.md
 - 00-Learning-Model.md
-- 08-Development-Definition-of-Done.md
 
 ---
 
@@ -424,13 +424,19 @@ Applicable compliance properties include:
 - Competency State remains distinct from Automation Level;
 - Competency State remains distinct from Learning Debt;
 - Automation Level remains distinct from Learning Debt;
-- assessment remains distinct from Competency Evaluation;
+- Automation Level remains a learner-independence dimension rather than AI automation capability;
+- Assessment remains distinct from Competency Evaluation;
+- Assessment and Competency Evaluation MAY be executed by the same logical Pipeline role without semantic collapse;
 - evidence types preserve their meaning;
 - quiz success does not independently establish practical mastery;
 - assisted work is not treated as independent evidence without qualification;
 - Learning Unit completion remains distinct from mastery;
 - Socratic behavior remains proportional;
 - engineering correctness and applicable security remain preserved.
+
+A compliant design MUST NOT infer AI execution authority merely from an Automation Level.
+
+A compliant Assessor design MUST preserve both applicable Assessment and Competency Evaluation responsibilities without redefining their Stage 2 semantics.
 
 ---
 
@@ -587,97 +593,53 @@ It MUST NOT obscure a material direct dependency where that dependency genuinely
 
 ---
 
-# 25. Parent Documents
+# 25. Prompt Architecture Dependency and Reference Application
 
-Stage 4 documents and future prompt artifacts SHOULD use `Parent Documents` for immediate normative dependencies where the project documentation convention applies.
+Prompt Architecture artifacts MUST apply the documentation, dependency, and traceability conventions defined by the applicable Stage 3 Development Methodology.
 
-`Parent Documents` MUST NOT become a generic bibliography.
+In particular:
 
-A Parent Document SHOULD directly constrain or define a responsibility used by the current artifact.
+- `Parent Documents` MUST represent direct normative dependencies;
+- `Related Documents` SHOULD identify only significant neighboring relationships;
+- canonical filenames SHOULD be used where an exact project document is referenced;
+- traceability SHOULD remain proportional to materiality and risk;
+- downstream artifacts SHOULD reference authoritative semantics rather than reproduce them as competing definitions.
 
-Unnecessary parent relationships SHOULD be avoided.
+Prompt Architecture-specific dependency declarations SHOULD make it possible to determine which normative rules directly constrain an instruction responsibility or prompt artifact.
 
----
+They MUST NOT turn dependency metadata into a generic bibliography.
 
-# 26. Related Documents
+Where a Stage 4 document already provides the direct normative bridge to an upstream semantic owner, downstream artifacts MAY rely on that bridge unless the upstream document directly constrains the downstream artifact in a material way.
 
-`Related Documents` MAY identify significant neighboring relationships.
+The preferred relationship remains:
 
-They SHOULD be used only where the relationship materially helps understanding or review.
-
-A related document MUST NOT be interpreted automatically as a normative parent.
-
----
-
-# 27. Canonical References
-
-Where a project file is referenced as a document artifact, canonical filenames SHOULD be used.
-
-For ADR-001, the canonical filename is:
-
-`ADR-001-Separation-of-Application-and-Learning-Infrastructure.md`
-
-References SHOULD avoid ambiguous abbreviations where the exact artifact matters.
-
----
-
-# 28. Traceability Granularity
-
-Traceability SHOULD be proportional.
-
-Fine-grained traceability is most valuable where requirements affect:
-
-- architecture;
-- educational progression;
-- decision authority;
-- security;
-- persistent state;
-- significant prompt behavior;
-- Stage 5 implementation constraints.
-
-Low-risk presentational details MAY require less formal traceability.
-
-ALH SHOULD avoid traceability overhead that provides no meaningful review or verification value.
-
----
-
-# 29. Traceability and Semantic Duplication
-
-Traceability SHOULD reduce duplication.
-
-Where a semantic rule already exists authoritatively, downstream Prompt Architecture SHOULD reference it.
-
-For example, downstream prompt artifacts SHOULD NOT reproduce complete definitions of:
-
-- competency states;
-- Learning Debt;
-- Automation Level;
-- assessment semantics;
-- ADR decisions.
-
-The preferred relationship is:
-
-```text id="l04o8r"
-Reference
-    +
-Bounded Operational Rule
+```text
+Authoritative Semantic Owner
+        ↓
+Stage 4 Operational Rule
+        ↓
+Prompt Artifact Responsibility
 ```
 
 rather than:
 
-```text id="9jx7ty"
-Copied Upstream Methodology
-    +
-Local Redefinition
+```text
+Copied Upstream Definition
+        ↓
+Prompt-Local Redefinition
 ```
+
+This section applies Stage 3 documentation and traceability methodology to Prompt Architecture.
+
+It does not redefine that methodology.
 
 ---
 
-# 30. Compliance Evidence Categories
+# 26. Compliance Evidence Categories
 
 Prompt Architecture compliance MAY use several categories of evidence.
 
-## 30.1 Documentary Evidence
+## 26.1 Documentary Evidence
 
 Examples include:
 
@@ -687,7 +649,7 @@ Examples include:
 - review records;
 - change records.
 
-## 30.2 Structural Evidence
+## 26.2 Structural Evidence
 
 Examples include:
 
@@ -696,7 +658,7 @@ Examples include:
 - context declarations;
 - composition metadata.
 
-## 30.3 Review Evidence
+## 26.3 Review Evidence
 
 Examples include:
 
@@ -705,7 +667,7 @@ Examples include:
 - prompt responsibility review;
 - implementation-boundary review.
 
-## 30.4 Technical Evidence
+## 26.4 Technical Evidence
 
 Produced primarily during Stage 5.
 
@@ -716,7 +678,7 @@ Examples MAY include:
 - static validation;
 - runtime behavior tests.
 
-## 30.5 Validation Evidence
+## 26.5 Validation Evidence
 
 Produced or evaluated during Stage 6.
 
@@ -726,7 +688,7 @@ It MUST NOT perform final validation.
 
 ---
 
-# 31. Evidence Sufficiency
+# 27. Evidence Sufficiency
 
 Evidence SHOULD be proportional to the materiality of the requirement.
 
@@ -746,7 +708,7 @@ Runtime Requirement Proven
 
 ---
 
-# 32. Review Requirement
+# 28. Review Requirement
 
 Prompt Architecture compliance requires independent review proportional to the change.
 
@@ -767,7 +729,7 @@ AI-generated artifacts require the same semantic review discipline as human-auth
 
 ---
 
-# 33. Cross-Document Consistency
+# 29. Cross-Document Consistency
 
 Stage 4 documents MUST remain mutually consistent.
 
@@ -788,7 +750,7 @@ The responsible definitions and dependency relationships SHOULD determine the co
 
 ---
 
-# 34. Responsibility Overlap Review
+# 30. Responsibility Overlap Review
 
 Prompt Architecture SHOULD be reviewed for unjustified responsibility overlap.
 
@@ -808,7 +770,7 @@ Shared constraints MAY apply across responsibilities without becoming competing 
 
 ---
 
-# 35. Semantic Duplication Review
+# 31. Semantic Duplication Review
 
 Stage 4 SHOULD be reviewed for semantic duplication.
 
@@ -826,7 +788,7 @@ Where possible, one document SHOULD own the definition and others SHOULD referen
 
 ---
 
-# 36. Architecture Leakage Review
+# 32. Architecture Leakage Review
 
 Architecture leakage occurs when Stage 4 silently creates or changes Stage 1 architecture.
 
@@ -844,7 +806,7 @@ They MUST NOT be accepted as ordinary prompt design.
 
 ---
 
-# 37. Educational Redefinition Review
+# 33. Educational Redefinition Review
 
 Educational-methodology leakage occurs when Stage 4 changes Stage 2 semantics.
 
@@ -862,7 +824,7 @@ Such changes MUST NOT be accepted through Prompt Architecture review alone.
 
 ---
 
-# 38. Implementation Leakage Review
+# 34. Implementation Leakage Review
 
 Implementation leakage occurs when Stage 4 unnecessarily prescribes Stage 5 mechanisms.
 
@@ -881,7 +843,7 @@ An implementation detail MAY be elevated into architecture only when its long-te
 
 ---
 
-# 39. Validation Leakage Review
+# 35. Validation Leakage Review
 
 Validation leakage occurs when Stage 4 claims that the resulting Harness has passed final system validation.
 
@@ -901,7 +863,7 @@ It MUST NOT declare:
 
 ---
 
-# 40. Stage 4 Completion Evidence
+# 36. Stage 4 Completion Evidence
 
 Before Stage 4 can be considered complete, evidence SHOULD show that:
 
@@ -921,7 +883,7 @@ It is not Stage 6 final validation.
 
 ---
 
-# 41. Stage 4 to Stage 5 Handoff
+# 37. Stage 4 to Stage 5 Handoff
 
 The Prompt Architecture handoff SHOULD provide Stage 5 with a stable baseline containing:
 
@@ -949,7 +911,7 @@ Where Stage 5 discovers a material ambiguity, the issue SHOULD be returned throu
 
 ---
 
-# 42. Stage 5 Evidence Handoff
+# 38. Stage 5 Evidence Handoff
 
 Stage 5 MAY produce technical evidence demonstrating that implementation preserves Stage 4.
 
@@ -969,7 +931,7 @@ Stage 5 evidence SHOULD be suitable for later Stage 6 evaluation.
 
 ---
 
-# 43. Stage 6 Boundary
+# 39. Stage 6 Boundary
 
 Stage 6 remains responsible for validation of the resulting system.
 
@@ -998,7 +960,7 @@ Neither Stage 4 nor Stage 5 evidence automatically establishes final validation 
 
 ---
 
-# 44. Non-Conformance
+# 40. Non-Conformance
 
 A Prompt Architecture artifact or future prompt artifact is non-conformant where it materially violates an applicable approved requirement.
 
@@ -1013,7 +975,7 @@ Non-conformance MUST NOT be hidden by modifying evidence or weakening requiremen
 
 ---
 
-# 45. Change Classification
+# 41. Change Classification
 
 A compliance finding MAY result in different change classes.
 
@@ -1051,53 +1013,53 @@ Classification MUST reflect actual impact rather than implementation convenience
 
 ---
 
-# 46. Compliance Failure Anti-Patterns
+# 42. Compliance Failure Anti-Patterns
 
 Prompt Architecture MUST avoid the following compliance anti-patterns.
 
-## 46.1 Self-Declared Compliance
+## 42.1 Self-Declared Compliance
 
 Treating an artifact as compliant because it says that it is compliant.
 
-## 46.2 Output Success Equals Compliance
+## 42.2 Output Success Equals Compliance
 
 Treating one useful AI response as proof of architectural conformity.
 
-## 46.3 Traceability as Source of Truth
+## 42.3 Traceability as Source of Truth
 
 Allowing a traceability table to redefine the requirement it references.
 
-## 46.4 Documentation-Only Runtime Proof
+## 42.4 Documentation-Only Runtime Proof
 
 Claiming runtime behavior is proven solely because it is documented.
 
-## 46.5 Checklist Substitution
+## 42.5 Checklist Substitution
 
 Treating checklist completion as sufficient when material semantic review is absent.
 
-## 46.6 Role File Coverage Assumption
+## 42.6 Role File Coverage Assumption
 
 Assuming ten role files automatically prove coverage of the ten Pipeline responsibilities.
 
-## 46.7 Passing Tests Override Architecture
+## 42.7 Passing Tests Override Architecture
 
 Treating successful technical tests as permission to violate an approved architectural boundary.
 
-## 46.8 Stage 4 Validation Claim
+## 42.8 Stage 4 Validation Claim
 
 Declaring the implemented Harness validated before Stage 6.
 
-## 46.9 Hidden Upstream Change
+## 42.9 Hidden Upstream Change
 
 Correcting a compliance problem by silently changing architectural or educational semantics downstream.
 
-## 46.10 Maximum Traceability
+## 42.10 Maximum Traceability
 
 Creating excessive dependency links that obscure direct normative relationships.
 
 ---
 
-# 47. Compliance Rules
+# 43. Compliance Rules
 
 Prompt Architecture compliance MUST satisfy the following rules:
 
@@ -1108,25 +1070,28 @@ Prompt Architecture compliance MUST satisfy the following rules:
 5. Development methodology MUST remain applicable to Stage 4 work.
 6. Instruction responsibilities MUST remain bounded and traceable.
 7. Required Pipeline responsibility coverage MUST remain identifiable.
-8. Composition MUST preserve responsibility identity and authority.
-9. Precedence MUST preserve semantic ownership.
-10. Material conflicts MUST NOT be silently suppressed.
-11. Context consumption MUST preserve provenance, status, and ownership where material.
-12. Educational evidence integrity MUST remain preserved.
-13. Prompt artifacts MUST satisfy the approved artifact contract.
-14. Semantic compliance MUST NOT be inferred from fluent output alone.
-15. Runtime properties require suitable Stage 5 evidence.
-16. Stage 4 MUST NOT perform Stage 6 final validation.
-17. Parent Documents MUST remain direct normative dependencies.
-18. Related Documents SHOULD remain limited to significant neighboring relationships.
-19. Canonical filenames SHOULD be used for precise project-document references.
-20. Material non-conformance MUST remain visible until corrected or governed.
-21. Architectural corrections requiring upstream change MUST follow ADR governance where applicable.
-22. Compliance evidence SHOULD remain proportional to risk and materiality.
+8. One logical Pipeline role MAY execute multiple compatible instruction responsibilities without collapsing their semantic boundaries.
+9. Composition MUST preserve responsibility identity and authority.
+10. Precedence MUST preserve semantic ownership.
+11. Material conflicts MUST NOT be silently suppressed.
+12. Context consumption MUST preserve provenance, status, and ownership where material.
+13. Automation Level MUST NOT be interpreted as AI automation capability or AI execution authority.
+14. Assessment and Competency Evaluation MUST remain semantically distinct even when executed by the same logical role or artifact.
+15. Educational evidence integrity MUST remain preserved.
+16. Prompt artifacts MUST satisfy the approved artifact contract.
+17. Semantic compliance MUST NOT be inferred from fluent output alone.
+18. Runtime properties require suitable Stage 5 evidence.
+19. Stage 4 MUST NOT perform Stage 6 final validation.
+20. Parent Documents MUST remain direct normative dependencies.
+21. Related Documents SHOULD remain limited to significant neighboring relationships.
+22. Canonical filenames SHOULD be used for precise project-document references.
+23. Material non-conformance MUST remain visible until corrected or governed.
+24. Architectural corrections requiring upstream change MUST follow ADR governance where applicable.
+25. Compliance evidence SHOULD remain proportional to risk and materiality.
 
 ---
 
-# 48. Future Automation
+# 44. Future Automation
 
 Future tooling MAY automate portions of Prompt Architecture compliance.
 
@@ -1147,7 +1112,7 @@ It MUST NOT replace authoritative project semantics or independent judgment wher
 
 ---
 
-# 49. Stage 4 Compliance Review Model
+# 45. Stage 4 Compliance Review Model
 
 A Stage 4 review SHOULD conceptually evaluate:
 
@@ -1175,7 +1140,7 @@ It is not a mandatory runtime process or Stage 6 validation workflow.
 
 ---
 
-# 50. Summary
+# 46. Summary
 
 Prompt Architecture compliance establishes that Stage 4 designs and future prompt artifacts preserve the approved responsibilities and semantics of ALH.
 

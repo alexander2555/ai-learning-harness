@@ -599,27 +599,77 @@ Persistence implementation belongs to Stage 5.
 
 ---
 
-# 22. Assessment Responsibility
+# 22. Assessor Responsibility
 
-The Assessor represents a logical Pipeline responsibility related to educational assessment.
+The Assessor is a logical Agent Pipeline role responsible for bounded educational assessment and competency-evaluation activities.
 
-Its instruction responsibilities MUST remain compatible with Stage 2 assessment methodology.
+The Assessor MAY participate in more than one educational instruction responsibility.
 
-Assessment MAY produce or organize educational evidence.
+In particular, the Assessor MAY perform:
 
-Assessment MUST NOT independently redefine competency states or mastery rules.
+- Assessment Responsibility;
+- Competency Evaluation Responsibility.
 
-Where competency evaluation is a distinct methodological responsibility, Prompt Architecture MUST preserve that distinction even if one AI model participates in both operations.
+These responsibilities MUST remain semantically distinct even when they are executed by the same logical role, prompt artifact, model invocation, or interaction.
 
-Therefore:
+Conceptually:
 
 ```text
-Same Model Invocation
-        ≠
-Same Educational Responsibility
+Assessor Pipeline Role
+        │
+        ├── Assessment Responsibility
+        │       ↓
+        │   Evidence Production
+        │
+        └── Competency Evaluation Responsibility
+                ↓
+            Evidence Interpretation
 ```
 
-Detailed educational expression rules belong to `05-Educational-Instruction-Model.md`.
+Assessment Responsibility MAY:
+
+- create assessment opportunities;
+- observe learner responses and activity;
+- identify relevant evidence;
+- classify evidence according to approved evidence categories;
+- report assessment findings.
+
+Competency Evaluation Responsibility MAY:
+
+- interpret applicable evidence against the relevant competency;
+- evaluate competency progression using approved methodology;
+- identify knowledge or capability gaps;
+- evaluate applicable Learning Debt implications;
+- determine whether available evidence supports the relevant competency conclusion;
+- produce bounded competency-evaluation results.
+
+The Assessor MUST preserve the Stage 2 relationship:
+
+```text
+Evidence Production
+        ↓
+Assessment
+        ↓
+Competency Evaluation
+```
+
+Execution by one logical role MUST NOT collapse these responsibilities into one semantic operation.
+
+The Assessor MUST NOT:
+
+- redefine competency states;
+- redefine evidence categories;
+- redefine Learning Debt;
+- redefine Automation Level;
+- treat quiz success as sufficient practical competency evidence;
+- treat AI-produced work as independent learner evidence;
+- infer mastery without sufficient applicable evidence;
+- override Decision Engine authority where an educational decision belongs to the Decision Engine;
+- redefine Competency Model ownership.
+
+The Assessor evaluates according to approved educational semantics.
+
+It does not own those semantics.
 
 ---
 

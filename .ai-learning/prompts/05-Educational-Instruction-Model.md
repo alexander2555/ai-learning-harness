@@ -254,30 +254,36 @@ Socratic behavior MUST remain proportional to the educational objective and lear
 
 Educational instructions MUST support progressive learner independence.
 
-The amount of AI assistance SHOULD adapt so that the learner increasingly performs relevant reasoning and implementation work.
+The instructional objective is to preserve and progressively strengthen the learner's ability to perform relevant reasoning, decision-making, and engineering activity with appropriate independence.
 
-Instruction responsibilities SHOULD avoid unnecessary takeover of work the learner is capable of performing.
+Instruction responsibilities SHOULD avoid unnecessary takeover of work that the learner should perform under the applicable educational strategy.
 
-At the same time, progressive independence MUST NOT be implemented as arbitrary withholding of help.
+At the same time, progressive independence MUST NOT be implemented as arbitrary withholding of assistance.
 
-The degree of assistance MUST remain compatible with:
+The appropriate form and degree of AI assistance SHOULD remain compatible with:
 
+- the applicable educational objective;
+- learner context;
+- competency context;
 - Automation Level;
-- competency state;
-- Learning Unit objective;
 - observed difficulty;
+- applicable Decision Engine direction;
 - engineering quality;
 - safety.
+
+Automation Level MAY inform educational behavior.
+
+It MUST NOT be interpreted as an AI automation capability or as a direct instruction specifying how much work the AI should perform.
 
 ---
 
 # 10. Automation Level
 
-Automation Level represents learner independence.
+Automation Level is an approved Stage 2 educational dimension concerning learner independence.
 
 The accepted levels remain:
 
-```text id="n7ns11"
+```text
 NONE
    ↓
 ASSISTED
@@ -287,51 +293,70 @@ SHARED
 FULL
 ```
 
-Instruction responsibilities MAY adapt the degree of AI participation according to the applicable Automation Level.
+The authoritative meaning of these levels is defined by:
 
-They MUST NOT reinterpret Automation Level as competency state.
+`05-Automation-Level.md`
+
+Stage 4 MUST consume those semantics rather than redefine them.
+
+Instruction responsibilities MAY use the applicable Automation Level as educational context when determining appropriate instructional behavior.
+
+They MUST NOT reinterpret Automation Level as:
+
+- AI automation capability;
+- model autonomy;
+- permission for the AI to perform more work;
+- prompt execution authority;
+- runtime orchestration mode;
+- competency state.
 
 Therefore:
 
-```text id="vfmbwr"
+```text
+Automation Level
+    ≠
+AI Automation Capability
+
 Automation Level
     ≠
 Competency State
 ```
 
-A learner MAY operate at a high Automation Level without having mastered the relevant competency.
+Where the precise operational implication of an Automation Level is not established by authoritative methodology or an applicable educational decision, the instruction layer MUST NOT invent one.
 
-Likewise, a competent learner MAY intentionally use a lower Automation Level for a particular task.
-
-Instruction behavior MUST preserve this distinction.
+Any material uncertainty SHOULD remain explicit or be resolved through the applicable educational decision responsibility.
 
 ---
 
 # 11. Automation-Level Expression
 
-Where Automation Level is relevant, instruction responsibilities SHOULD adjust behavior proportionally.
+Prompt Architecture MAY express approved Automation Level semantics through bounded instructional constraints.
 
-Examples MAY include:
+Such expression MUST remain downstream from the authoritative Stage 2 definition.
 
-## NONE
+Instruction responsibilities MAY use Automation Level to:
 
-The AI avoids performing substantive learner-owned work and primarily supports orientation, clarification, or bounded guidance.
+- preserve learner-independence expectations;
+- avoid inappropriate AI takeover;
+- interpret the educational significance of assistance;
+- preserve evidence integrity;
+- support an applicable educational strategy.
 
-## ASSISTED
+They MUST NOT establish an independent mapping such as:
 
-The AI provides guidance, hints, examples, and bounded support while preserving most learner execution.
+```text
+Automation Level
+        ↓
+Amount of AI Work
+```
 
-## SHARED
+unless that mapping is explicitly supported by authoritative educational methodology or an applicable approved educational decision.
 
-The learner and AI divide meaningful reasoning or implementation responsibility.
+In particular, Stage 4 MUST NOT independently define `NONE`, `ASSISTED`, `SHARED`, or `FULL` in terms of how much implementation or reasoning the AI performs.
 
-## FULL
+This avoids turning a learner-independence model into an AI-execution model.
 
-The AI may perform substantial work while still preserving required explanation, evidence, and educational boundaries.
-
-These descriptions express instruction behavior only.
-
-They MUST NOT replace the authoritative Stage 2 definitions.
+Prompt artifacts SHOULD reference or consume the applicable Automation Level semantics rather than duplicate their definitions.
 
 ---
 
@@ -390,32 +415,37 @@ Educational adaptation SHOULD use each dimension only for the responsibility it 
 
 Assessment produces educational evidence.
 
-Instruction responsibilities supporting assessment MAY:
+Instruction responsibilities supporting Assessment MAY:
 
+- create assessment opportunities;
 - pose assessment tasks;
-- observe learner responses;
+- observe learner responses or activity;
 - analyze learner reasoning;
-- identify evidence;
+- identify applicable evidence;
 - classify evidence according to approved categories;
 - report assessment findings.
 
-Assessment MUST NOT independently redefine competency states.
+Assessment MUST NOT independently redefine competency states or mastery criteria.
+
+Competency Evaluation interprets applicable evidence against the relevant competency.
 
 The instruction layer MUST preserve:
 
-```text id="rbr9fm"
+```text
 Assessment
-    ↓
+        ↓
 Produces Evidence
-
+        ↓
 Competency Evaluation
-    ↓
+        ↓
 Interprets Evidence
 ```
 
-These responsibilities MAY occur in one broader interaction.
+Assessment and Competency Evaluation MAY be performed by the same logical Agent Pipeline role.
 
-They MUST remain semantically distinct.
+They MAY also participate in the same prompt artifact, model invocation, or educational interaction.
+
+Such co-location MUST NOT collapse their semantic responsibilities.
 
 ---
 
@@ -457,9 +487,9 @@ unless the applicable methodology establishes otherwise.
 
 # 16. Evidence Production
 
-Teaching, development, review, quiz, and project interactions MAY produce educational evidence.
+Teaching, development, review, quiz, assessment, and project interactions MAY produce educationally relevant evidence.
 
-Instruction responsibilities SHOULD preserve the origin and type of material evidence.
+Instruction responsibilities SHOULD preserve the origin, type, and assistance context of material evidence where those properties affect educational interpretation.
 
 Evidence MAY arise from:
 
@@ -475,23 +505,43 @@ Evidence MAY arise from:
 
 The existence of evidence does not determine its final competency meaning.
 
-That interpretation remains subject to the approved competency-evaluation process.
+Assessment identifies and evaluates applicable evidence according to its approved responsibility.
+
+Competency Evaluation interprets that evidence against the relevant competency.
+
+These responsibilities MAY be executed by the same logical role while remaining semantically distinct.
 
 ---
 
 # 17. Competency Evaluation
 
-Competency Evaluation interprets evidence against the relevant competency.
+Competency Evaluation interprets applicable educational evidence against the relevant competency.
 
-Instruction responsibilities supporting competency evaluation MUST use approved Stage 2 semantics.
+Instruction responsibilities supporting Competency Evaluation MUST use approved Stage 2 semantics.
+
+They MAY:
+
+- interpret applicable evidence;
+- evaluate whether evidence supports competency progression;
+- identify remaining capability gaps;
+- evaluate applicable Learning Debt implications;
+- determine whether available evidence supports the relevant competency conclusion;
+- preserve uncertainty where evidence is insufficient.
 
 They MUST NOT:
 
 - create new competency states;
+- redefine competency progression;
 - infer mastery from a single unsupported signal;
 - treat quiz success as sufficient practical evidence;
-- treat complete AI-generated work as learner application evidence;
-- treat Automation Level as competency evidence by itself.
+- treat AI-generated work as learner application evidence;
+- treat Automation Level as competency evidence by itself;
+- override Competency Model ownership;
+- override Decision Engine authority where the resulting educational decision belongs to the Decision Engine.
+
+Competency Evaluation MAY be executed by the Assessor logical Pipeline role.
+
+This does not make Assessment and Competency Evaluation the same responsibility.
 
 Where evidence is insufficient, uncertainty SHOULD remain explicit.
 
@@ -501,17 +551,33 @@ The instruction layer MUST NOT manufacture progression merely to maintain conver
 
 # 18. Teaching and Assessment Separation
 
-Teaching and assessment MAY occur close together, but their responsibilities remain different.
+Teaching and Assessment MAY occur close together, but their responsibilities remain different.
 
 Teaching aims to support learning.
 
-Assessment aims to produce evidence.
+Assessment aims to produce or evaluate educational evidence.
 
-An instruction responsibility MUST account for the fact that excessive assistance during an assessment can invalidate or weaken independence evidence.
+Competency Evaluation interprets applicable evidence against the relevant competency.
+
+Conceptually:
+
+```text
+Teaching
+    ≠
+Assessment
+    ≠
+Competency Evaluation
+```
+
+An instruction responsibility MUST account for the fact that substantial teaching assistance during an assessment can affect the strength or interpretation of Independence and Application evidence.
 
 Therefore, assessment-oriented composition SHOULD constrain teaching assistance where the methodology requires independent demonstration.
 
-Likewise, an interaction intended primarily for teaching SHOULD NOT be misrepresented as strong independent assessment evidence if substantial assistance was provided.
+Likewise, an interaction intended primarily for teaching SHOULD NOT be represented as strong independent assessment evidence when substantial assistance was provided.
+
+The same logical Pipeline role MAY participate in both Assessment and Competency Evaluation.
+
+That co-location MUST NOT erase the semantic boundary between them.
 
 ---
 
@@ -694,7 +760,7 @@ Teacher behavior MUST remain compatible with both educational integrity and engi
 
 # 27. Developer Responsibility in Learning
 
-Developer-related instruction responsibilities may participate directly in educational interactions.
+Developer-related instruction responsibilities MAY participate directly in educational interactions.
 
 Where they do, they MUST distinguish:
 
@@ -705,9 +771,13 @@ Where they do, they MUST distinguish:
 
 The Developer MUST NOT treat AI-generated implementation as learner evidence by default.
 
-At higher Automation Levels, the Developer MAY perform more work.
+The applicable educational strategy MAY constrain how the Developer assists the learner.
 
-That increased automation MUST remain visible enough that educational evidence is interpreted correctly.
+Automation Level MAY provide relevant learner-independence context, but it MUST NOT be interpreted as direct permission for the Developer or AI to perform progressively more work.
+
+Where assistance materially affects educational evidence, the degree and nature of that assistance SHOULD remain interpretable.
+
+Developer behavior MUST preserve both engineering quality and educational integrity.
 
 ---
 
@@ -768,24 +838,56 @@ Unsafe output MUST NOT be permitted merely to preserve Socratic discovery.
 
 # 31. Assessor Responsibility
 
-Assessor-related instruction responsibilities own bounded assessment behavior, not unrestricted competency authority.
+The Assessor is a logical Agent Pipeline role that MAY execute both Assessment and Competency Evaluation responsibilities.
 
-The Assessor MAY:
+These responsibilities MUST remain semantically distinct.
+
+Assessment Responsibility MAY:
 
 - create assessment opportunities;
-- observe responses;
+- observe learner responses and activity;
 - identify evidence;
-- evaluate assessment performance according to approved criteria;
-- report evidence and uncertainty.
+- classify evidence according to approved categories;
+- report assessment findings.
+
+Competency Evaluation Responsibility MAY:
+
+- interpret applicable evidence against the relevant competency;
+- evaluate whether evidence supports competency progression;
+- identify capability gaps;
+- evaluate applicable Learning Debt implications;
+- determine whether evidence supports the relevant competency conclusion.
+
+The relationship remains:
+
+```text
+Assessor
+   │
+   ├── Assessment
+   │       ↓
+   │    Evidence
+   │
+   └── Competency Evaluation
+           ↓
+      Evidence Interpretation
+```
 
 The Assessor MUST NOT:
 
 - redefine competency states;
-- redefine mastery;
-- collapse evidence categories;
-- treat assisted work as independent evidence without qualification.
+- redefine mastery criteria;
+- redefine evidence categories;
+- redefine Learning Debt;
+- redefine Automation Level;
+- treat quiz success as sufficient practical competency evidence;
+- treat assisted work as independent evidence without qualification;
+- treat AI-produced work as learner application evidence;
+- override Competency Model ownership;
+- override Decision Engine authority where an educational decision belongs to the Decision Engine.
 
-Competency Evaluation remains a separate methodological responsibility.
+One logical role MAY execute multiple educational responsibilities.
+
+One logical role MUST NOT collapse those responsibilities into a competing educational methodology.
 
 ---
 
@@ -912,7 +1014,7 @@ Educational conflict MUST NOT be hidden through prompt wording.
 
 Complete solutions are not prohibited by the Educational Methodology.
 
-They are one point on the accepted Socratic progression and MAY be appropriate.
+They are one possible point in the approved Socratic progression and MAY be appropriate.
 
 Instruction responsibilities SHOULD consider complete solutions when:
 
@@ -920,10 +1022,16 @@ Instruction responsibilities SHOULD consider complete solutions when:
 - the educational objective requires explanation after attempted reasoning;
 - the learner requests a complete explanation and methodology permits it;
 - engineering correctness or safety requires directness;
-- current Automation Level permits substantial AI execution;
-- the task is not intended to assess independent capability.
+- the applicable educational strategy permits direct execution or explanation;
+- the task is not intended to establish independent learner capability.
+
+Automation Level MAY contribute relevant learner-independence context.
+
+It MUST NOT be treated as an automatic permission rule for complete AI execution.
 
 Complete solutions MUST NOT automatically be treated as learner evidence.
+
+Where a complete solution materially reduces learner independence in the interaction, that assistance SHOULD remain visible to later educational interpretation.
 
 ---
 
@@ -1123,21 +1231,22 @@ Educational instruction design MUST satisfy the following rules:
 3. Competency states MUST remain unchanged.
 4. Competency State, Automation Level, and Learning Debt MUST remain distinct.
 5. Learning Debt of zero MUST NOT automatically imply mastery.
-6. High Automation Level MUST NOT automatically imply mastery.
+6. Automation Level MUST remain a learner-independence dimension and MUST NOT be reinterpreted as AI automation capability, AI execution authority, or competency state.
 7. Assessment MUST remain distinct from Competency Evaluation.
-8. Evidence types MUST preserve their approved meaning.
-9. Knowledge evidence MUST NOT substitute for required application evidence.
-10. Quiz success MUST NOT independently establish practical mastery.
-11. Assisted output MUST NOT automatically count as independent learner evidence.
-12. Socratic behavior SHOULD remain proportional and progressive.
-13. Complete solutions MAY be used where methodologically appropriate.
-14. Educational adaptation MUST remain evidence-based.
-15. Engineering correctness and applicable security MUST remain preserved.
-16. Learning Unit completion MUST remain distinct from mastery.
-17. Missing evidence MUST NOT be replaced with invented progression.
-18. Educational behavior SHOULD remain explainable and traceable.
-19. Prompt-local wording MUST NOT become a new educational source of truth.
-20. Educational decisions MUST remain with their approved owner.
+8. Assessment and Competency Evaluation MAY be executed by the same logical Pipeline role while remaining semantically distinct.
+9. Evidence types MUST preserve their approved meaning.
+10. Knowledge evidence MUST NOT substitute for required application evidence.
+11. Quiz success MUST NOT independently establish practical mastery.
+12. Assisted output MUST NOT automatically count as independent learner evidence.
+13. Socratic behavior SHOULD remain proportional and progressive.
+14. Complete solutions MAY be used where methodologically appropriate.
+15. Educational adaptation MUST remain evidence-based.
+16. Engineering correctness and applicable security MUST remain preserved.
+17. Learning Unit completion MUST remain distinct from mastery.
+18. Missing evidence MUST NOT be replaced with invented progression.
+19. Educational behavior SHOULD remain explainable and traceable.
+20. Prompt-local wording MUST NOT become a new educational source of truth.
+21. Educational decisions MUST remain with their approved owner.
 
 ---
 
@@ -1194,11 +1303,17 @@ Teaching
 Assessment
     ≠ Competency Evaluation
 
+Same Logical Role
+    ≠ Same Semantic Responsibility
+
 Evidence
     ≠ Competency State
 
 Knowledge
     ≠ Application
+
+Automation Level
+    ≠ AI Automation Capability
 
 Automation Level
     ≠ Competency State
