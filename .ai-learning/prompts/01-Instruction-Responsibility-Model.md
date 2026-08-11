@@ -583,379 +583,236 @@ This avoids unnecessary decomposition.
 
 ---
 
-# 19. Role Labels
+# 15. Responsibility Inputs
 
-Role labels MAY be useful for explanation.
+An instruction responsibility MAY require information from multiple sources.
 
-Examples might include terms such as:
+Its required inputs SHOULD be defined by semantic need rather than implementation convenience.
 
-- teacher;
-- reviewer;
-- assessor;
-- mentor;
-- planner.
+Possible inputs include:
 
-Such labels MUST be treated carefully.
+- architectural constraints;
+- educational constraints;
+- learner state;
+- competency information;
+- project context;
+- task context;
+- prior bounded results;
+- engineering evidence;
+- educational evidence.
 
-A role label:
+The responsibility definition SHOULD identify the kind of information required without prescribing its runtime retrieval mechanism.
 
-- MAY refer to an upstream logical responsibility;
-- MAY describe an instructional behavior;
-- MAY describe a human-understandable persona.
-
-It MUST NOT, by itself, imply:
-
-- one Instruction Responsibility;
-- one prompt artifact;
-- one physical agent;
-- one model call;
-- one authority domain.
-
-Architecture MUST be determined by semantic contracts rather than labels.
+Detailed context-source authority and context-consumption rules belong to `04-Context-Model.md`.
 
 ---
 
-# 20. Responsibility and Persona
+# 16. Responsibility Outputs
 
-Persona and responsibility are different concepts.
+An instruction responsibility SHOULD have bounded expected outputs or effects.
 
-A persona describes how behavior is presented or framed.
+An output MAY include:
 
-A responsibility describes what behavior is normatively required or permitted.
+- interpreted intent;
+- a recommendation;
+- a learning interaction;
+- an engineering artifact;
+- review findings;
+- assessment evidence;
+- a proposed memory update;
+- a user-facing response.
 
-Therefore:
+An output MUST NOT automatically be treated as authoritative state.
 
-```text id="ir19"
-Persona
+Where another architectural responsibility owns interpretation, persistence, approval, or progression, that downstream ownership MUST remain explicit.
+
+For example:
+
+```text
+Observed Evidence
         ≠
-Instruction Responsibility
+Competency State Change
+
+Proposed Memory Update
+        ≠
+Persisted Memory
+
+Architectural Recommendation
+        ≠
+Accepted Architecture
 ```
-
-A single persona MAY express multiple responsibilities.
-
-Multiple personas MAY potentially express the same responsibility.
-
-Persona design MUST NOT be used to create, merge, or redefine architectural authority.
 
 ---
 
-# 21. Responsibility and Capability
+# 17. Educational Responsibility Safeguards
 
-An Instruction Responsibility describes required semantic behavior.
+Instruction responsibilities that participate in educational behavior MUST remain downstream from Stage 2 methodology.
 
-A capability describes an available mechanism that may help perform that behavior.
+They MUST preserve the distinction between:
 
-Therefore:
+- teaching and assessment;
+- assessment and competency evaluation;
+- evidence production and evidence interpretation;
+- Learning Unit completion and mastery;
+- Competency State and Automation Level;
+- Competency State and Learning Debt;
+- Automation Level and Learning Debt.
 
-```text id="ir20"
-Instruction Responsibility
-        ≠
-Capability
-```
+An instruction responsibility MUST NOT collapse these dimensions merely to simplify AI behavior.
 
-A responsibility MAY rely on:
-
-- model reasoning;
-- IDE capabilities;
-- tools;
-- project mechanisms;
-- Superpowers capabilities;
-- other verified external capabilities.
-
-Capability availability MUST NOT define responsibility ownership.
-
-Specific external-capability semantics are governed by `05-Superpowers-and-External-Capability-Boundaries.md`.
+Detailed educational instruction responsibilities belong to `05-Educational-Instruction-Model.md`.
 
 ---
 
-# 22. Responsibility and Development Lifecycle
+# 18. Engineering Responsibility Safeguards
 
-Stage 3 defines a development lifecycle for the learner's real software product.
+Instruction responsibilities involved in engineering work MUST preserve engineering quality and development discipline.
 
-Lifecycle activities MAY create different instruction needs.
+They MUST NOT treat educational goals as permission to produce technically unsound work.
 
-They MUST NOT automatically become Instruction Responsibilities.
+Likewise, engineering automation MUST NOT override educational integrity.
 
-Therefore:
+Where educational and engineering concerns interact, the established principle hierarchy applies:
 
-```text id="ir21"
-Lifecycle Activity
-        ≠
-Instruction Responsibility
+```text
+Educational Integrity
+        ↓
+Engineering Quality
+        ↓
+Explainability
+        ↓
+Adaptability
+        ↓
+Automation
 ```
 
-For example, Requirements or Review may require bounded instruction behavior.
-
-That does not mean each lifecycle activity must map to:
-
-- one prompt;
-- one responsibility;
-- one agent;
-- one execution state.
-
-Instruction architecture MUST be derived from semantic responsibility rather than lifecycle enumeration.
+Instruction responsibility design MUST remain compatible with this hierarchy.
 
 ---
 
-# 23. Responsibility and Educational State
+# 19. Security Responsibility
 
-Stage 1 defines an educational State Machine as a conceptual interaction lifecycle.
+Security is an established architectural concern and also appears as a logical Pipeline responsibility through the Security Auditor.
 
-Educational states MAY constrain what instruction behavior is appropriate.
+Prompt Architecture MUST preserve security responsibility without assuming that all security behavior belongs exclusively to one role.
 
-They MUST NOT automatically become Instruction Responsibilities.
+Security-related shared constraints MAY apply across multiple instruction responsibilities.
 
-Therefore:
+The Security Auditor responsibility MAY provide dedicated security analysis or review where appropriate.
 
-```text id="ir22"
-Educational State
-        ≠
-Instruction Responsibility
-```
+Shared security constraints and dedicated security review MUST NOT be treated as mutually exclusive.
 
-and:
-
-```text id="ir23"
-Educational State
-        ≠
-Runtime Routing State
-```
-
-The Instruction Responsibility Model defines semantic ownership.
-
-It does not define runtime state transitions.
+Prompt Architecture MUST NOT weaken applicable security constraints merely because a dedicated Security Auditor responsibility exists elsewhere in the Pipeline.
 
 ---
 
-# 24. Responsibility and Automation Level
+# 20. Response Responsibility
 
-Automation Level may influence how an educational responsibility behaves.
+The Response Generator is responsible for constructing coherent user-facing output from relevant bounded results.
 
-It does not determine responsibility identity.
+Response generation MUST NOT be treated as authority to redefine those results.
 
-A change in Automation Level SHOULD NOT automatically create a new Instruction Responsibility.
+A response responsibility MAY:
 
-Instead, the relevant responsibility MAY adapt its permitted assistance behavior while preserving the same semantic purpose and authority.
+- synthesize;
+- structure;
+- explain;
+- prioritize presentation;
+- adapt communication to the interaction.
 
-Therefore:
+It MUST preserve material distinctions established by upstream responsibilities.
 
-```text id="ir24"
-Automation Level
-        ≠
-Responsibility Topology
-```
+For example, uncertainty MUST NOT be rewritten as certainty merely to improve fluency.
 
-Detailed educational interaction constraints are defined in `04-Engineering-and-Educational-Instruction-Boundaries.md`.
+A recommendation MUST NOT be presented as an accepted architectural decision unless it has the required authority.
 
----
-
-# 25. Responsibility and Engineering Rigor
-
-Engineering Rigor may change the expected depth of engineering behavior.
-
-It does not automatically change responsibility identity.
-
-For example, verification at R1 and R4 may differ substantially in depth.
-
-That difference does not necessarily require separate Instruction Responsibilities.
-
-Therefore:
-
-```text id="ir25"
-Engineering Rigor
-        ≠
-Responsibility Topology
-```
-
-Rigor affects applicable behavior within accepted Stage 3 semantics.
-
-It MUST NOT be used as a proxy for learner independence or AI autonomy.
+An assessment observation MUST NOT be presented as mastery unless competency evaluation establishes that conclusion.
 
 ---
 
-# 26. Responsibility and Evidence
+# 21. Memory Responsibility
 
-Instruction Responsibilities MAY:
+The Memory Manager represents a logical Pipeline responsibility related to learner continuity and memory handling.
 
-- generate engineering observations;
-- reference verification evidence;
-- identify Candidate Educational Evidence;
-- interpret educational evidence where authorized;
-- produce review findings.
+Its instruction responsibilities MUST remain compatible with the architectural Memory Model.
 
-The semantic status of evidence MUST remain explicit.
+A Memory Manager instruction responsibility MAY support:
 
-A responsibility that produces an observation MUST NOT automatically gain authority to determine the final interpretation of that observation.
+- identification of memory-relevant observations;
+- preparation of bounded memory updates;
+- preservation of continuity;
+- retrieval-oriented interpretation where authorized.
 
-Therefore:
+It MUST NOT redefine:
 
-```text id="ir26"
+- competency semantics;
+- educational knowledge;
+- assessment methodology;
+- Decision Engine authority.
+
+The existence of a Memory Manager instruction responsibility MUST NOT imply a particular persistence mechanism.
+
+Persistence implementation belongs to Stage 5.
+
+---
+
+# 22. Assessor Responsibility
+
+The Assessor is a logical Agent Pipeline role responsible for bounded educational assessment and competency-evaluation activities.
+
+The Assessor MAY participate in more than one educational instruction responsibility.
+
+In particular, the Assessor MAY perform:
+
+- Assessment Responsibility;
+- Competency Evaluation Responsibility.
+
+These responsibilities MUST remain semantically distinct even when they are executed by the same logical role, prompt artifact, model invocation, or interaction.
+
+Conceptually:
+
+```text
+Assessor Pipeline Role
+        │
+        ├── Assessment Responsibility
+        │       ↓
+        │   Evidence Production
+        │
+        └── Competency Evaluation Responsibility
+                ↓
+            Evidence Interpretation
+```
+
+Assessment Responsibility MAY:
+
+- create assessment opportunities;
+- observe learner responses and activity;
+- identify relevant evidence;
+- classify evidence according to approved evidence categories;
+- report assessment findings.
+
+Competency Evaluation Responsibility MAY:
+
+- interpret applicable evidence against the relevant competency;
+- evaluate competency progression using approved methodology;
+- identify knowledge or capability gaps;
+- evaluate applicable Learning Debt implications;
+- determine whether available evidence supports the relevant competency conclusion;
+- produce bounded competency-evaluation results.
+
+The Assessor MUST preserve the Stage 2 relationship:
+
+```text
 Evidence Production
-        ≠
-Evidence Interpretation Authority
+        ↓
+Assessment
+        ↓
+Competency Evaluation
 ```
 
-Likewise:
+Execution by one logical role MUST NOT collapse these responsibilities into one semantic operation.
 
-```text id="ir27"
-Evidence Interpretation
-        ≠
-State-Change Authority
-```
-
-unless the accepted upstream model explicitly assigns both authorities to the same responsibility.
-
----
-
-# 27. Minimum Responsibility Contract
-
-Every material Instruction Responsibility SHOULD be describable through the following minimum semantic contract.
-
-## 27.1 Identifier
-
-A stable human-readable identifier or name.
-
-The identifier MUST NOT imply physical topology.
-
-## 27.2 Purpose
-
-Why the responsibility exists.
-
-## 27.3 Normative Basis
-
-Which accepted Stage 1–3 responsibilities or ADRs require it.
-
-## 27.4 Semantic Domain
-
-The area of responsibility in which it operates.
-
-## 27.5 Required Behavior
-
-What AI behavior is required.
-
-## 27.6 Prohibited Behavior
-
-What the responsibility MUST NOT do.
-
-## 27.7 Authority Boundary
-
-What decisions, interpretations, recommendations, or state changes are permitted.
-
-Detailed authority semantics belong to `02-Instruction-Authority-and-Composition.md`.
-
-## 27.8 Context Requirements
-
-What context is required or relevant.
-
-Detailed context semantics belong to `03-Context-and-Truth-Contracts.md`.
-
-## 27.9 Output Semantics
-
-What kinds of outputs the responsibility may produce.
-
-Detailed output and claim semantics belong to `06-Instruction-Outputs-Claims-and-Stage-5-Contracts.md`.
-
-## 27.10 Neighboring Responsibilities
-
-Which other responsibilities materially interact with it.
-
-## 27.11 Separation Requirements
-
-Which neighboring responsibilities MUST remain semantically distinguishable.
-
-## 27.12 Composition Eligibility
-
-Which responsibilities MAY be safely composed, subject to Stage 4 composition rules.
-
----
-
-# 28. Abstract Contract Example
-
-The following illustrates the form of an Instruction Responsibility without defining a physical prompt.
-
-```text id="ir28"
-Instruction Responsibility:
-    Engineering Review
-
-Purpose:
-    Evaluate applicable engineering quality independently
-    from implementation ownership.
-
-Normative Basis:
-    Stage 3 engineering review semantics.
-
-Required Behavior:
-    Examine applicable implementation and evidence.
-    Identify material engineering defects or unresolved risks.
-
-Prohibited Behavior:
-    MUST NOT declare learner competency mastery.
-    MUST NOT update authoritative learner state.
-
-Authority:
-    Engineering review judgment only.
-
-Required Context:
-    Applicable requirements,
-    implementation,
-    verification evidence,
-    relevant engineering constraints.
-
-Output:
-    Engineering review findings.
-
-Separation:
-    MUST remain semantically distinguishable
-    from the implementation responsibility
-    when independent review is applicable.
-
-Physical Realization:
-    Not defined by Stage 4.
-```
-
-This example demonstrates a responsibility contract.
-
-It does not prescribe:
-
-- `reviewer.md`;
-- a reviewer agent;
-- a second model;
-- a second invocation;
-- an orchestration step.
-
----
-
-# 29. Responsibility Catalog Boundary
-
-This document defines the model by which Instruction Responsibilities are identified.
-
-It does not require Stage 4 to create a universal one-to-one catalog corresponding to every:
-
-- Pipeline role;
-- lifecycle activity;
-- educational method;
-- tool;
-- external capability;
-- output type.
-
-A responsibility catalog, where useful, MUST be derived from actual semantic needs.
-
-The architecture SHOULD prefer the smallest set of semantically meaningful responsibilities that preserves accepted boundaries.
-
-It SHOULD avoid both:
-
-- over-consolidation that hides authority boundaries;
-- over-fragmentation that creates ceremonial architecture without semantic value.
-
----
-
-# 30. Proportionality
-
-Instruction decomposition SHOULD remain proportional.
-
-Not every distinction requires an independent responsibility.
-
-A new responsibility is justified when explicit semantic separation provides meaningful protection for:
+The Assessor MUST NOT:
 
 - authority;
 - context;

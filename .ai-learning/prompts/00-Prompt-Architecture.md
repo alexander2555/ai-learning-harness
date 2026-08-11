@@ -962,7 +962,11 @@ Superpowers is an immutable external workflow/capability dependency.
 
 ALH owns required architectural, educational, and development semantics.
 
-Superpowers owns its verified external capabilities and workflows.
+The Superpowers upstream definition owns the verified execution contracts
+of its capabilities and workflows.
+
+This ownership MUST NOT be interpreted as authority over the surrounding
+ALH responsibility, methodology, educational semantics, or completion semantics.
 
 The intended relationship is:
 
