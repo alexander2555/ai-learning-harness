@@ -277,15 +277,15 @@ ALH does not universally require behavior X.
 and:
 
 ```text
-A selected external capability requires behavior X
-as part of its own valid execution contract.
+An external capability that is mapped as applicable and subsequently
+used requires behavior X according to its own valid execution contract.
 ```
 
 There is no contradiction if the ownership boundary is explicit.
 
 For example, Stage 3 planning is proportional and context-dependent.
 
-A selected planning capability MAY impose a particular plan format.
+A planning capability that is mapped as applicable and subsequently used MAY impose a particular plan format as part of its verified execution contract.
 
 That format is then a condition of using that capability.
 
@@ -558,7 +558,7 @@ One Verified Capability
 for Satisfying Applicable Design Work
 ```
 
-Where the capability is selected, its verified contract MUST be respected.
+Where the capability is mapped as applicable and actually used, its verified contract MUST be respected.
 
 ---
 
@@ -600,9 +600,9 @@ Stage 3 Verification Obligation
 Universal Superpowers TDD Requirement
 ```
 
-Where the Superpowers TDD capability is selected, its verified contract MUST be respected.
+Where the Superpowers TDD capability is mapped as applicable and actually used, its verified execution contract MUST be respected.
 
-Where it is not applicable or not selected, Stage 4 MUST NOT falsely claim that ALH universally requires the capability's complete workflow.
+Where it is not applicable or is not used by the execution environment, Stage 4 MUST NOT falsely claim that ALH universally requires the capability's complete workflow.
 
 Applicable engineering verification obligations remain binding regardless.
 
@@ -1125,7 +1125,7 @@ Possible cases include:
 
 1. the capability is simply not applicable;
 2. ALH is attempting to use the capability contrary to its verified contract;
-3. the capability workflow is more prescriptive than ALH methodology but valid when selected;
+3. the capability workflow is more prescriptive than ALH methodology but valid when the capability is applicable and actually used;
 4. an actual architectural or methodological conflict exists.
 
 Stage 4 MUST NOT resolve these cases by silently rewriting either ALH semantics or external capability semantics.
@@ -1152,7 +1152,7 @@ If preserving them requires changing an accepted architectural boundary, that pr
 
 # 43. Capability-Owned Internal Sequence
 
-A selected external capability MAY require an internal sequence.
+An external capability that is mapped as applicable and actually used MAY require an internal sequence.
 
 Stage 4 MAY recognize that the sequence belongs to the capability contract.
 
@@ -1373,7 +1373,7 @@ ALH Engineering Obligation:
 
 External Capability:
     Superpowers test-driven-development,
-    where selected and applicable.
+    where mapped as applicable and actually used.
 
 Capability Contract:
     Its verified test-first semantics apply

@@ -1306,7 +1306,18 @@ Success
 
 # 50. Output Contract
 
-Every material Instruction Responsibility SHOULD have an Output Contract.
+Every material Instruction Responsibility MUST have output semantics sufficient
+to satisfy the Minimum Responsibility Contract defined by
+`01-Instruction-Responsibility-Model.md`.
+
+Where those semantics are material, they MUST be describable through an
+Output Contract containing the applicable elements defined below.
+
+An Output Contract is a semantic contract.
+
+It MAY be represented together with other responsibility contracts and
+MUST NOT be interpreted as requiring a separate prompt artifact, schema,
+runtime object, or physical implementation unit.
 
 An Output Contract SHOULD identify, where applicable:
 
@@ -1320,8 +1331,6 @@ An Output Contract SHOULD identify, where applicable:
 - completion authority;
 - explainability requirements;
 - downstream semantic obligations.
-
-The contract is semantic.
 
 It MUST NOT prescribe a concrete response schema unless such structure is independently required at the semantic level.
 
