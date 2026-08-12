@@ -1,6 +1,8 @@
-## ADR-001
+## ADR-001 - Separation of Application and Learning Infrastructure
 
-**Separation of Application and Learning Infrastructure**
+Status: Accepted
+
+---
 
 Decision:
 

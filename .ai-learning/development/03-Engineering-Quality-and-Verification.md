@@ -1,6 +1,7 @@
 # Engineering Quality and Verification
 
-Version: 0.1 Draft
+Status: Accepted
+Version: 1.0
 
 Parent Documents
 
