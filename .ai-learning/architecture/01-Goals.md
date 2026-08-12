@@ -1,6 +1,7 @@
 # Architecture Goals
 
-Version: 0.1 Draft
+Status: Accepted
+Version: 1.0
 
 Parent Document:
 AI Learning Harness (ALH) Architecture Vision

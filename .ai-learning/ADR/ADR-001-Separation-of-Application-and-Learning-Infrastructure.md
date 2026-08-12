@@ -2,6 +2,10 @@
 
 **Separation of Application and Learning Infrastructure**
 
+Status: Accepted
+
+---
+
 Decision:
 
 ALH resides entirely inside:
