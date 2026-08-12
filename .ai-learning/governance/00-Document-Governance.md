@@ -1,7 +1,7 @@
 # Document Governance
 
-Status: Draft
-Version: 0.1
+Status: Accepted
+Version: 1.0
 
 ---
 
@@ -182,7 +182,7 @@ The default ordinary-document versioning model is:
 ```text
 0.x
 =
-Draft development
+Draft development before first acceptance
 
 1.0
 =
@@ -197,7 +197,14 @@ Accepted compatible refinement
 Major accepted semantic revision
 ```
 
-Version numbers SHOULD remain proportional to actual document evolution.
+A Draft revision of an already Accepted document SHOULD use the intended next version with a draft prerelease suffix.
+
+Examples:
+
+Status: Draft
+Version: 1.1-draft.1
+Status: Draft
+Version: 2.0-draft.1
 
 Version changes MUST NOT be used to bypass ADR governance or accepted architectural boundaries.
 
@@ -205,17 +212,42 @@ Version changes MUST NOT be used to bypass ADR governance or accepted architectu
 
 # 10. Draft Versioning
 
-Draft documents SHOULD use versions below `1.0`.
+A document that has never been Accepted SHOULD use a version below 1.0 while in Draft status.
 
 Examples:
 
 ```text
-0.1
-0.2
-0.3
+Status: Draft
+Version: 0.1
+
+Status: Draft
+Version: 0.3
 ```
 
-Draft version changes MAY represent meaningful review iterations.
+A Draft revision of an already Accepted document SHOULD retain the intended next Accepted version and add a draft prerelease suffix.
+
+Examples:
+
+```text
+Accepted 1.0
+        ↓
+Draft 1.1-draft.1
+        ↓
+Accepted 1.1
+Accepted 1.4
+        ↓
+Draft 2.0-draft.1
+        ↓
+Accepted 2.0
+```
+
+Draft iteration MAY increment the draft suffix:
+
+1.1-draft.1
+1.1-draft.2
+1.1-draft.3
+
+Draft version changes SHOULD represent meaningful review iterations.
 
 They SHOULD NOT be incremented for every trivial edit unless such tracking provides concrete project value.
 
@@ -354,7 +386,58 @@ Authoritative Repository Integration
 
 ---
 
-# 16. Canonical Ordinary-Document Header
+## 16. Acceptance Integration Transition
+
+After explicit project-owner acceptance, the artifact intended for repository integration MAY be prepared with Accepted metadata before merge:
+
+```text
+Status: Accepted
+Version: <accepted version>
+```
+
+This metadata identifies the artifact that has been approved for integration.
+
+It does not make the artifact part of the current normative repository baseline before integration occurs.
+
+The transition is:
+
+```text
+Draft
+        ↓
+Owner Review
+        ↓
+Explicit Project-Owner Acceptance
+        ↓
+Accepted Metadata Prepared
+        ↓
+Integration into Authoritative Repository Baseline
+        ↓
+Current Normative Accepted Artifact
+```
+
+Therefore:
+
+```text
+Owner Acceptance
+        ≠
+Repository Integration
+```
+
+and:
+
+```text
+Accepted Metadata Prepared
+        ≠
+Current Normative Authority
+```
+
+Current normative authority becomes effective only when the owner-accepted artifact is integrated into the authoritative repository baseline.
+
+This rule allows normal pull-request and merge workflows without making document metadata itself the source of authority.
+
+---
+
+# 17. Canonical Ordinary-Document Header
 
 Ordinary ALH normative documents SHOULD use the following minimal metadata header immediately after the document title:
 
@@ -392,7 +475,7 @@ Repository history remains the appropriate source for such information.
 
 ---
 
-# 17. Parent and Related Documents
+# 18. Parent and Related Documents
 
 `Parent Documents` and `Related Documents` describe normative and adjacent document relationships.
 
@@ -406,7 +489,7 @@ Document relationship metadata and document lifecycle metadata remain separate c
 
 ---
 
-# 18. Repository Location
+# 19. Repository Location
 
 A Draft MAY live at its intended canonical path.
 
@@ -426,7 +509,7 @@ This avoids unnecessary path churn and broken normative references during accept
 
 ---
 
-# 19. Architecture Decision Records
+# 20. Architecture Decision Records
 
 Architecture Decision Records use a distinct lifecycle model because an ADR records an architectural decision rather than an ordinary evolving normative specification.
 
@@ -453,7 +536,7 @@ Material architectural change SHOULD be recorded through a new ADR rather than s
 
 ---
 
-# 20. ADR Supersession
+# 21. ADR Supersession
 
 When an ADR is replaced, the previous ADR SHOULD use:
 
@@ -468,7 +551,7 @@ Superseding an ADR MUST NOT erase the historical fact that the earlier ADR was o
 
 ---
 
-# 21. Metadata and Runtime Interpretation
+# 22. Metadata and Runtime Interpretation
 
 Future Harness implementation MAY inspect document lifecycle metadata.
 
@@ -500,7 +583,7 @@ The exact runtime implementation is governed by Stage 5.
 
 ---
 
-# 22. Missing or Invalid Metadata
+# 23. Missing or Invalid Metadata
 
 Once repository-wide normalization is complete, an ordinary normative document missing required lifecycle metadata SHOULD be treated as governance-invalid or status-unknown rather than silently assumed Accepted.
 
@@ -518,7 +601,7 @@ Where required, the document SHOULD be corrected through project governance.
 
 ---
 
-# 23. Metadata Validation
+# 24. Metadata Validation
 
 Repository tooling MAY validate:
 
@@ -532,7 +615,14 @@ Examples of invalid ordinary-document combinations include:
 
 ```text
 Status: Draft
-Version: 1.0
+Version: 1.1
+```
+
+valid draft revision format:
+
+```text
+Status: Draft
+Version: 1.1-draft.1
 ```
 
 unless explicitly justified by a migration or exceptional governance case.
@@ -551,7 +641,7 @@ It MUST NOT independently decide owner acceptance.
 
 ---
 
-# 24. Normalization of Existing Accepted Documents
+# 25. Normalization of Existing Accepted Documents
 
 At introduction of this governance model, already accepted Stage 1–5 normative documents SHOULD be normalized from legacy metadata such as:
 
@@ -574,7 +664,7 @@ It MUST NOT alter document semantics.
 
 ---
 
-# 25. ADR-001 Normalization
+# 26. ADR-001 Normalization
 
 ADR-001 — Separation of Application and Learning Infrastructure — is already an accepted architectural decision.
 
@@ -590,7 +680,7 @@ This metadata normalization MUST NOT modify the ADR decision.
 
 ---
 
-# 26. Normalization Safety Rule
+# 27. Normalization Safety Rule
 
 Repository-wide normalization MUST NOT perform blind lifecycle promotion.
 
@@ -606,7 +696,7 @@ Historical, superseded, experimental, or unaccepted artifacts MUST retain or rec
 
 ---
 
-# 27. Semantic-Change Prohibition
+# 28. Semantic-Change Prohibition
 
 The initial Document Governance Normalization pass MUST be metadata-only except for:
 
@@ -627,7 +717,7 @@ Any unrelated correction SHOULD be handled separately.
 
 ---
 
-# 28. Conformance
+# 29. Conformance
 
 After normalization, ordinary current normative ALH documents SHOULD expose:
 
@@ -655,7 +745,7 @@ Superseded and historical documents MUST remain distinguishable from the current
 
 ---
 
-# 29. Observations
+# 30. Observations
 
 ## O-1 — Lifecycle and Authority Must Remain Separate
 
@@ -675,7 +765,7 @@ Explicit lifecycle metadata reduces ambiguity when the Harness later distinguish
 
 ---
 
-# 30. Candidate ADRs
+# 31. Candidate ADRs
 
 No Candidate ADR is introduced by this document.
 
@@ -685,7 +775,7 @@ It does not change accepted ALH architectural responsibility or authority bounda
 
 ---
 
-# 31. Completion Criteria
+# 32. Completion Criteria
 
 Document Governance Normalization is complete when:
 
