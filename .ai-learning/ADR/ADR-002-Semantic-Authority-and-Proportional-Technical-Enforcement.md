@@ -1,6 +1,6 @@
 # ADR-002 — Semantic Authority and Proportional Technical Enforcement
 
-Status: Proposed
+Status: Accepted
 
 ## Context
 
