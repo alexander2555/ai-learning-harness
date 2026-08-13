@@ -1,7 +1,7 @@
 # Security, Trust, and Authority Enforcement
 
-Status: Draft
-Version: 2.0-draft.1
+Status: Accepted
+Version: 2.0
 
 Parent Documents
 

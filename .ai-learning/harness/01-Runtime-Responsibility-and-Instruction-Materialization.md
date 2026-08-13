@@ -1,7 +1,7 @@
 # Runtime Responsibility and Instruction Materialization
 
-Status: Draft
-Version: 2.0-draft.1
+Status: Accepted
+Version: 2.0
 
 Parent Documents
 

@@ -1,7 +1,7 @@
 # Harness Implementation Architecture
 
-Status: Draft
-Version: 2.0-draft.1
+Status: Accepted
+Version: 2.0
 
 Parent Documents
 
@@ -401,8 +401,7 @@ The Kernel SHOULD provide the common mechanisms necessary to:
 - coordinate access to authoritative learner state;
 - apply authority-sensitive state mutation rules;
 - preserve applicable ALH contracts around model or coding-agent execution;
-- preserve applicable ALH contracts around external-capability and tool access;
-- capture materially relevant execution evidence;
+- preserve applicable ALH contracts around external-capability and tool access;- capture materially relevant execution evidence;
 - constrain claims according to available evidence;
 - preserve uncertainty;
 - maintain materially relevant provenance;

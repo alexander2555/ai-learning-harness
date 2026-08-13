@@ -1,7 +1,7 @@
 # External Capabilities, Tools, and Environment Integration
 
-Status: Draft
-Version: 2.0-draft.1
+Status: Accepted
+Version: 2.0
 
 Parent Documents
 
