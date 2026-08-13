@@ -268,9 +268,15 @@ Either choice MUST preserve the accepted semantic contract.
 
 ---
 
-# 7. Harness Kernel and Ports / Adapters
+# 7. Harness Kernel and Integration Boundaries
 
-The default Stage 5 implementation architecture is a contract-preserving Harness Kernel surrounded by explicit integration ports and concrete adapters.
+The Stage 5 implementation architecture uses a contract-preserving Harness Kernel
+concept together with explicit integration boundaries.
+
+These concepts define where ALH-owned contracts must remain preserved.
+
+They do not prescribe one physical runtime topology or require every integration
+boundary to be implemented as a programmatic Port and Adapter.
 
 Conceptually:
 
@@ -288,7 +294,7 @@ Learner / Coding Environment
 │                                          │
 │  responsibility materialization         │
 │  instruction composition                │
-│  authority enforcement                  │
+│  authority preservation                 │
 │  context coordination                   │
 │  decision coordination                  │
 │  evidence / claim enforcement           │
@@ -296,31 +302,47 @@ Learner / Coding Environment
 └──────┬──────────┬──────────┬────────────┘
        │          │          │
        ▼          ▼          ▼
- Project Port  Learner     Model / AI Port
-               State Port
+ Project      Learner      Model / AI
+ Integration State        Integration
+ Boundary    Boundary      Boundary
        │          │          │
        ▼          ▼          ▼
- Project /    ALH-owned    Model provider /
- Repository   persistence  coding agent
-
+ Project /    ALH-owned    Host coding agent /
+ Repository   persistence  model mechanism
                │
                ▼
-         Capability / Tool Ports
+      Capability / Tool
+      Integration Boundaries
                │
                ▼
        External capabilities,
        including Superpowers
 ```
 
-This diagram is architectural, not a mandatory deployment topology.
+This diagram is architectural.
 
-The Harness Kernel MAY be physically implemented as one process or multiple processes.
+It represents contract-preservation and integration boundaries, not mandatory
+deployment units, executable components, APIs, processes, or programming-language
+interfaces.
 
-A port MAY be implemented by one or more adapters.
+A concrete implementation MAY materialize an integration boundary through:
 
-An adapter MAY internally use multiple external mechanisms.
+- host-native behavior;
+- canonical instructions;
+- configuration;
+- file or directory conventions;
+- commands;
+- programmatic Ports and Adapters;
+- narrow executable support;
+- combinations of these mechanisms.
 
-These physical choices MUST NOT alter the semantic responsibilities represented by the architecture.
+Where a programmatic Port is selected, one or more Adapters MAY implement it.
+
+Where no programmatic Port or Adapter is required, an equivalent integration
+mechanism MAY preserve the same accepted contract.
+
+Physical choices MUST NOT alter the semantic responsibilities represented by the
+architecture.
 
 ## Physical Minimality Clarification
 
@@ -378,8 +400,8 @@ The Kernel SHOULD provide the common mechanisms necessary to:
 - distinguish project truth from learner truth;
 - coordinate access to authoritative learner state;
 - apply authority-sensitive state mutation rules;
-- coordinate model or coding-agent execution;
-- coordinate external-capability and tool access;
+- preserve applicable ALH contracts around model or coding-agent execution;
+- preserve applicable ALH contracts around external-capability and tool access;
 - capture materially relevant execution evidence;
 - constrain claims according to available evidence;
 - preserve uncertainty;

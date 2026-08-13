@@ -263,7 +263,7 @@ The exact persistence technology is intentionally left open.
 
 ---
 
-# 8. Learner-State Port
+# 8. Learner-State Access Boundary
 
 The implementation MUST preserve an explicit semantic boundary for authoritative
 learner-state access.
@@ -767,7 +767,7 @@ Decision Engine output SHOULD preserve, where applicable:
 
 Decision Engine output is not automatically a persistence mutation.
 
-Authority-sensitive state changes SHOULD still pass through the applicable Educational Mutation Gate.
+Authority-sensitive state changes SHOULD still be governed by the applicable Educational Mutation Boundary.
 
 ---
 
