@@ -1282,7 +1282,12 @@ Implementation tests SHOULD include:
 - generated artifact self-acceptance attempts;
 - completion self-declaration attempts.
 
-These tests verify physical controls, not model obedience alone.
+These tests MUST verify the selected contract-preservation mechanism rather than
+model obedience alone where the applicable contract requires non-model
+verification.
+
+The mechanism MAY be preventive, detective, validating, reconciliatory, or
+host-native according to the selected proportional implementation.
 
 ---
 
@@ -1321,18 +1326,29 @@ SHOULD be used.
 
 # 62. Model Adapter Verification
 
-Model Adapter tests SHOULD verify:
+This section applies only if the selected implementation includes a Model Adapter
+or equivalent programmatic model-integration mechanism.
+
+Where applicable, tests SHOULD verify the contract actually owned by that
+mechanism, which MAY include:
 
 - instruction transport;
 - context separation where supported;
-- tool-call interception;
 - response normalization;
 - failure handling;
-- provider-specific metadata handling.
+- provider-specific metadata handling;
+- tool-call transport or interception only where the adapter actually owns that
+  responsibility.
 
-They MUST NOT attempt to prove model correctness through deterministic unit tests.
+If no Model Adapter is selected, this section is not applicable.
 
-Model behavior validation belongs to broader Stage 6 concerns where applicable.
+The absence of a Model Adapter MUST NOT remove verification of the underlying ALH
+contracts through the mechanisms that actually materialize them.
+
+Deterministic adapter tests MUST NOT be represented as proof of model behavioral
+correctness.
+
+Model behavioral validation belongs to broader Stage 6 concerns where applicable.
 
 ---
 

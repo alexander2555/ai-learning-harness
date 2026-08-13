@@ -173,45 +173,45 @@ Its internal workflow does not automatically become ALH methodology.
 
 ---
 
-# 5. Capability Port
+# 5. External-Capability Integration Boundary
 
-The Harness SHOULD expose external capabilities through an explicit Capability Port.
+The Harness MUST preserve an explicit integration boundary between ALH semantics
+and external-capability execution contracts.
 
-Conceptually:
+A Capability Port MAY materialize this boundary where a programmatic integration
+abstraction is useful.
 
-```text
-Harness Kernel
-        ↓
-Capability Port
-        ↓
-Capability Adapter
-        ↓
-External Capability
-```
+Equivalent mechanisms MAY include:
 
-The Capability Port SHOULD provide a stable ALH-owned integration boundary.
+- host-native capability discovery;
+- instruction bindings;
+- configuration;
+- command conventions;
+- file or directory conventions;
+- programmatic ports and adapters;
+- combinations of these mechanisms.
 
-It MAY support operations such as:
+The integration boundary SHOULD support functions equivalent in purpose to:
 
-```text
-discoverCapabilities()
-describeCapability()
-invokeCapability()
-getCapabilityStatus()
-getCapabilityResult()
-```
+- capability discovery or identification;
+- capability-contract inspection;
+- invocation where applicable;
+- execution-status observation;
+- result acquisition;
+- provenance preservation.
 
-These names are illustrative only.
+These functions do not mandate an API.
 
-The exact API remains an implementation decision.
+The boundary MUST NOT redefine ALH semantic authority.
 
 ---
 
-# 6. Capability Adapter
+# 6. Capability Integration Mechanism
 
-A Capability Adapter translates between Harness requirements and a specific external capability contract.
+A concrete capability integration mechanism connects ALH requirements to a
+specific external capability contract.
 
-The adapter MAY be responsible for:
+Where a programmatic adapter is selected, it MAY handle:
 
 - capability discovery;
 - invocation formatting;
@@ -222,9 +222,11 @@ The adapter MAY be responsible for:
 - provenance;
 - error translation.
 
-The adapter MUST NOT reinterpret ALH obligations.
+Where no programmatic adapter is required, equivalent responsibilities MAY be
+satisfied through host-native or instruction-level integration.
 
-It MUST NOT create semantic authority.
+Any integration mechanism MUST NOT reinterpret ALH obligations or create semantic
+authority.
 
 Therefore:
 
@@ -631,9 +633,20 @@ A fallback mechanism MUST NOT inherit the authority of the preferred mechanism m
 
 ---
 
-# 24. Tool Port
+# 24. Tool Integration Boundary
 
-The Harness SHOULD expose development tools through explicit Tool Ports or equivalent adapter boundaries.
+The Harness MUST preserve semantic and security distinctions around development
+tool use.
+
+The physical integration MAY use:
+
+- host-native tool access;
+- host-native authorization or confirmation;
+- explicit Tool Ports;
+- programmatic adapters;
+- command bindings;
+- operation-specific ALH controls;
+- combinations of these mechanisms.
 
 Tools MAY include:
 
@@ -646,17 +659,17 @@ Tools MAY include:
 - deployment commands;
 - project-specific utilities.
 
-The exact number of Tool Ports is an implementation decision.
-
-A single generic tool abstraction MAY be sufficient initially if semantic and security distinctions remain enforceable.
+A programmatic Tool Port is an Implementation Decision, not a baseline
+requirement.
 
 ---
 
-# 25. Tool Adapter
+# 25. Tool Integration Mechanism
 
-A Tool Adapter translates Harness requests into concrete tool operations.
+Where a programmatic Tool Adapter is selected, it translates ALH-governed
+requests into concrete tool operations.
 
-The adapter SHOULD preserve:
+It SHOULD preserve, where applicable:
 
 - requested operation;
 - parameters;
@@ -666,9 +679,19 @@ The adapter SHOULD preserve:
 - errors;
 - provenance.
 
-A Tool Adapter has technical execution capability.
+Where host-native execution is used directly, equivalent materially relevant
+information SHOULD be preserved through the available host execution/evidence
+mechanism.
 
-It does not have semantic authority.
+Therefore:
+
+```text
+Tool Integration Mechanism
+        ≠
+Semantic Authority
+```
+
+Technical execution capability MUST NOT create ALH semantic authority.
 
 ---
 
@@ -984,11 +1007,21 @@ Host-agent claims about actions it performed SHOULD be verified through availabl
 
 ---
 
-# 41. Model Provider Integration
+# 41. Model / AI Integration Boundary
 
-Model-provider integration SHOULD occur through a Model / AI Port.
+ALH MUST preserve its semantic boundaries regardless of how the supported coding
+environment obtains AI/model capability.
 
-The adapter MAY handle:
+Model execution MAY be:
+
+- owned directly by the host coding environment;
+- exposed through a host-native agent mechanism;
+- accessed through a Model / AI Port;
+- accessed through another proportional integration mechanism.
+
+A dedicated Model / AI Port or Model Adapter is not a baseline requirement.
+
+Where a programmatic model integration mechanism is selected, it MAY handle:
 
 - provider authentication;
 - model selection;
@@ -999,7 +1032,7 @@ The adapter MAY handle:
 - result normalization;
 - usage metadata.
 
-Model-provider details MUST NOT determine ALH semantic authority.
+Model-provider or host-agent details MUST NOT determine ALH semantic authority.
 
 ---
 
@@ -1641,18 +1674,31 @@ The integration pattern remains the same:
 
 # 74. Initial Superpowers Integration Direction
 
-The initial Superpowers integration SHOULD be adapter-based and capability-oriented.
+The initial Superpowers integration SHOULD be capability-oriented and should use
+the least complex integration mechanism compatible with the verified upstream
+execution contract.
 
-It SHOULD NOT hard-code a universal Superpowers workflow into the Harness.
-
-The Harness SHOULD:
+ALH SHOULD:
 
 1. discover or otherwise identify available relevant capabilities;
 2. verify material capability contracts when needed;
 3. map applicable ALH obligations to verified capabilities;
-4. invoke through an adapter;
-5. capture execution evidence;
+4. invoke or apply the capability through the mechanism supported by the host and
+   upstream contract;
+5. preserve materially relevant execution evidence;
 6. interpret results under ALH semantics.
+
+The integration mechanism MAY be:
+
+- host-native;
+- instruction-based;
+- command-based;
+- configuration-based;
+- adapter-based;
+- another verified mechanism.
+
+ALH MUST NOT introduce a programmatic Superpowers adapter merely because
+Superpowers is an external dependency.
 
 This preserves:
 
@@ -1666,31 +1712,64 @@ Methodology Inheritance
 
 # 75. Initial Tool Integration Direction
 
-The initial implementation SHOULD prefer a small number of explicit tool adapters or a controlled generic tool boundary rather than unrestricted direct model access to host tools.
+The initial implementation SHOULD prefer the least complex integration mechanism
+that sufficiently preserves applicable ALH semantic, security, and evidence
+contracts.
 
-All authority-sensitive tool use SHOULD pass through Harness authorization.
+For ordinary development operations, host-native tool execution MAY be used
+directly.
 
-Tool outputs SHOULD feed structured evidence capture.
+ALH SHOULD define the applicable semantic constraints while relying on
+host-native authorization and safety mechanisms where sufficient.
+
+ALH-specific tool adapters or technical mediation SHOULD be introduced only when
+a concrete operation requires stronger control than the host-native path
+provides.
+
+Tool outputs that materially support execution or completion claims SHOULD remain
+available as structured or otherwise inspectable evidence.
+
+Therefore:
+
+```text
+Tool Integration Boundary
+        ≠
+Mandatory ALH Tool Adapter
+```
 
 ---
 
 # 76. Initial Environment Integration Direction
 
-The initial Harness SHOULD support one concrete coding environment through a dedicated adapter before attempting broad multi-environment abstraction.
+The initial Harness SHOULD validate its integration model against one concrete
+coding environment before attempting broad multi-environment generalization.
 
-The Kernel and Port contracts SHOULD nevertheless avoid unnecessary coupling to that first environment.
+The first environment integration SHOULD use the least complex host-specific
+binding sufficient to expose and apply canonical ALH behavior.
 
-This permits:
+That binding MAY consist of:
+
+- host-specific instruction files;
+- configuration;
+- project conventions;
+- commands;
+- a programmatic adapter;
+- combinations of these mechanisms.
+
+Conceptually:
 
 ```text
-First Working Adapter
+First Working Host Integration
         ↓
 Validated Core Contract
         ↓
-Additional Adapters Later
+Additional Host Integrations Later
 ```
 
-without prematurely building a generalized environment framework.
+The canonical ALH contract SHOULD avoid unnecessary coupling to the first host.
+
+A dedicated executable Environment Adapter is not required unless independently
+justified.
 
 ---
 
@@ -1699,18 +1778,19 @@ without prematurely building a generalized environment framework.
 This document intentionally does not prescribe:
 
 - first supported coding environment;
-- exact Capability Port API;
-- exact Tool Port API;
-- exact Environment Port API;
-- Superpowers invocation transport;
-- capability-registry storage;
-- tool-registry storage;
-- model provider;
-- provider-native tool calling vs Harness-mediated transport;
-- local shell implementation;
+- exact capability-integration mechanism;
+- exact tool-integration mechanism;
+- exact environment-binding mechanism;
+- whether programmatic Ports or Adapters are required;
+- Superpowers invocation or application transport;
+- capability-registry representation, if any;
+- tool-registry representation, if any;
+- model provider, if separately integrated;
+- host-native tool calling vs ALH-specific mediation;
+- local shell implementation, if ALH-owned;
 - remote execution;
 - plugin architecture;
-- adapter package boundaries;
+- executable adapter package boundaries, if adapters exist;
 - exact retry policy;
 - exact timeout values;
 - environment capability-negotiation protocol;
@@ -1732,23 +1812,35 @@ Reimplementing the external workflow would increase coupling and risk semantic d
 
 ## O-2 — First-Environment Focus Is More Proportional Than Immediate Generalization
 
-A stable Port boundary can be designed while implementing one concrete adapter first.
+A stable semantic integration contract can be validated through one concrete host
+integration before generalizing across environments.
 
-This avoids building abstractions based on hypothetical environments.
+This avoids designing programmatic abstractions from hypothetical host behavior.
 
 ## O-3 — Result Interpretation Is an ALH Responsibility
 
-Adapters can normalize external results, but deciding what those results mean for engineering or education remains inside ALH authority.
+External integration mechanisms MAY normalize or expose results.
 
-## O-4 — Tool Calling Requires a Harness Authorization Boundary
+Deciding what those results mean for engineering or educational purposes remains
+inside ALH authority.
 
-Provider-native tool calling is convenient but can bypass semantic and security controls if treated as direct execution authority.
+## O-4 — Native Tool Capability Does Not Create ALH Authority
+
+Provider-native or host-native tool calling can perform operations without
+acquiring ALH semantic authority.
+
+Where host-native controls and ALH semantic rules sufficiently preserve the
+applicable contract, universal Harness mediation is unnecessary.
 
 ## O-5 — External Contract Drift Is Operationally Important
 
-Superpowers, coding environments, model providers, and tools may evolve independently of ALH.
+Superpowers, coding environments, model providers, and tools may evolve
+independently of ALH.
 
-Adapter boundaries reduce the impact, but current capability assumptions still need verification where material.
+Explicit integration boundaries reduce semantic coupling, but those boundaries
+need not always be implemented as programmatic adapters.
+
+Current external-contract assumptions still require verification where material.
 
 ---
 
@@ -1756,16 +1848,20 @@ Adapter boundaries reduce the impact, but current capability assumptions still n
 
 No Candidate ADR is introduced by this document.
 
-The following remain implementation decisions within accepted Stage 1–4 architecture:
+The following remain Implementation Decisions within the accepted architecture:
 
-- Capability Port / Adapter boundary;
-- Tool Port / Adapter boundary;
-- Environment Adapter boundary;
-- Capability Registry direction;
-- adapter-based Superpowers integration;
-- Harness-mediated tool authorization;
+- concrete Capability integration boundary;
+- concrete Tool integration boundary;
+- concrete coding-environment integration boundary;
+- whether any of those boundaries require programmatic Ports or Adapters;
+- Capability Registry representation, if needed;
+- Superpowers discovery / application / invocation mechanism;
+- host-native vs ALH-specific tool mediation for particular operations;
 - one-environment-first implementation strategy;
 - local-first implementation direction.
+
+ADR-002 establishes that semantic authority does not require universal technical
+mediation or mandatory programmatic adapter topology.
 
 A Candidate ADR would be required if implementation proposed, for example:
 
@@ -1802,29 +1898,27 @@ This document is complete when Stage 5 has a normative external-integration arch
 At minimum, it MUST establish:
 
 - External Capability semantics;
-- Capability Port;
-- Capability Adapter;
+- external-capability integration boundary;
 - Superpowers ownership boundary;
 - no-workflow-duplication rule;
-- capability discovery;
+- capability discovery or identification;
 - capability contract verification;
-- capability version identity;
+- capability version identity where material;
 - applicability / selection / invocation separation;
 - capability result interpretation;
 - capability unavailability and fallback;
-- Tool Port / Adapter boundary;
-- tool authority;
+- tool integration boundary;
+- tool semantic authority;
 - read / write operation distinction;
-- coding-environment integration;
-- Environment Adapter;
+- coding-environment integration boundary;
 - host-agent delegation boundary;
-- model-provider boundary;
-- model tool-call authorization;
+- model / AI integration boundary;
+- native tool-call semantic constraints;
 - external evidence capture;
 - environment portability;
 - external contract drift handling;
 - initial Superpowers integration direction;
-- implementation decisions intentionally left open.
+- implementation mechanisms intentionally left open.
 
 Acceptance of this document authorizes detailed security, trust, and authority-enforcement design in:
 

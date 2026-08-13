@@ -1528,21 +1528,44 @@ Exact permissions remain downstream planning decisions.
 
 # 71. Initial Tool Security Direction
 
-Tool execution SHOULD pass through Harness-controlled authorization even when the model provider or host environment exposes native tool calling.
+The initial implementation SHOULD prefer host-native execution and safety
+mechanisms for ordinary development-tool operations where they sufficiently
+preserve applicable ALH contracts.
 
-The preferred flow is:
+The baseline flow MAY be:
 
 ```text
-Model / Agent Requests Tool
+ALH Semantic Constraints
         ↓
-Harness Validates Operation
+IDE / Coding Agent
         ↓
-Harness Invokes Tool Adapter
+Host-Native Authorization / Safety
         ↓
-Harness Captures Evidence
+Host-Native Tool
+        ↓
+Execution Result / Evidence
 ```
 
-This prevents provider-native execution mechanics from becoming semantic authority.
+ALH-specific technical mediation SHOULD be introduced only where a concrete
+accepted ALH authority, trust, or evidence boundary cannot be sufficiently
+preserved through:
+
+- accepted instructions;
+- host-native controls;
+- structured evidence;
+- deterministic validation;
+- another weaker proportional mechanism.
+
+Therefore:
+
+```text
+Semantic Tool Authority
+        ≠
+Mandatory Harness Tool Proxy
+```
+
+Provider-native or host-native execution mechanics MUST NOT create ALH semantic
+authority merely because they can perform an operation.
 
 ---
 
