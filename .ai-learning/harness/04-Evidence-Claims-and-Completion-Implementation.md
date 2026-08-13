@@ -1,7 +1,7 @@
 # Evidence, Claims, and Completion Implementation
 
 Status: Accepted
-Version: 1.0
+Version: 2.0
 
 Parent Documents
 
@@ -627,7 +627,24 @@ It MUST NOT become a new source of semantic authority.
 
 # 23. Evidence Journal Authority
 
-The Journal records what the Harness observed or executed.
+The Journal records materially relevant evidence observed through the
+ALH-governed workflow, including evidence produced by host-native execution,
+external capabilities, tools, authorized human verification, or ALH-specific
+mechanisms.
+
+Recording evidence does not require the Harness itself to have mediated or
+executed the underlying operation.
+
+Therefore:
+
+```text
+Harness Did Not Mediate Operation
+        ≠
+Evidence Is Unusable
+```
+
+Evidence validity depends on its source, provenance, freshness, applicable
+execution contract, and relationship to the supported claim.
 
 Therefore:
 

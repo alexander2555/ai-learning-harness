@@ -1,7 +1,7 @@
 # Configuration, Observability, and Implementation Verification
 
 Status: Accepted
-Version: 1.0
+Version: 2.0
 
 Parent Documents
 
@@ -1103,12 +1103,16 @@ The implementation SHOULD demonstrate that these states are not silently collaps
 Tests MUST demonstrate that:
 
 - project artifacts cannot become authoritative learner state directly;
-- ordinary engineering execution cannot mutate competency;
+- ordinary engineering execution cannot establish authoritative competency
+  mutation;
 - Candidate Educational Evidence remains candidate until Assessment;
-- read access does not create write authority;
-- unauthorized learner-state writes are denied;
+- read access does not create mutation authority;
+- a physical learner-state write that lacks the required educational authority
+  does not establish a valid authoritative transition;
+- deterministic validation detects or rejects invalid transitions where such
+  validation is part of the selected implementation;
 - educational decision and persistence mutation remain logically distinct;
-- duplicate mutations are prevented where required.
+- duplicate authoritative mutations are prevented where required.
 
 ---
 
@@ -1209,13 +1213,60 @@ Where precise Superpowers behavior materially affects implementation, its upstre
 
 # 58. Tool Authorization Verification
 
-Tests SHOULD demonstrate that:
+Verification SHOULD demonstrate that the selected tool-execution mechanism
+preserves:
 
-- available tools may still be denied;
-- read authority does not imply write authority;
-- native model tool requests pass through Harness authorization;
-- unauthorized project-path writes are blocked;
-- learner-state mutation cannot occur through generic tool access.
+```text
+Tool Available
+        ≠
+Tool Semantically Authorized
+```
+
+Where host-native authorization is used, verification SHOULD confirm that ALH
+semantic constraints are compatible with and not silently replaced by host tool
+availability.
+
+Where ALH-specific technical mediation is implemented, tests SHOULD verify that
+the mediation mechanism enforces its defined contract.
+
+The verification architecture MUST NOT assume that every native model or host
+tool request passes through an ALH-controlled proxy.
+
+Learner-state authority MUST NOT be established merely through generic tool or
+filesystem access.
+
+## Verification Applicability
+
+Stage 5 Implementation Verification MUST verify the physical mechanisms actually
+selected by the implementation.
+
+A mechanism-specific verification section is applicable only when that mechanism
+exists in the selected implementation.
+
+For example:
+
+```text
+No Model Adapter Selected
+        →
+Model Adapter Contract Tests Not Applicable
+```
+
+does not imply:
+
+```text
+Applicable ALH Contract Not Verified
+```
+
+The underlying accepted contract MUST still be verified through the mechanism
+that actually materializes it.
+
+Therefore:
+
+```text
+Contract Verification Is Mandatory
+        ≠
+Every Candidate Mechanism Must Exist
+```
 
 ---
 
@@ -1231,7 +1282,12 @@ Implementation tests SHOULD include:
 - generated artifact self-acceptance attempts;
 - completion self-declaration attempts.
 
-These tests verify physical controls, not model obedience alone.
+These tests MUST verify the selected contract-preservation mechanism rather than
+model obedience alone where the applicable contract requires non-model
+verification.
+
+The mechanism MAY be preventive, detective, validating, reconciliatory, or
+host-native according to the selected proportional implementation.
 
 ---
 
@@ -1270,18 +1326,29 @@ SHOULD be used.
 
 # 62. Model Adapter Verification
 
-Model Adapter tests SHOULD verify:
+This section applies only if the selected implementation includes a Model Adapter
+or equivalent programmatic model-integration mechanism.
+
+Where applicable, tests SHOULD verify the contract actually owned by that
+mechanism, which MAY include:
 
 - instruction transport;
 - context separation where supported;
-- tool-call interception;
 - response normalization;
 - failure handling;
-- provider-specific metadata handling.
+- provider-specific metadata handling;
+- tool-call transport or interception only where the adapter actually owns that
+  responsibility.
 
-They MUST NOT attempt to prove model correctness through deterministic unit tests.
+If no Model Adapter is selected, this section is not applicable.
 
-Model behavior validation belongs to broader Stage 6 concerns where applicable.
+The absence of a Model Adapter MUST NOT remove verification of the underlying ALH
+contracts through the mechanisms that actually materialize them.
+
+Deterministic adapter tests MUST NOT be represented as proof of model behavioral
+correctness.
+
+Model behavioral validation belongs to broader Stage 6 concerns where applicable.
 
 ---
 

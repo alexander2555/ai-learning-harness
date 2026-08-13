@@ -203,8 +203,8 @@ Examples:
 
 Status: Draft
 Version: 1.1-draft.1
-Status: Draft
-Version: 2.0-draft.1
+Status: Accepted
+Version: 2.0
 
 Version changes MUST NOT be used to bypass ADR governance or accepted architectural boundaries.
 

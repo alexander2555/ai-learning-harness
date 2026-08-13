@@ -1,7 +1,7 @@
 # Runtime Responsibility and Instruction Materialization
 
 Status: Accepted
-Version: 1.0
+Version: 2.0
 
 Parent Documents
 
@@ -506,69 +506,104 @@ Host-agent internal topology MUST NOT determine ALH topology.
 
 Not all accepted responsibilities require AI execution.
 
-The Harness SHOULD use deterministic mechanisms where they can reliably enforce:
+The Harness SHOULD use deterministic mechanisms where they proportionally improve
+preservation or verification of material contracts, including:
 
-- authority checks;
-- state-write permissions;
 - schema validation;
+- semantic state-transition validation;
 - evidence presence;
 - revision identity;
-- provenance capture;
+- provenance validation;
 - completion prerequisites;
 - capability result status;
 - configuration constraints;
-- security controls.
+- security controls where applicable.
+
+Deterministic support MAY operate:
+
+- before an operation;
+- during an operation;
+- after a physical operation through validation or reconciliation.
+
+Therefore:
+
+```text
+Deterministic Validation
+        ≠
+Mandatory Preventive Interception
+```
 
 AI reasoning MAY assist interpretation.
 
-It SHOULD NOT replace straightforward deterministic enforcement where semantic correctness materially depends on the result.
+It SHOULD NOT replace straightforward deterministic validation where semantic
+correctness materially depends on a machine-checkable property.
 
-This preserves:
+For authoritative learner state:
 
 ```text
-Model Judgment
+Physical State Write
         ≠
-Runtime Permission
+Authorized Educational State Transition
 ```
 
-where permission can be established deterministically.
+The implementation MAY use stronger preventive enforcement where a concrete risk
+or host-environment capability independently justifies it.
 
 ---
 
-# 18. Runtime Policy Enforcement
+# 18. Authority and Policy Materialization
 
-The Harness SHOULD maintain an explicit policy boundary for authority-sensitive operations.
+The Harness MUST preserve explicit authority semantics for authority-sensitive
+operations.
 
-Policy enforcement MAY evaluate:
+Those semantics do not require one universal runtime policy gate.
 
-- requested operation;
-- applicable responsibility;
-- semantic authority;
-- context authority;
-- current state;
-- evidence availability;
-- trust level;
-- configured environment capability.
+Depending on the operation, the applicable authority boundary MAY be materialized
+through:
+
+- accepted instructions;
+- structured authority or transition information;
+- deterministic validation;
+- host-native authorization;
+- operation-specific controls;
+- ALH-specific technical mediation where weaker mechanisms are insufficient.
 
 Conceptually:
 
 ```text
-Requested Operation
+Operation
         ↓
-Policy Evaluation
+Applicable Semantic Authority
         ↓
-Permitted
-    or
-Denied
-    or
-Requires Additional Evidence / Authority
+Sufficient Proportional Mechanism
+        ↓
+Valid / Invalid / Requires Additional Evidence or Authority
 ```
 
-A model recommendation MUST NOT bypass this boundary.
+For a technically mediated operation, a model recommendation MUST NOT override the
+selected technical control.
 
-Policy implementation is a physical mechanism.
+For a semantically governed operation without mandatory physical mediation, a
+model recommendation MUST NOT by itself establish semantic authority.
 
-It MUST implement accepted authority rather than invent authority.
+Therefore:
+
+```text
+Model Recommendation
+        ≠
+Authority
+```
+
+and:
+
+```text
+Semantic Authority Boundary
+        ≠
+Universal Runtime Policy Gate
+```
+
+Any selected policy mechanism MUST implement accepted authority rather than
+invent new authority.
 
 ---
 

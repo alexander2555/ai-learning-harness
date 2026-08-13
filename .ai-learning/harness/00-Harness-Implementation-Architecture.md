@@ -1,7 +1,7 @@
 # Harness Implementation Architecture
 
 Status: Accepted
-Version: 1.0
+Version: 2.0
 
 Parent Documents
 
@@ -268,9 +268,15 @@ Either choice MUST preserve the accepted semantic contract.
 
 ---
 
-# 7. Harness Kernel and Ports / Adapters
+# 7. Harness Kernel and Integration Boundaries
 
-The default Stage 5 implementation architecture is a contract-preserving Harness Kernel surrounded by explicit integration ports and concrete adapters.
+The Stage 5 implementation architecture uses a contract-preserving Harness Kernel
+concept together with explicit integration boundaries.
+
+These concepts define where ALH-owned contracts must remain preserved.
+
+They do not prescribe one physical runtime topology or require every integration
+boundary to be implemented as a programmatic Port and Adapter.
 
 Conceptually:
 
@@ -288,7 +294,7 @@ Learner / Coding Environment
 │                                          │
 │  responsibility materialization         │
 │  instruction composition                │
-│  authority enforcement                  │
+│  authority preservation                 │
 │  context coordination                   │
 │  decision coordination                  │
 │  evidence / claim enforcement           │
@@ -296,31 +302,87 @@ Learner / Coding Environment
 └──────┬──────────┬──────────┬────────────┘
        │          │          │
        ▼          ▼          ▼
- Project Port  Learner     Model / AI Port
-               State Port
+ Project      Learner      Model / AI
+ Integration State        Integration
+ Boundary    Boundary      Boundary
        │          │          │
        ▼          ▼          ▼
- Project /    ALH-owned    Model provider /
- Repository   persistence  coding agent
-
+ Project /    ALH-owned    Host coding agent /
+ Repository   persistence  model mechanism
                │
                ▼
-         Capability / Tool Ports
+      Capability / Tool
+      Integration Boundaries
                │
                ▼
        External capabilities,
        including Superpowers
 ```
 
-This diagram is architectural, not a mandatory deployment topology.
+This diagram is architectural.
 
-The Harness Kernel MAY be physically implemented as one process or multiple processes.
+It represents contract-preservation and integration boundaries, not mandatory
+deployment units, executable components, APIs, processes, or programming-language
+interfaces.
 
-A port MAY be implemented by one or more adapters.
+A concrete implementation MAY materialize an integration boundary through:
 
-An adapter MAY internally use multiple external mechanisms.
+- host-native behavior;
+- canonical instructions;
+- configuration;
+- file or directory conventions;
+- commands;
+- programmatic Ports and Adapters;
+- narrow executable support;
+- combinations of these mechanisms.
 
-These physical choices MUST NOT alter the semantic responsibilities represented by the architecture.
+Where a programmatic Port is selected, one or more Adapters MAY implement it.
+
+Where no programmatic Port or Adapter is required, an equivalent integration
+mechanism MAY preserve the same accepted contract.
+
+Physical choices MUST NOT alter the semantic responsibilities represented by the
+architecture.
+
+## Physical Minimality Clarification
+
+The Harness Kernel is a contract-preserving implementation locus.
+
+It MUST NOT be interpreted as requiring:
+
+- a standalone Harness process;
+- universal model mediation;
+- universal tool mediation;
+- exclusive learner-state write APIs;
+- one programmatic Port or Adapter for every conceptual boundary.
+
+Kernel responsibilities MAY be physically materialized through:
+
+- canonical instruction artifacts;
+- structured persistent state;
+- structured evidence;
+- deterministic validation;
+- host-native environment mechanisms;
+- narrow executable support where independently justified.
+
+Therefore:
+
+```text
+Harness Kernel Responsibility
+        ≠
+Mandatory Executable Runtime Component
+```
+
+and:
+
+```text
+Semantic Integration Boundary
+        ≠
+Mandatory Programmatic Adapter
+```
+
+The selected physical mechanism MUST remain sufficient to preserve the applicable
+accepted contract.
 
 ---
 
@@ -338,9 +400,8 @@ The Kernel SHOULD provide the common mechanisms necessary to:
 - distinguish project truth from learner truth;
 - coordinate access to authoritative learner state;
 - apply authority-sensitive state mutation rules;
-- coordinate model or coding-agent execution;
-- coordinate external-capability and tool access;
-- capture materially relevant execution evidence;
+- preserve applicable ALH contracts around model or coding-agent execution;
+- preserve applicable ALH contracts around external-capability and tool access;- capture materially relevant execution evidence;
 - constrain claims according to available evidence;
 - preserve uncertainty;
 - maintain materially relevant provenance;
@@ -435,6 +496,26 @@ An adapter MUST NOT gain ALH semantic authority merely because it:
 
 ---
 
+# A Port or Adapter is an implementation-boundary abstraction.
+
+Its physical materialization MAY be programmatic, but MAY also consist of a
+host-specific instruction binding, configuration mechanism, file convention,
+command binding, or other concrete integration mechanism sufficient to preserve
+the applicable contract.
+
+Therefore:
+
+```text
+Port / Adapter
+        ≠
+Programming-Language Interface / Class
+```
+
+The implementation MUST NOT create executable adapter code merely because the
+architecture identifies an integration boundary.
+
+---
+
 # 11. Topology Neutrality
 
 Stage 5 MUST NOT begin from a predetermined physical agent topology.
@@ -523,30 +604,30 @@ Physical isolation SHOULD be introduced only where a weaker proportional mechani
 
 Critical accepted contracts MUST NOT rely exclusively on cooperative model behavior where violation could materially alter authoritative state, semantic authority, completion status, evidence status, truth interpretation, or security.
 
-Stage 5 therefore distinguishes:
+For this purpose, non-model enforcement MAY include:
+
+- machine-inspectable structured state;
+- deterministic validation;
+- explicit provenance;
+- reconciliation of invalid state;
+- host-native authorization or protection;
+- ALH-specific technical enforcement.
+
+This requirement MUST NOT be interpreted as requiring preventive ALH-controlled
+interception of every operation.
+
+The governing rule is:
 
 ```text
-Instruction-Level Constraint
-        ≠
-Runtime-Enforced Constraint
+Semantic Authority Is Mandatory
+        ↓
+Select Sufficient Proportional Mechanism
+        ↓
+Technical Mediation Only Where Required
 ```
 
-Not every semantic distinction requires a dedicated runtime schema or enforcement mechanism.
-
-Runtime enforcement SHOULD be introduced where failure to preserve a distinction could materially:
-
-- mutate authoritative state incorrectly;
-- grant authority that does not exist;
-- promote candidate information into accepted truth;
-- create an unsupported execution or completion claim;
-- collapse project truth and learner truth;
-- collapse engineering and educational authority;
-- erase material uncertainty;
-- cross a security or trust boundary.
-
-The implementation SHOULD remain proportional.
-
-Enforcement mechanisms MUST NOT introduce new semantic authority.
+A deterministic mechanism MAY detect or invalidate an unauthorized semantic
+transition without necessarily preventing the underlying physical write.
 
 ---
 
@@ -658,9 +739,14 @@ In particular, implementation paths MUST NOT allow engineering execution alone t
 - change Automation Level;
 - declare Educational Done.
 
-Stage 5 MUST provide a physical mutation boundary sufficient to preserve accepted Stage 1 and Stage 2 authority.
+Stage 5 MUST provide an inspectable mutation boundary sufficient to preserve
+accepted Stage 1 and Stage 2 educational authority.
 
-The concrete persistence and mutation mechanism is defined downstream.
+That boundary MAY be semantic and deterministically validated.
+
+It MUST NOT be assumed to require exclusive technical control over every physical
+write path unless such control is independently required by the applicable risk
+and implementation environment.
 
 ---
 

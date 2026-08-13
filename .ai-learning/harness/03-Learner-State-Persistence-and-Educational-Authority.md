@@ -1,7 +1,7 @@
 # Learner State Persistence and Educational Authority
 
 Status: Accepted
-Version: 1.0
+Version: 2.0
 
 Parent Documents
 
@@ -174,43 +174,45 @@ Persistence MUST preserve the semantic distinctions defined upstream.
 
 ---
 
-# 5. Learner-State Store
+# 5. Learner-State Persistence Boundary
 
-The Harness SHOULD provide a dedicated Learner-State Store through an explicit Learner State Port.
+The Harness MUST provide an explicit ALH-owned persistence boundary for
+authoritative learner state.
 
-Conceptually:
+The boundary MUST preserve:
 
-```text
-Harness Kernel
-        ↓
-Learner State Port
-        ↓
-Learner-State Adapter
-        ↓
-ALH-Owned Persistence
-```
+- learner-state semantic authority;
+- application / learning-infrastructure separation;
+- inspectability;
+- provenance;
+- integrity;
+- recovery requirements applicable to the selected mechanism.
 
-The Learner-State Store is authoritative only for the educational state explicitly assigned to it by accepted ALH contracts.
+Its physical materialization MAY consist of:
 
-The storage technology itself MUST NOT create authority.
+- structured project-resident files;
+- a Learner State Port or equivalent abstraction;
+- a persistence adapter;
+- a narrow executable helper;
+- an embedded or external store;
+- another proportional mechanism.
 
 Therefore:
 
 ```text
-Persisted
+Learner-State Persistence Boundary
         ≠
-Authoritative
+Dedicated Store Service
+        ≠
+Mandatory Programmatic Port
+        ≠
+Mandatory Adapter
 ```
 
-and:
+The persistence mechanism is authoritative only for educational state whose
+semantic status has been established through accepted ALH authority.
 
-```text
-Stored in Learner-State Store
-        ≠
-Accepted Educational Fact
-```
-
-unless the applicable authority path has established that status.
+Persistence itself MUST NOT create educational authority.
 
 ---
 
@@ -261,35 +263,32 @@ The exact persistence technology is intentionally left open.
 
 ---
 
-# 8. Learner-State Port
+# 8. Learner-State Access Boundary
 
-The Learner State Port defines the Harness-owned integration boundary for authoritative learner-state access.
+The implementation MUST preserve an explicit semantic boundary for authoritative
+learner-state access.
 
-It SHOULD distinguish operations such as:
+A Learner State Port MAY materialize this boundary where a programmatic
+integration abstraction is useful.
 
-```text
-readLearnerState()
-```
+Equivalent physical mechanisms MAY be used where they preserve the same
+contract.
 
-from:
-
-```text
-proposeEducationalEvidence()
-```
-
-from:
+The boundary SHOULD distinguish operations equivalent in purpose to:
 
 ```text
-recordAssessmentOutcome()
+read learner state
+
+propose educational evidence
+
+record assessment outcome
+
+apply an authorized educational state change
 ```
 
-from:
+These examples describe semantic operation classes.
 
-```text
-applyAuthorizedEducationalStateChange()
-```
-
-This illustration does not mandate exact APIs.
+They do not mandate exact APIs, commands, classes, or executable components.
 
 The important rule is:
 
@@ -330,46 +329,96 @@ Read access MUST NOT create:
 
 # 10. Write Authority
 
-Authoritative learner-state mutation MUST pass through an explicit educational write boundary.
+Authoritative learner-state mutation MUST follow an explicit educational
+authority boundary.
 
-The implementation SHOULD require sufficient information to establish:
+The implementation SHOULD preserve sufficient information to establish:
 
-- the operation being requested;
+- the operation being requested or performed;
 - the applicable educational authority;
 - the accepted evidence supporting the change;
 - the previous state;
 - the proposed new state;
 - relevant provenance.
 
-The physical mechanism MAY be a policy gate, service boundary, transaction boundary, or equivalent control.
+The implementation MUST preserve:
 
-The semantic requirement is that arbitrary runtime components cannot directly mutate learner state.
+```text
+Physical Learner-State Write
+        ≠
+Authorized Educational State Transition
+```
+
+A model, coding agent, tool, adapter, or other mechanism MUST NOT establish
+authoritative educational state merely because it can physically modify the
+learner-state representation.
+
+The authority boundary MAY be materialized through:
+
+- structured transition records;
+- deterministic validation;
+- explicit provenance;
+- an operation-specific validator;
+- a transaction or policy gate;
+- host-native protection;
+- another proportional mechanism.
+
+An exclusive technical write API is NOT required unless a weaker mechanism is
+insufficient for the applicable contract.
+
+The exact persistence and validation mechanism remains an Implementation
+Decision.
 
 ---
 
-# 11. Educational Mutation Gate
+# 11. Educational Mutation Boundary
 
-The Harness SHOULD implement an Educational Mutation Gate for authority-sensitive learner-state writes.
+The Harness SHOULD materialize an Educational Mutation Boundary for
+authority-sensitive learner-state changes.
 
 Conceptually:
 
 ```text
-Proposed Learner-State Change
+Proposed or Observed Learner-State Change
         ↓
-Authority Check
+Applicable Educational Authority
         ↓
 Evidence Check
         ↓
 Semantic Validation
         ↓
-Persistence Transaction
+Authorized Transition
         ↓
-Mutation Record
+Authoritative State
 ```
 
-A model recommendation alone MUST NOT satisfy this gate.
+This flow is semantic.
 
-The gate MUST enforce accepted educational semantics rather than invent new ones.
+Its physical implementation MAY perform validation before persistence, during
+persistence, or through deterministic post-write validation and reconciliation,
+provided that an invalid physical write does not thereby establish authoritative
+educational truth.
+
+A model recommendation alone MUST NOT establish an authorized transition.
+
+The boundary MUST enforce accepted educational semantics rather than invent new
+ones.
+
+Where the host environment supports proportional hard write protection, that
+protection MAY strengthen this boundary but is not a baseline requirement.
+
+## Project-Owner Trust Scope
+
+The baseline ALH threat model does not treat the project owner as an adversary
+with respect to deliberate modification of project-resident learner state.
+
+ALH MAY validate and report semantically invalid owner-created state.
+
+It is not required to prevent the project owner technically from modifying
+`.ai-learning/`.
+
+This scope does not grant an IDE agent equivalent authority and does not weaken
+the educational requirements for establishing authoritative state.
 
 ---
 
@@ -718,7 +767,7 @@ Decision Engine output SHOULD preserve, where applicable:
 
 Decision Engine output is not automatically a persistence mutation.
 
-Authority-sensitive state changes SHOULD still pass through the applicable Educational Mutation Gate.
+Authority-sensitive state changes SHOULD still be governed by the applicable Educational Mutation Boundary.
 
 ---
 
@@ -1535,37 +1584,36 @@ Recovery MUST preserve learner-state authority and provenance.
 
 # 68. Initial Persistence Architecture Direction
 
-The initial Stage 5 direction SHOULD use:
+The initial implementation SHOULD use the least complex project-resident
+persistence mechanism sufficient to preserve authoritative learner-state
+semantics.
+
+Conceptually:
 
 ```text
-Harness Kernel
+Accepted Educational Decision Path
         ↓
-Educational Decision / Mutation Policy
+Structured Learner-State Transition
         ↓
-Learner State Port
+Proportional Semantic / Deterministic Validation
         ↓
-Learner-State Adapter
-        ↓
-Dedicated ALH Persistence
+ALH-Owned Project-Resident Persistence
 ```
 
-with a separate intake path:
+The exact physical path MAY use:
 
-```text
-Engineering / Interaction Observation
-        ↓
-Candidate Evidence Intake
-        ↓
-Assessment
-        ↓
-Accepted Educational Decision
-        ↓
-Mutation Policy
-```
+- direct structured-file persistence governed by accepted instructions;
+- deterministic validation;
+- a Learner State Port or equivalent abstraction;
+- a narrow mutation helper;
+- host-native protected mutation;
+- another proportional mechanism.
 
-This architecture MAY run in one physical process.
+The initial architecture MUST NOT assume that a dedicated Learner State Port,
+Adapter, executable Mutation Gate, or exclusive technical write path is required.
 
-The separation is semantic and enforcement-oriented, not a requirement for microservices.
+Where stronger preventive enforcement is independently justified, it MAY be
+added without changing learner-state semantic authority.
 
 ---
 
@@ -1766,8 +1814,12 @@ No Candidate ADR is introduced by this document.
 
 The following are implementation decisions within accepted Stage 1–4 architecture:
 
-- dedicated Learner State Port;
-- explicit Educational Mutation Gate;
+- concrete learner-state persistence representation;
+- structured educational-transition representation;
+- proportional deterministic validation;
+- Learner State Port or equivalent abstraction, if selected;
+- narrow mutation tooling, if selected;
+- host-native strengthening, if available and justified;
 - Candidate Educational Evidence persistence;
 - separation of decision production and persistence mutation;
 - learner-state provenance;
@@ -1781,6 +1833,9 @@ A Candidate ADR would be required if implementation proposed, for example:
 - allowing engineering execution to mutate competency directly;
 - redefining Automation Level as AI execution authority;
 - moving learner educational authority into an external coding agent.
+
+ADR-002 establishes that semantic learner-state authority does not require
+universal preventive technical mediation.
 
 ---
 
@@ -1810,26 +1865,26 @@ This document is complete when Stage 5 has a normative learner-state persistence
 At minimum, it MUST establish:
 
 - authoritative learner-state boundary;
-- ADR-001 physical enforcement;
-- Learner State Port;
-- read / write authority separation;
-- Educational Mutation Gate;
+- ADR-001 physical separation;
+- learner-state persistence and access boundary;
+- read / mutation-authority separation;
+- Educational Mutation Boundary;
 - Candidate Educational Evidence intake;
 - assessment boundary;
 - accepted educational evidence persistence;
-- competency-state mutation path;
+- competency-state mutation semantics;
 - Learning Debt boundary;
 - Automation Level boundary;
 - Decision Engine materialization constraints;
 - Knowledge Graph / learner-state distinction;
 - learner participation;
 - assistance attribution;
-- educational-state transactions;
-- idempotency;
+- educational-state transition integrity;
+- idempotency or equivalent duplicate protection where required;
 - learner-state history;
 - failure semantics;
 - persistence architecture direction;
-- implementation decisions intentionally left open.
+- implementation mechanisms intentionally left open.
 
 Acceptance of this document authorizes detailed evidence, claims, and completion implementation design in:
 

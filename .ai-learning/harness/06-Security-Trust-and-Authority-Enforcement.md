@@ -1,7 +1,7 @@
 # Security, Trust, and Authority Enforcement
 
 Status: Accepted
-Version: 1.0
+Version: 2.0
 
 Parent Documents
 
@@ -328,47 +328,40 @@ Model Says Operation Is Allowed
 Operation Is Authorized
 ```
 
-Authorization SHOULD be evaluated by Harness-controlled policy.
+For authority-sensitive operations, applicable authorization MUST remain
+distinguishable from model judgment.
 
-Examples include:
+Authorization MAY be provided or enforced through:
 
-- learner-state mutation;
-- destructive file operations;
-- external credential use;
-- sensitive tool access;
-- completion claims dependent on evidence.
+- accepted ALH semantic rules;
+- deterministic ALH validation;
+- host-native authorization or confirmation;
+- operation-specific ALH controls;
+- combinations of these mechanisms.
+
+ALH-controlled technical policy is required only where a concrete accepted ALH
+boundary cannot otherwise be sufficiently preserved.
 
 ---
 
 # 11. Authority Enforcement Boundary
 
-The Harness SHOULD implement an explicit Authority Enforcement boundary.
+The Harness MUST preserve an explicit semantic Authority Enforcement boundary for
+authority-sensitive operations.
 
-Conceptually:
+This boundary does not imply one universal physical policy engine or interception
+layer.
 
-```text
-Requested Operation
-        ↓
-Actor / Responsibility Context
-        ↓
-Required Authority
-        ↓
-Trust / Security Policy
-        ↓
-Allowed
-    or
-Denied
-    or
-Requires Additional Evidence / Confirmation
-```
+Depending on the operation and environment, it MAY be materialized through:
 
-The exact implementation MAY use:
-
+- accepted instructions;
+- structured authority metadata;
+- host-native permissions or confirmation;
 - policy functions;
-- capability tokens;
-- permission objects;
 - operation-specific validators;
-- adapter-level guards.
+- adapter-level guards;
+- deterministic validation;
+- combinations of these mechanisms.
 
 A single general-purpose mechanism is not required.
 
@@ -459,21 +452,57 @@ The exact learner-confirmation policy is an implementation decision unless upstr
 
 # 16. Learner-State Write Authority
 
-Learner-state writes MUST remain protected by the Educational Mutation Gate defined in:
+Learner-state writes MUST remain subject to the Educational Mutation Boundary
+defined in:
 
 `03-Learner-State-Persistence-and-Educational-Authority.md`
 
-Security enforcement MUST prevent alternative technical write paths from bypassing that gate.
-
-In particular:
+Security and authority design MUST preserve:
 
 ```text
-Database Credentials
+Technical Storage Access
         ≠
-Educational Authority
+Educational Mutation Authority
 ```
 
-A model, tool, adapter, or host environment with technical storage access MUST NOT gain direct educational mutation authority.
+Alternative technical write paths MUST NOT acquire or establish educational
+authority merely through physical storage access.
+
+A model, tool, adapter, or host environment with technical storage access MUST
+NOT establish an authoritative learner-state transition unless the accepted
+educational authority and evidence path supports that transition.
+
+Where proportional, deterministic validation SHOULD detect, reject, invalidate,
+or support reconciliation of semantically unauthorized transitions.
+
+Hard prevention of alternative physical write paths MAY be used where supported
+by the host environment and justified by the applicable risk.
+
+It is not a baseline ALH requirement.
+
+## Project-Owner Trust Boundary
+
+ALH v1 does not treat the project owner as an adversary with respect to deliberate
+modification of project-resident `.ai-learning/` state.
+
+The security objective is primarily to prevent incorrect or unauthorized
+automated behavior from acquiring semantic authority.
+
+The Harness MAY detect invalid owner-created state but MUST NOT require a security
+architecture whose purpose is to prevent the owner from deliberately editing
+their own ALH files.
+
+This exception is narrow.
+
+It MUST NOT be generalized to:
+
+- untrusted repository content;
+- external actors;
+- secrets;
+- destructive host operations;
+- credential misuse;
+- external capability trust;
+- instruction-authority boundaries.
 
 ---
 
@@ -1499,21 +1528,44 @@ Exact permissions remain downstream planning decisions.
 
 # 71. Initial Tool Security Direction
 
-Tool execution SHOULD pass through Harness-controlled authorization even when the model provider or host environment exposes native tool calling.
+The initial implementation SHOULD prefer host-native execution and safety
+mechanisms for ordinary development-tool operations where they sufficiently
+preserve applicable ALH contracts.
 
-The preferred flow is:
+The baseline flow MAY be:
 
 ```text
-Model / Agent Requests Tool
+ALH Semantic Constraints
         ↓
-Harness Validates Operation
+IDE / Coding Agent
         ↓
-Harness Invokes Tool Adapter
+Host-Native Authorization / Safety
         ↓
-Harness Captures Evidence
+Host-Native Tool
+        ↓
+Execution Result / Evidence
 ```
 
-This prevents provider-native execution mechanics from becoming semantic authority.
+ALH-specific technical mediation SHOULD be introduced only where a concrete
+accepted ALH authority, trust, or evidence boundary cannot be sufficiently
+preserved through:
+
+- accepted instructions;
+- host-native controls;
+- structured evidence;
+- deterministic validation;
+- another weaker proportional mechanism.
+
+Therefore:
+
+```text
+Semantic Tool Authority
+        ≠
+Mandatory Harness Tool Proxy
+```
+
+Provider-native or host-native execution mechanics MUST NOT create ALH semantic
+authority merely because they can perform an operation.
 
 ---
 
