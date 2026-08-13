@@ -1,7 +1,7 @@
 # External Capabilities, Tools, and Environment Integration
 
-Status: Accepted
-Version: 1.0
+Status: Draft
+Version: 2.0-draft.1
 
 Parent Documents
 
@@ -1022,25 +1022,48 @@ Where the chosen model cannot reliably satisfy a responsibility, the Harness SHO
 
 ---
 
-# 43. Model Tool Calling
+# 43. Model and Host Tool Calling
 
-Where a model can propose tool calls, the proposal SHOULD be treated as a requested operation.
-
-Conceptually:
+Where a model or host coding agent can request or invoke tools, ALH MUST preserve
+the distinction:
 
 ```text
-Model Tool Request
-        ↓
-Harness Authorization
-        ↓
-Tool Adapter Invocation
-        ↓
-Execution Evidence
-        ↓
-Result Returned to Model / Harness
+Tool Available
+        ≠
+Tool Semantically Authorized
 ```
 
-The model MUST NOT bypass Harness authorization simply because the provider supports native tool calling.
+Ordinary development-tool execution MAY use host-native tool calling,
+authorization, confirmation, sandboxing, and other host safety mechanisms.
+
+The baseline interaction MAY therefore be:
+
+```text
+ALH Semantic Constraints
+        ↓
+IDE / Coding Agent
+        ↓
+Host-Native Authorization / Safety
+        ↓
+Host-Native Tool
+        ↓
+Execution Result / Evidence
+```
+
+ALH MUST define applicable semantic constraints on tool use.
+
+Native tool execution MUST NOT itself grant ALH semantic authority.
+
+ALH-specific technical mediation SHOULD be introduced only where a concrete
+accepted ALH boundary cannot be sufficiently preserved through:
+
+instructions;
+available host-native controls;
+evidence requirements;
+deterministic validation;
+another weaker proportional mechanism.
+
+Universal ALH interception of native tool calls is not a baseline requirement.
 
 ---
 
@@ -1089,13 +1112,14 @@ Context minimization MUST NOT remove information required for safe and correct e
 
 # 46. Integration Provenance
 
-Significant external operations SHOULD preserve provenance sufficient to answer:
+Significant external operations SHOULD preserve provenance sufficient to answer,
+where applicable:
 
 - what mechanism was used;
 - what capability or tool was invoked;
-- which adapter mediated it;
+- which host, adapter, or other execution mechanism performed or mediated it;
 - which project state applied;
-- what authorization occurred;
+- what authorization or confirmation applied;
 - what result was observed.
 
 Integration provenance supports:

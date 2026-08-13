@@ -1,7 +1,7 @@
 # Learner State Persistence and Educational Authority
 
-Status: Accepted
-Version: 1.0
+Status: Draft
+Version: 2.0-draft.1
 
 Parent Documents
 
@@ -330,46 +330,96 @@ Read access MUST NOT create:
 
 # 10. Write Authority
 
-Authoritative learner-state mutation MUST pass through an explicit educational write boundary.
+Authoritative learner-state mutation MUST follow an explicit educational
+authority boundary.
 
-The implementation SHOULD require sufficient information to establish:
+The implementation SHOULD preserve sufficient information to establish:
 
-- the operation being requested;
+- the operation being requested or performed;
 - the applicable educational authority;
 - the accepted evidence supporting the change;
 - the previous state;
 - the proposed new state;
 - relevant provenance.
 
-The physical mechanism MAY be a policy gate, service boundary, transaction boundary, or equivalent control.
+The implementation MUST preserve:
 
-The semantic requirement is that arbitrary runtime components cannot directly mutate learner state.
+```text
+Physical Learner-State Write
+        ≠
+Authorized Educational State Transition
+```
+
+A model, coding agent, tool, adapter, or other mechanism MUST NOT establish
+authoritative educational state merely because it can physically modify the
+learner-state representation.
+
+The authority boundary MAY be materialized through:
+
+- structured transition records;
+- deterministic validation;
+- explicit provenance;
+- an operation-specific validator;
+- a transaction or policy gate;
+- host-native protection;
+- another proportional mechanism.
+
+An exclusive technical write API is NOT required unless a weaker mechanism is
+insufficient for the applicable contract.
+
+The exact persistence and validation mechanism remains an Implementation
+Decision.
 
 ---
 
-# 11. Educational Mutation Gate
+# 11. Educational Mutation Boundary
 
-The Harness SHOULD implement an Educational Mutation Gate for authority-sensitive learner-state writes.
+The Harness SHOULD materialize an Educational Mutation Boundary for
+authority-sensitive learner-state changes.
 
 Conceptually:
 
 ```text
-Proposed Learner-State Change
+Proposed or Observed Learner-State Change
         ↓
-Authority Check
+Applicable Educational Authority
         ↓
 Evidence Check
         ↓
 Semantic Validation
         ↓
-Persistence Transaction
+Authorized Transition
         ↓
-Mutation Record
+Authoritative State
 ```
 
-A model recommendation alone MUST NOT satisfy this gate.
+This flow is semantic.
 
-The gate MUST enforce accepted educational semantics rather than invent new ones.
+Its physical implementation MAY perform validation before persistence, during
+persistence, or through deterministic post-write validation and reconciliation,
+provided that an invalid physical write does not thereby establish authoritative
+educational truth.
+
+A model recommendation alone MUST NOT establish an authorized transition.
+
+The boundary MUST enforce accepted educational semantics rather than invent new
+ones.
+
+Where the host environment supports proportional hard write protection, that
+protection MAY strengthen this boundary but is not a baseline requirement.
+
+## Project-Owner Trust Scope
+
+The baseline ALH threat model does not treat the project owner as an adversary
+with respect to deliberate modification of project-resident learner state.
+
+ALH MAY validate and report semantically invalid owner-created state.
+
+It is not required to prevent the project owner technically from modifying
+`.ai-learning/`.
+
+This scope does not grant an IDE agent equivalent authority and does not weaken
+the educational requirements for establishing authoritative state.
 
 ---
 

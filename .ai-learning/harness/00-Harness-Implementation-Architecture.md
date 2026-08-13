@@ -1,7 +1,7 @@
 # Harness Implementation Architecture
 
-Status: Accepted
-Version: 1.0
+Status: Draft
+Version: 2.0-draft.1
 
 Parent Documents
 
@@ -322,6 +322,46 @@ An adapter MAY internally use multiple external mechanisms.
 
 These physical choices MUST NOT alter the semantic responsibilities represented by the architecture.
 
+## Physical Minimality Clarification
+
+The Harness Kernel is a contract-preserving implementation locus.
+
+It MUST NOT be interpreted as requiring:
+
+- a standalone Harness process;
+- universal model mediation;
+- universal tool mediation;
+- exclusive learner-state write APIs;
+- one programmatic Port or Adapter for every conceptual boundary.
+
+Kernel responsibilities MAY be physically materialized through:
+
+- canonical instruction artifacts;
+- structured persistent state;
+- structured evidence;
+- deterministic validation;
+- host-native environment mechanisms;
+- narrow executable support where independently justified.
+
+Therefore:
+
+```text
+Harness Kernel Responsibility
+        ≠
+Mandatory Executable Runtime Component
+```
+
+and:
+
+```text
+Semantic Integration Boundary
+        ≠
+Mandatory Programmatic Adapter
+```
+
+The selected physical mechanism MUST remain sufficient to preserve the applicable
+accepted contract.
+
 ---
 
 # 8. Harness Kernel Responsibility
@@ -435,6 +475,26 @@ An adapter MUST NOT gain ALH semantic authority merely because it:
 
 ---
 
+# A Port or Adapter is an implementation-boundary abstraction.
+
+Its physical materialization MAY be programmatic, but MAY also consist of a
+host-specific instruction binding, configuration mechanism, file convention,
+command binding, or other concrete integration mechanism sufficient to preserve
+the applicable contract.
+
+Therefore:
+
+```text
+Port / Adapter
+        ≠
+Programming-Language Interface / Class
+```
+
+The implementation MUST NOT create executable adapter code merely because the
+architecture identifies an integration boundary.
+
+---
+
 # 11. Topology Neutrality
 
 Stage 5 MUST NOT begin from a predetermined physical agent topology.
@@ -523,30 +583,30 @@ Physical isolation SHOULD be introduced only where a weaker proportional mechani
 
 Critical accepted contracts MUST NOT rely exclusively on cooperative model behavior where violation could materially alter authoritative state, semantic authority, completion status, evidence status, truth interpretation, or security.
 
-Stage 5 therefore distinguishes:
+For this purpose, non-model enforcement MAY include:
+
+- machine-inspectable structured state;
+- deterministic validation;
+- explicit provenance;
+- reconciliation of invalid state;
+- host-native authorization or protection;
+- ALH-specific technical enforcement.
+
+This requirement MUST NOT be interpreted as requiring preventive ALH-controlled
+interception of every operation.
+
+The governing rule is:
 
 ```text
-Instruction-Level Constraint
-        ≠
-Runtime-Enforced Constraint
+Semantic Authority Is Mandatory
+        ↓
+Select Sufficient Proportional Mechanism
+        ↓
+Technical Mediation Only Where Required
 ```
 
-Not every semantic distinction requires a dedicated runtime schema or enforcement mechanism.
-
-Runtime enforcement SHOULD be introduced where failure to preserve a distinction could materially:
-
-- mutate authoritative state incorrectly;
-- grant authority that does not exist;
-- promote candidate information into accepted truth;
-- create an unsupported execution or completion claim;
-- collapse project truth and learner truth;
-- collapse engineering and educational authority;
-- erase material uncertainty;
-- cross a security or trust boundary.
-
-The implementation SHOULD remain proportional.
-
-Enforcement mechanisms MUST NOT introduce new semantic authority.
+A deterministic mechanism MAY detect or invalidate an unauthorized semantic
+transition without necessarily preventing the underlying physical write.
 
 ---
 
@@ -658,9 +718,14 @@ In particular, implementation paths MUST NOT allow engineering execution alone t
 - change Automation Level;
 - declare Educational Done.
 
-Stage 5 MUST provide a physical mutation boundary sufficient to preserve accepted Stage 1 and Stage 2 authority.
+Stage 5 MUST provide an inspectable mutation boundary sufficient to preserve
+accepted Stage 1 and Stage 2 educational authority.
 
-The concrete persistence and mutation mechanism is defined downstream.
+That boundary MAY be semantic and deterministically validated.
+
+It MUST NOT be assumed to require exclusive technical control over every physical
+write path unless such control is independently required by the applicable risk
+and implementation environment.
 
 ---
 
