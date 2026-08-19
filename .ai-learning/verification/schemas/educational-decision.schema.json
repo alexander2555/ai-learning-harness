@@ -62,16 +62,26 @@
       }
     }
   },
-  "anyOf": [
+  "allOf": [
     {
-      "properties": {
-        "changes": {
-          "minItems": 1
-        }
+      "if": {
+        "properties": {
+          "changes": {
+            "type": "array",
+            "maxItems": 0
+          }
+        },
+        "required": ["changes"]
+      },
+      "then": {
+        "properties": {
+          "candidate_evaluations": {
+            "type": "array",
+            "minItems": 1
+          }
+        },
+        "required": ["candidate_evaluations"]
       }
-    },
-    {
-      "required": ["candidate_evaluations"]
     }
   ],
   "$defs": {
@@ -123,6 +133,7 @@
       "allOf": [
         {
           "if": {
+            "type": "object",
             "properties": {
               "established": {
                 "const": true
@@ -131,9 +142,23 @@
             "required": ["established"]
           },
           "then": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "unknown",
+                  "introduced",
+                  "learning",
+                  "practicing",
+                  "mastered"
+                ]
+              }
+            },
             "required": ["value"]
           },
           "else": {
+            "type": "object",
             "not": {
               "required": ["value"]
             }
@@ -157,6 +182,7 @@
       "allOf": [
         {
           "if": {
+            "type": "object",
             "properties": {
               "established": {
                 "const": true
@@ -165,9 +191,17 @@
             "required": ["established"]
           },
           "then": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
             "required": ["value"]
           },
           "else": {
+            "type": "object",
             "not": {
               "required": ["value"]
             }
@@ -191,6 +225,7 @@
       "allOf": [
         {
           "if": {
+            "type": "object",
             "properties": {
               "established": {
                 "const": true
@@ -199,9 +234,17 @@
             "required": ["established"]
           },
           "then": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": ["NONE", "ASSISTED", "SHARED", "FULL"]
+              }
+            },
             "required": ["value"]
           },
           "else": {
+            "type": "object",
             "not": {
               "required": ["value"]
             }
@@ -224,6 +267,7 @@
       "allOf": [
         {
           "if": {
+            "type": "object",
             "properties": {
               "established": {
                 "const": true
@@ -232,9 +276,16 @@
             "required": ["established"]
           },
           "then": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "boolean"
+              }
+            },
             "required": ["value"]
           },
           "else": {
+            "type": "object",
             "not": {
               "required": ["value"]
             }

@@ -65,9 +65,11 @@
       "then": {
         "properties": {
           "supporting_evidence_ids": {
+            "type": "array",
             "minItems": 1
           },
           "outstanding_obligations": {
+            "type": "array",
             "maxItems": 0
           }
         }
