@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ALH Canonical Instruction Set Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "instruction_set_version",
+    "hash_algorithm",
+    "instructions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "instruction_set"
+    },
+    "instruction_set_version": {
+      "const": "1.0.0"
+    },
+    "hash_algorithm": {
+      "const": "sha256"
+    },
+    "instructions": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/instruction0"
+        },
+        {
+          "$ref": "#/$defs/instruction1"
+        },
+        {
+          "$ref": "#/$defs/instruction2"
+        },
+        {
+          "$ref": "#/$defs/instruction3"
+        },
+        {
+          "$ref": "#/$defs/instruction4"
+        },
+        {
+          "$ref": "#/$defs/instruction5"
+        }
+      ],
+      "items": false
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "instruction0": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "path", "sha256"],
+      "properties": {
+        "order": {
+          "const": 0
+        },
+        "path": {
+          "const": ".ai-learning/instructions/00-core.md"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "instruction1": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "path", "sha256"],
+      "properties": {
+        "order": {
+          "const": 1
+        },
+        "path": {
+          "const": ".ai-learning/instructions/10-learning.md"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "instruction2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "path", "sha256"],
+      "properties": {
+        "order": {
+          "const": 2
+        },
+        "path": {
+          "const": ".ai-learning/instructions/20-engineering.md"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "instruction3": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "path", "sha256"],
+      "properties": {
+        "order": {
+          "const": 3
+        },
+        "path": {
+          "const": ".ai-learning/instructions/30-state-evidence.md"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "instruction4": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "path", "sha256"],
+      "properties": {
+        "order": {
+          "const": 4
+        },
+        "path": {
+          "const": ".ai-learning/instructions/40-context-authority.md"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "instruction5": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "path", "sha256"],
+      "properties": {
+        "order": {
+          "const": 5
+        },
+        "path": {
+          "const": ".ai-learning/instructions/50-completion.md"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,354 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ALH Educational Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "decision_id",
+    "sequence",
+    "learner_id",
+    "prior_version",
+    "resulting_version",
+    "changes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "educational_decision"
+    },
+    "decision_id": {
+      "type": "string",
+      "pattern": "^decision-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "learner_id": {
+      "type": "string",
+      "pattern": "^learner-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "prior_version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "resulting_version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "authority": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/semanticChange"
+      }
+    },
+    "candidate_evaluations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/candidateEvaluation"
+      }
+    }
+  },
+  "anyOf": [
+    {
+      "properties": {
+        "changes": {
+          "minItems": 1
+        }
+      }
+    },
+    {
+      "required": ["candidate_evaluations"]
+    }
+  ],
+  "$defs": {
+    "candidateId": {
+      "type": "string",
+      "pattern": "^candidate-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "candidateEvaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_id", "outcome", "purpose", "scope"],
+      "properties": {
+        "candidate_id": {
+          "$ref": "#/$defs/candidateId"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": ["accepted", "rejected", "uncertain"]
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "competencySlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["established"],
+      "properties": {
+        "established": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "introduced",
+            "learning",
+            "practicing",
+            "mastered"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "established": {
+                "const": true
+              }
+            },
+            "required": ["established"]
+          },
+          "then": {
+            "required": ["value"]
+          },
+          "else": {
+            "not": {
+              "required": ["value"]
+            }
+          }
+        }
+      ]
+    },
+    "learningDebtSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["established"],
+      "properties": {
+        "established": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "established": {
+                "const": true
+              }
+            },
+            "required": ["established"]
+          },
+          "then": {
+            "required": ["value"]
+          },
+          "else": {
+            "not": {
+              "required": ["value"]
+            }
+          }
+        }
+      ]
+    },
+    "automationLevelSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["established"],
+      "properties": {
+        "established": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "string",
+          "enum": ["NONE", "ASSISTED", "SHARED", "FULL"]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "established": {
+                "const": true
+              }
+            },
+            "required": ["established"]
+          },
+          "then": {
+            "required": ["value"]
+          },
+          "else": {
+            "not": {
+              "required": ["value"]
+            }
+          }
+        }
+      ]
+    },
+    "educationalDoneSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["established"],
+      "properties": {
+        "established": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "established": {
+                "const": true
+              }
+            },
+            "required": ["established"]
+          },
+          "then": {
+            "required": ["value"]
+          },
+          "else": {
+            "not": {
+              "required": ["value"]
+            }
+          }
+        }
+      ]
+    },
+    "semanticChange": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/competencyChange"
+        },
+        {
+          "$ref": "#/$defs/learningDebtChange"
+        },
+        {
+          "$ref": "#/$defs/automationLevelChange"
+        },
+        {
+          "$ref": "#/$defs/educationalDoneChange"
+        }
+      ]
+    },
+    "competencyChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "subject", "field", "previous", "resulting"],
+      "properties": {
+        "domain": {
+          "const": "competency"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field": {
+          "const": "state"
+        },
+        "previous": {
+          "$ref": "#/$defs/competencySlot"
+        },
+        "resulting": {
+          "$ref": "#/$defs/competencySlot"
+        }
+      }
+    },
+    "learningDebtChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "subject", "field", "previous", "resulting"],
+      "properties": {
+        "domain": {
+          "const": "learning_debt"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field": {
+          "const": "value"
+        },
+        "previous": {
+          "$ref": "#/$defs/learningDebtSlot"
+        },
+        "resulting": {
+          "$ref": "#/$defs/learningDebtSlot"
+        }
+      }
+    },
+    "automationLevelChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "subject", "field", "previous", "resulting"],
+      "properties": {
+        "domain": {
+          "const": "automation_level"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field": {
+          "const": "level"
+        },
+        "previous": {
+          "$ref": "#/$defs/automationLevelSlot"
+        },
+        "resulting": {
+          "$ref": "#/$defs/automationLevelSlot"
+        }
+      }
+    },
+    "educationalDoneChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "subject", "field", "previous", "resulting"],
+      "properties": {
+        "domain": {
+          "const": "educational_done"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field": {
+          "const": "done"
+        },
+        "previous": {
+          "$ref": "#/$defs/educationalDoneSlot"
+        },
+        "resulting": {
+          "$ref": "#/$defs/educationalDoneSlot"
+        }
+      }
+    }
+  }
+}

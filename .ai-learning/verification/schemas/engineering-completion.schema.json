@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ALH Engineering Completion Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "completion_id",
+    "outcome",
+    "evaluation",
+    "supporting_evidence_ids",
+    "outstanding_obligations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "engineering_completion"
+    },
+    "completion_id": {
+      "type": "string",
+      "pattern": "^completion-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["established", "not_established"]
+    },
+    "evaluation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project_state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supporting_evidence_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^evidence-[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      }
+    },
+    "outstanding_obligations": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "established"
+          }
+        },
+        "required": ["outcome"]
+      },
+      "then": {
+        "properties": {
+          "supporting_evidence_ids": {
+            "minItems": 1
+          },
+          "outstanding_obligations": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ]
+}
