@@ -5,6 +5,12 @@ import type {
 } from './cross-record-types.js'
 import { actualSlot, applyResult, slotsEqual } from './semantic-transition.js'
 import type { Finding } from './types.js'
+import {
+  findTypedArtifact,
+  findTypedArtifacts,
+  recordTypeOf,
+  type TypedArtifact,
+} from './schema-valid-records.js'
 
 interface InitialLearnerState {
   record_type: 'initial_learner_state'
@@ -37,11 +43,6 @@ interface CandidateEducationalEvidence {
 interface LearnerMemory {
   record_type: 'learner_memory'
   learner_id: string
-}
-
-interface TypedArtifact<T> {
-  artifact: string
-  value: T
 }
 
 /**
@@ -250,48 +251,6 @@ function learnerIdOf(value: unknown): string | undefined {
     default:
       return undefined
   }
-}
-
-function findTypedArtifact<T>(
-  artifacts: readonly SchemaValidArtifact[],
-  recordType: string,
-): TypedArtifact<T> | undefined {
-  const artifact = artifacts.find(
-    (candidate) => recordTypeOf(candidate.value) === recordType,
-  )
-
-  if (artifact === undefined) {
-    return undefined
-  }
-
-  return {
-    artifact: artifact.artifact,
-    // This layer receives only schema-valid artifacts.
-    value: artifact.value as unknown as T,
-  }
-}
-
-function findTypedArtifacts<T>(
-  artifacts: readonly SchemaValidArtifact[],
-  recordType: string,
-): TypedArtifact<T>[] {
-  return artifacts
-    .filter((artifact) => recordTypeOf(artifact.value) === recordType)
-    .map((artifact) => ({
-      artifact: artifact.artifact,
-      // This layer receives only schema-valid artifacts.
-      value: artifact.value as unknown as T,
-    }))
-}
-
-function recordTypeOf(value: unknown): string | undefined {
-  if (typeof value !== 'object' || value === null) {
-    return undefined
-  }
-
-  const recordType = (value as Record<string, unknown>).record_type
-
-  return typeof recordType === 'string' ? recordType : undefined
 }
 
 function cloneLearnerState(

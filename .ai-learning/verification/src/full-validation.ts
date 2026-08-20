@@ -18,6 +18,7 @@ import { validateJsonArtifact, type ValidatedJson } from './validate-file.js'
 import { validateStateIntegrity } from './state-integrity.js'
 import { validateStaticIdentity } from './static-identity.js'
 import { validateEvidenceArtifact } from './evidence-validation.js'
+import { validateReplayIntegrity } from './replay-integrity.js'
 
 interface ValidationAccumulator {
   findings: Finding[]
@@ -28,15 +29,19 @@ function retainIfValid(
   accumulator: ValidationAccumulator,
   artifact: string,
   result: ValidatedJson,
-): void {
+): boolean {
   accumulator.findings.push(...result.findings)
 
-  if (result.findings.length === 0 && result.value !== undefined) {
-    accumulator.validArtifacts.push({
-      artifact,
-      value: result.value,
-    })
+  if (result.findings.length > 0 || result.value === undefined) {
+    return false
   }
+
+  accumulator.validArtifacts.push({
+    artifact,
+    value: result.value,
+  })
+
+  return true
 }
 
 function validateIfPresent(
@@ -45,12 +50,12 @@ function validateIfPresent(
   schemaKey: SchemaKey,
   registry: SchemaRegistry,
   accumulator: ValidationAccumulator,
-): void {
+): boolean {
   if (!fs.existsSync(artifactPath(root, artifact))) {
-    return
+    return false
   }
 
-  retainIfValid(
+  return retainIfValid(
     accumulator,
     artifact,
     validateJsonArtifact(root, artifact, schemaKey, registry),
@@ -108,7 +113,7 @@ export function validateFullProject(
     accumulator,
   )
 
-  validateIfPresent(
+  const initialStateValid = validateIfPresent(
     root,
     initialStateArtifact,
     'initialLearnerState',
@@ -116,7 +121,7 @@ export function validateFullProject(
     accumulator,
   )
 
-  validateIfPresent(
+  const currentStateValid = validateIfPresent(
     root,
     currentStateArtifact,
     'currentLearnerState',
@@ -124,12 +129,18 @@ export function validateFullProject(
     accumulator,
   )
 
+  let decisionHistoryValid = true
+
   for (const artifact of discoverDecisionArtifacts(root)) {
-    retainIfValid(
+    const valid = retainIfValid(
       accumulator,
       artifact,
       validateJsonArtifact(root, artifact, 'educationalDecision', registry),
     )
+
+    if (!valid) {
+      decisionHistoryValid = false
+    }
   }
 
   for (const artifact of discoverEvidenceArtifacts(root)) {
@@ -153,6 +164,12 @@ export function validateFullProject(
     ...validateStateIntegrity(accumulator.validArtifacts),
     ...validateStaticIdentity(root, accumulator.validArtifacts),
   )
+
+  if (initialStateValid && currentStateValid && decisionHistoryValid) {
+    accumulator.findings.push(
+      ...validateReplayIntegrity(accumulator.validArtifacts),
+    )
+  }
 
   return {
     findings: sortFindings(accumulator.findings),
