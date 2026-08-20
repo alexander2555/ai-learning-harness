@@ -12,6 +12,27 @@ export interface ValidatedJson {
   findings: Finding[]
 }
 
+/**
+ * Validates an already-parsed JSON value against an ALH schema.
+ *
+ * This is used when schema selection itself depends on record content, so the
+ * artifact does not need to be read and parsed a second time.
+ */
+export function validateParsedJsonArtifact(
+  value: unknown,
+  artifact: string,
+  schemaKey: SchemaKey,
+  registry: SchemaRegistry,
+): ValidatedJson {
+  return {
+    value,
+    findings: validateAgainstSchema(registry, schemaKey, value, artifact),
+  }
+}
+
+/**
+ * Reads, parses, and locally validates one JSON artifact.
+ */
 export function validateJsonArtifact(
   root: string,
   artifact: string,
@@ -33,13 +54,10 @@ export function validateJsonArtifact(
     }
   }
 
-  return {
-    value: readResult.value,
-    findings: validateAgainstSchema(
-      registry,
-      schemaKey,
-      readResult.value,
-      artifact,
-    ),
-  }
+  return validateParsedJsonArtifact(
+    readResult.value,
+    artifact,
+    schemaKey,
+    registry,
+  )
 }

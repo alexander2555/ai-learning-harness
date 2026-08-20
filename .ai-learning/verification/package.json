@@ -10,7 +10,7 @@
     "build": "tsc -p tsconfig.json",
     "validate": "npm run build --silent && node dist/cli.js validate",
     "validate:transition": "npm run build --silent && node dist/cli.js validate-transition",
-    "test": "npm run build --silent && node --test dist/tests/foundation.test.js"
+    "test": "npm run build --silent && node --test \"dist/tests/*.test.js\""
   },
   "dependencies": {
     "ajv": "8.20.0"
