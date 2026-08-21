@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "instruction_set",
+  "instruction_set_version": "1.0.0",
+  "hash_algorithm": "sha256",
+  "instructions": [
+    {
+      "order": 0,
+      "path": ".ai-learning/instructions/00-core.md",
+      "sha256": "119d4ba056eb6fd02983af0ac47630965da9e785bf2ccd32755cc24f97168a53"
+    },
+    {
+      "order": 1,
+      "path": ".ai-learning/instructions/10-learning.md",
+      "sha256": "6feca63c94b6f125bbf1c71289b90f3a888ca355f49f75189674d260d5a11e6e"
+    },
+    {
+      "order": 2,
+      "path": ".ai-learning/instructions/20-engineering.md",
+      "sha256": "a9dd94bfda58e36997e2fb43f92e90bf6033c8a51d4cd6aa35fc17bec8c6569a"
+    },
+    {
+      "order": 3,
+      "path": ".ai-learning/instructions/30-state-evidence.md",
+      "sha256": "6c91a1f5ebd87c223c6181d5e14447e66de594215a5fe3b5a832d44fb419fd1f"
+    },
+    {
+      "order": 4,
+      "path": ".ai-learning/instructions/40-context-authority.md",
+      "sha256": "0238a003351bc3a91f1b80950912c781f22c58e4d0f98177ee337069d3872f18"
+    },
+    {
+      "order": 5,
+      "path": ".ai-learning/instructions/50-completion.md",
+      "sha256": "8587c6d23b6cc5af7b992c8315cdf68582a062b02d726f40b4371cc03832dadb"
+    }
+  ]
+}

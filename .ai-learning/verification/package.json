@@ -1,0 +1,22 @@
+{
+  "name": "@ai-learning-harness/verification",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "validate": "npm run build --silent && node dist/cli.js validate",
+    "validate:transition": "npm run build --silent && node dist/cli.js validate-transition",
+    "test": "npm run build --silent && node --test \"dist/tests/*.test.js\""
+  },
+  "dependencies": {
+    "ajv": "8.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.0.0",
+    "typescript": "7.0.2"
+  }
+}

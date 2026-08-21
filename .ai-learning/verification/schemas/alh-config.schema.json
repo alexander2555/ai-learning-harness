@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ALH Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "host",
+    "instruction_set",
+    "superpowers"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "alh_config"
+    },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "const": "devin_cli"
+        }
+      }
+    },
+    "instruction_set": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version"],
+      "properties": {
+        "version": {
+          "const": "1.0.0"
+        }
+      }
+    },
+    "superpowers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "tested_identity"],
+      "properties": {
+        "source": {
+          "const": "obra/superpowers"
+        },
+        "tested_identity": {
+          "type": ["string", "null"],
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
