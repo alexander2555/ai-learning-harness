@@ -9,6 +9,6 @@
   },
   "superpowers": {
     "source": "obra/superpowers",
-    "tested_identity": null
+    "tested_identity": "superpowers v6.3.0"
   }
 }
