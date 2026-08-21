@@ -7,32 +7,32 @@
     {
       "order": 0,
       "path": ".ai-learning/instructions/00-core.md",
-      "sha256": "119d4ba056eb6fd02983af0ac47630965da9e785bf2ccd32755cc24f97168a53"
+      "sha256": "625b4fc406257051871bac6df4d6133b7b7bb6a8dd948e7dbc4d6cabdfd85d75"
     },
     {
       "order": 1,
       "path": ".ai-learning/instructions/10-learning.md",
-      "sha256": "6feca63c94b6f125bbf1c71289b90f3a888ca355f49f75189674d260d5a11e6e"
+      "sha256": "2ef6cd95dca9062c58537becfd2752bf9012739ed979c6c654f48f0d69905577"
     },
     {
       "order": 2,
       "path": ".ai-learning/instructions/20-engineering.md",
-      "sha256": "a9dd94bfda58e36997e2fb43f92e90bf6033c8a51d4cd6aa35fc17bec8c6569a"
+      "sha256": "1ed3a24c620a67d0d3d38b0a53bedf3a4ebcceaa768f3bc9959ca785d8698582"
     },
     {
       "order": 3,
       "path": ".ai-learning/instructions/30-state-evidence.md",
-      "sha256": "6c91a1f5ebd87c223c6181d5e14447e66de594215a5fe3b5a832d44fb419fd1f"
+      "sha256": "25820abf546471552479956cc3f563bd951524d7dba287fae36c2283b7d147af"
     },
     {
       "order": 4,
       "path": ".ai-learning/instructions/40-context-authority.md",
-      "sha256": "0238a003351bc3a91f1b80950912c781f22c58e4d0f98177ee337069d3872f18"
+      "sha256": "b478f20d4f5ddf7437f2c9ac65d89a546ecf6a6ac29ffe3d0073299192ee6bf6"
     },
     {
       "order": 5,
       "path": ".ai-learning/instructions/50-completion.md",
-      "sha256": "8587c6d23b6cc5af7b992c8315cdf68582a062b02d726f40b4371cc03832dadb"
+      "sha256": "815947b1b6131d7642c61a525414d0b4dca18e203caed3580808bd1738daa473"
     }
   ]
 }
