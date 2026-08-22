@@ -2,7 +2,7 @@
 
 ## Status
 
-Candidate Validation Contract
+Accepted
 
 ## Purpose
 
