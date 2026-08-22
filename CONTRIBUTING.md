@@ -1,0 +1,1 @@
+Implementation and documentation changes must preserve Accepted ALH semantics. A semantic change must identify and update the appropriate authoritative architecture, methodology, ADR, harness, or governance artifact rather than introducing new semantics indirectly through code or user-facing documentation.
