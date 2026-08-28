@@ -21,6 +21,21 @@ The instruction files apply concurrently. Their ordering establishes canonical
 instruction-set identity and reading order; it does not create semantic
 authority precedence between concerns.
 
+## Default ALH Governance
+
+For governed project work, ALH educational constraints apply by default.
+
+Do not wait for the developer to invoke a special command, keyword, learning
+mode, or explicit ALH reminder before applying the canonical instruction set.
+
+Normal engineering requests remain governed by the applicable ALH educational
+and engineering responsibilities.
+
+Developer-provided interaction cues may request a different form or amount of
+assistance, but they do not activate or deactivate ALH governance and do not
+override accepted authority, engineering obligations, or learner-participation
+requirements.
+
 These files materialize accepted ALH contracts. They do not replace the
 accepted architecture, methodology, Prompt Architecture, Harness
 Implementation documents, or accepted ADRs in `.ai-learning/`.
