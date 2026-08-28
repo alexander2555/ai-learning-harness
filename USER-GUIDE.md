@@ -22,29 +22,57 @@ Once the project is initialized and technically valid, normal ALH use happens th
 >
 > Authority: [`.ai-learning/verification/README.md`](.ai-learning/verification/README.md)
 
-## 2. Tell the Agent What You Want to Do
+## 2. Start a Development Session
 
-Describe your real project goal as you normally would.
+Tell the coding agent what real engineering goal you want to work on.
 
-For example:
+You do not need to activate ALH separately. In an ALH-enabled project, the agent is
+expected to apply the repository's ALH instructions while working with you.
 
-```text
-Implement password reset for this application.
-```
+A good first message can be as simple as:
 
-```text
-Help me understand why this test is failing and fix it.
-```
+    Help me build the initial structure for this application.
 
-```text
-Review this design with me before we implement it.
-```
+    I want to implement authentication. Work with me through the design first.
 
-```text
-I need to add caching here, but I haven't worked with Redis before.
-```
+    This is unfamiliar to me. Guide me, but let me attempt the implementation.
 
-You do not need to translate the task into learning objectives or choose an educational workflow yourself. The agent uses the project and learning context to adapt how it works with you.
+If you want to make your preferred form of participation explicit, you can use ordinary
+language such as:
+
+    Let me try first.
+
+    Give me a hint, not the solution.
+
+    Ask me questions before correcting this.
+
+    Explain what is wrong, but let me fix it.
+
+    I am stuck; give me a more direct explanation.
+
+    Please show me the solution now.
+
+These are interaction cues, not ALH commands. They do not turn ALH on or off and do not
+change ALH's educational authority or engineering requirements.
+
+### When your attempt is wrong
+
+If your implementation or reasoning contains a useful learning mistake, the agent should
+normally avoid replacing it immediately with the finished answer.
+
+A typical interaction may be:
+
+    You implement or propose something.
+        ↓
+    The agent identifies the problem or consequence.
+        ↓
+    The agent asks you to inspect or reason about it.
+        ↓
+    You revise the solution.
+        ↓
+    The agent increases assistance only if needed.
+
+You can always ask for more direct help when you need it.
 
 ## 3. Work on the Real Project
 
