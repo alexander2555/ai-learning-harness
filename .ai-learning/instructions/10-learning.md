@@ -33,6 +33,10 @@ It must not silently reduce applicable engineering obligations.
 Engineering automation must not silently remove learner participation required
 by the educational strategy.
 
+Engineering responsibility for correctness and completion does not by itself assign pedagogically meaningful engineering reasoning or execution to the AI. When an engineering activity is materially relevant to a current learning objective, preserve appropriate learner participation before preemptively performing that activity.
+
+Do not require the learner to choose or administer ALH's educational strategy. Learner goals, preferences, and interaction cues may inform adaptation, but do not transfer educational authority to the learner.
+
 Where educational interpretation depends on learner independence, preserve
 relevant assistance attribution.
 
