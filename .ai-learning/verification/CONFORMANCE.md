@@ -26,6 +26,7 @@ This document does not establish learner truth, educational sufficiency, owner a
 | Durable identifiers and references preserve cross-record integrity                    | Generic durable-ID/reference index and directed-cycle validation                                                   | Integrity tests                                   |
 | Canonical instruction identity is byte-stable across supported CI environments        | Canonical instruction artifacts use deterministic byte representation                                              | Manifest/hash verification and cross-platform CI  |
 | Host/tool capability does not acquire educational authority                           | Host integration and external capabilities remain outside authoritative learner-state mutation paths               | Integration procedures and conformance boundaries |
+Educational responsibility governs participation and assistance before learning-relevant engineering execution | Educational responsibility is materialized before agent action selection | Behavioral verification of prospective allocation |
 | Validator success does not establish educational correctness                          | Validator scope is limited to deterministic objective technical integrity                                          | Validator tests and conformance tests             |
 
 ---
