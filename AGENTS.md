@@ -54,6 +54,46 @@ If a task exposes a genuine contradiction that cannot be resolved without
 changing an accepted architectural boundary, stop the affected ALH
 implementation work and report:
 
+## Learning-Relevant Execution Gate
+
+Before selecting substantive learner-facing execution for an engineering activity
+that is materially relevant to learning, resolve the applicable educational
+allocation.
+
+The allocation must determine, from the current educational and engineering
+context:
+
+- the expected learner participation;
+- the permitted AI assistance;
+- the resulting form of execution.
+
+Do not let engineering task classification, engineering responsibility, or
+ordinary engineering workflow implicitly determine this allocation.
+
+Substantive engineering reasoning may occur internally as needed. The gate
+governs how that work is materialized into learner interaction, not whether the
+AI may reason about the engineering problem.
+
+When educational responsibility is applicable:
+
+    Educational allocation resolved
+    ->
+    engineering action selected
+
+not:
+
+    engineering action selected
+    ->
+    educational allocation inferred retrospectively
+
+Do not use a fixed learner-first or AI-first allocation.
+
+Do not require the learner to choose or administer ALH educational strategy.
+
+If the information required for a material allocation is genuinely unavailable,
+preserve the uncertainty and obtain only the information necessary to proceed.
+Do not invent learner truth.
+
 `ARCHITECTURAL_BLOCKER`
 
 Do not silently change accepted ALH semantics.
