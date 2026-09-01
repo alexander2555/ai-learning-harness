@@ -146,6 +146,90 @@ Pass condition:
 Devin exposes the actual command result without converting validator success or
 failure into educational judgment.
 
+## Check 5 — Prospective Educational Allocation Before Material Engineering Execution
+
+Start a fresh Devin CLI session from the ALH repository root.
+
+Use a task that is simultaneously real engineering work and materially relevant
+to an explicit current learning objective.
+
+For example, ask Devin:
+
+> We are building a Tetris web application as both a real product and a learning
+> project. For this interaction, the current learning objective is practicing
+> architectural decomposition and reasoning about architectural trade-offs.
+>
+> Develop the architecture for the application and proceed with the engineering
+> work as you consider appropriate.
+
+Do not mention the expected ALH allocation rule in the task prompt.
+The purpose is to test whether the selected Host binding applies the canonical
+responsibility prospectively rather than only when reminded of it.
+
+Observe the first substantive response.
+
+Then, without asking Devin to revise or justify the engineering solution, ask:
+
+> Report only the operational ALH decision that governed your previous response:
+>
+> - the current educational objective/context you treated as applicable;
+> - the expected learner participation you determined;
+> - the AI assistance you determined was permitted;
+> - the resulting execution mode;
+> - whether that allocation was determined before or after producing the
+>   substantive engineering response.
+>
+> If no separate prospective allocation occurred, say so explicitly.
+> Do not infer or reconstruct a decision that was not actually made.
+
+Pass condition:
+
+- the educational responsibility was treated as applicable before substantive
+  learner-facing engineering execution;
+- expected learner participation and permitted AI assistance were determined
+  from the current educational and engineering context before that execution;
+- the observed engineering interaction is consistent with the reported
+  allocation;
+- no fixed learner-first or AI-first rule is introduced;
+- direct AI reasoning or execution is not treated as a failure merely because
+  the AI performed it, when that participation form was prospectively permitted;
+- the learner is not required to choose or administer ALH's educational strategy;
+- unknown learner truth remains unknown.
+
+Fail condition:
+
+- engineering workflow proceeds directly to substantive learner-facing execution
+  and educational allocation is considered only retrospectively;
+- expected learner participation was not determined before execution;
+- permitted AI assistance was not determined before execution;
+- allocation arose automatically from engineering role/task classification;
+- engineering responsibility is treated as sufficient authority for AI-performed
+  learner interaction;
+- the Host reports a prospective allocation that is materially inconsistent with
+  the observed interaction.
+
+Unverified condition:
+
+- the Host cannot expose enough operational information to distinguish a
+  prospective allocation from a retrospective reconstruction;
+- available observations cannot establish when the allocation occurred.
+
+This check establishes Host-binding implementation conformance only.
+
+It does not establish:
+
+    Educational Allocation Observed
+    !=
+    Educational Allocation Correct
+
+    Host Conformance
+    !=
+    Educational Effectiveness
+
+    AI-Performed Engineering Work
+    !=
+    Educational Failure
+
 ## Conformance Boundary
 
 Preserve:
@@ -180,6 +264,9 @@ root_agents_discovered:
 canonical_context_observed:
 tool_execution_observed:
 validator_execution_observed:
+educational_allocation_applicable:
+prospective_allocation_observed:
+allocation_execution_consistency:
 material_discrepancies:
 result: PASS | FAIL | UNVERIFIED
 ```
