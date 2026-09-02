@@ -169,10 +169,11 @@ Preserve the accepted Automation Level vocabulary:
 - `SHARED`
 - `FULL`
 
-Automation Level is an educational concept concerning learner independence.
+Automation Level is an educational concept representing the degree of automation applied to relevant learner activity by an external capability or AI.
 
 It is not:
 
+- a direct measure of learner independence;
 - filesystem permission;
 - tool permission;
 - model permission;
@@ -180,7 +181,11 @@ It is not:
 - number of model calls;
 - agent count;
 - workflow complexity;
-- Engineering Rigor.
+- Engineering Rigor;
+- a specific learner participation form;
+- a specific permitted assistance strategy.
+
+Automation Level constrains the degree of delegation but does not determine the specific form of learner participation or permitted assistance. The specific allocation depends on educational authority from current context.
 
 Do not initialize Automation Level to `NONE` unless that educational fact has
 actually been established.
