@@ -425,7 +425,7 @@ It is not itself educational evidence.
 
 Therefore:
 
-```text id="ee13"
+```text id="ee32"
 Assistance Attribution
         ≠
 Competency Evidence
@@ -439,17 +439,17 @@ Stage 4 does not define how assistance attribution is persisted or instrumented.
 
 # 14. Automation Level
 
-Automation Level is an accepted Stage 2 educational concept governing learner independence and assistance.
+Automation Level is an accepted Stage 2 educational concept representing the degree of automation applied to relevant learner activity by an external capability or AI.
 
-At the instruction layer, Automation Level MAY constrain:
+The four accepted Automation Levels are:
 
-- how directly the AI answers;
-- whether hints precede solutions;
-- whether the learner is expected to attempt first;
-- how much implementation the AI performs;
-- how much reasoning is elicited from the learner.
+```text id="ee14"
+NONE | ASSISTED | SHARED | FULL
+```
 
-Automation Level MUST NOT define:
+At the instruction layer, Automation Level describes how much of the relevant activity is delegated to external capability.
+
+Automation Level MUST NOT describe:
 
 - model permissions;
 - tool permissions;
@@ -458,27 +458,128 @@ Automation Level MUST NOT define:
 - execution topology;
 - number of model calls;
 - access control;
-- physical agent autonomy.
+- physical agent autonomy;
+- specific learner participation forms;
+- specific assistance strategies.
 
 Therefore:
 
-```text id="ee14"
+```text id="ee15"
 Automation Level
         =
-Educational Assistance Constraint
+Degree of Activity Automation
 ```
 
 and:
 
-```text id="ee15"
+```text id="ee16"
 Automation Level
         ≠
 AI Runtime Autonomy
 ```
 
+and:
+
+```text id="ee17"
+Automation Level
+        ≠
+Learner Participation Form
+```
+
+and:
+
+```text id="ee18"
+Automation Level
+        ≠
+Permitted Assistance Strategy
+```
+
 ---
 
-# 15. Automation Level Does Not Change Engineering Quality
+# 15. Automation Level vs Learner Participation vs Permitted Assistance
+
+Automation Level, Learner Participation, and Permitted Assistance are distinct but related concepts.
+
+```text id="ee19"
+Automation Level
+        ≠
+Learner Participation
+        ≠
+Permitted Assistance
+```
+
+**Automation Level** answers:
+- How much of the relevant activity is automated/delegated to external capability?
+- Accepted values: NONE | ASSISTED | SHARED | FULL
+
+**Learner Participation** answers:
+- What substantive learner involvement is expected in this activity?
+- Examples: reasoning, implementation, decision, review, verification, etc.
+
+**Permitted Assistance** answers:
+- What is the external capability allowed to do within this allocation?
+- Examples: explanation, hint, partial solution, generated implementation, review, etc.
+
+Automation Level constrains the degree of delegation but does not determine the specific form of learner participation or assistance.
+
+For example, `SHARED` Automation Level may involve:
+- Learner writes code, AI reviews and corrects
+- Learner selects architecture, AI implements
+- Learner defines requirements, AI generates, learner verifies
+
+The specific allocation depends on educational authority from current context, not Automation Level alone.
+
+Therefore:
+
+```text id="ee20"
+Automation Level
+        ≠
+Learner Participation
+```
+
+and:
+
+```text id="ee21"
+Automation Level
+        ≠
+Permitted Assistance
+```
+
+and:
+
+```text id="ee22"
+Learner Participation
+        ≠
+Learner Competency
+```
+
+and:
+
+```text id="ee23"
+AI Assistance
+        ≠
+Educational Authority
+```
+
+and:
+
+```text id="ee24"
+Engineering Responsibility
+        ≠
+Permission for AI to preempt pedagogically meaningful learner participation
+```
+
+and:
+
+```text id="ee25"
+Learner Preference
+        ≠
+Educational Strategy
+```
+
+---
+
+# 16. Automation Level Does Not Change Engineering Quality
 
 Automation Level MAY change how assistance is provided.
 
@@ -493,7 +594,7 @@ In both cases, applicable engineering requirements remain governed by Stage 3.
 
 Therefore:
 
-```text id="ee16"
+```text id="ee26"
 Different Assistance
         ≠
 Different Required Engineering Correctness
@@ -501,7 +602,7 @@ Different Required Engineering Correctness
 
 ---
 
-# 16. Engineering Rigor
+# 17. Engineering Rigor
 
 Engineering Rigor is the Stage 3 concept governing expected engineering depth.
 
@@ -528,7 +629,7 @@ Engineering Rigor MUST NOT determine learner independence.
 
 Therefore:
 
-```text id="ee18"
+```text id="ee29"
 Engineering Rigor
         ≠
 Automation Level
@@ -536,7 +637,7 @@ Automation Level
 
 ---
 
-# 17. Engineering Rigor Does Not Define AI Autonomy
+# 18. Engineering Rigor Does Not Define AI Autonomy
 
 Engineering Rigor also MUST NOT determine physical AI autonomy.
 
@@ -552,7 +653,7 @@ Likewise, an R1 activity does not imply a simpler execution topology.
 
 Therefore:
 
-```text id="ee19"
+```text id="ee30"
 Engineering Rigor
         ≠
 AI Autonomy
@@ -564,11 +665,11 @@ It MUST NOT reinterpret rigor as execution permission.
 
 ---
 
-# 18. Three Independent Dimensions
+# 19. Three Independent Dimensions
 
 Stage 4 MUST preserve:
 
-```text id="ee20"
+```text id="ee31"
 Automation Level
         ≠
 Engineering Rigor
@@ -581,7 +682,7 @@ These dimensions answer different questions:
 ```text id="ee21"
 Automation Level
         →
-How independently should the learner work?
+How much of the relevant activity is automated?
 ```
 
 ```text id="ee22"
@@ -604,7 +705,7 @@ Stage 4 MUST NOT collapse them into one control axis.
 
 ---
 
-# 19. Engineering Review
+# 20. Engineering Review
 
 Engineering Review evaluates engineering quality according to applicable Stage 3 semantics.
 
@@ -630,7 +731,7 @@ Engineering Review MUST NOT automatically:
 
 ---
 
-# 20. Educational Assessment
+# 21. Educational Assessment
 
 Educational Assessment interprets educational evidence according to accepted Stage 2 semantics.
 
@@ -658,7 +759,7 @@ It does not own engineering correctness.
 
 ---
 
-# 21. Engineering Review vs Educational Assessment
+# 22. Engineering Review vs Educational Assessment
 
 The distinction is normative:
 
@@ -682,7 +783,7 @@ The conclusions remain separate.
 
 ---
 
-# 22. Engineering Observation
+# 23. Engineering Observation
 
 An **Engineering Observation** is a fact, finding, behavior, or outcome observed during engineering activity.
 
@@ -702,7 +803,7 @@ It MAY become Candidate Educational Evidence when relevant to learning.
 
 ---
 
-# 23. Candidate Educational Evidence
+# 24. Candidate Educational Evidence
 
 `Candidate Educational Evidence` is the accepted Stage 3 integration label for an engineering observation that MAY be educationally relevant.
 
@@ -728,7 +829,7 @@ They MUST NOT promote them directly into accepted learner evidence.
 
 ---
 
-# 24. Evidence Vocabulary
+# 25. Evidence Vocabulary
 
 Stage 4 MUST preserve the accepted Stage 2 educational evidence vocabulary:
 
@@ -746,7 +847,7 @@ It does not extend the evidence vocabulary.
 
 ---
 
-# 25. Assistance and Evidence
+# 26. Assistance and Evidence
 
 Assistance materially affects some educational interpretations.
 
@@ -763,7 +864,7 @@ Prompt Architecture SHOULD preserve sufficient assistance context for authorized
 
 However:
 
-```text id="ee26"
+```text id="ee33"
 Assistance Level
         ≠
 Evidence Result
@@ -775,7 +876,7 @@ Assessment remains responsible for interpretation.
 
 ---
 
-# 26. Engineering Output Is Not Learner Performance
+# 27. Engineering Output Is Not Learner Performance
 
 AI-generated engineering output MUST NOT automatically be attributed to the learner.
 
@@ -801,7 +902,7 @@ The educational meaning depends on accepted Stage 2 assessment semantics.
 
 ---
 
-# 27. Learner Correction of AI Output
+# 28. Learner Correction of AI Output
 
 Learner correction of AI-generated output MAY create meaningful Candidate Educational Evidence.
 
@@ -820,7 +921,7 @@ A corrected AI solution MUST NOT be represented as though the learner independen
 
 ---
 
-# 28. Verification Evidence vs Educational Evidence
+# 29. Verification Evidence vs Educational Evidence
 
 Engineering verification evidence supports engineering claims.
 
@@ -848,7 +949,7 @@ Likewise, strong educational evidence does not prove the software is correct.
 
 ---
 
-# 29. Passing Tests
+# 30. Passing Tests
 
 Passing tests are engineering evidence.
 
@@ -877,7 +978,7 @@ The applicable claim depends on the relevant authority and evidence requirements
 
 ---
 
-# 30. Learner-State Authority
+# 31. Learner-State Authority
 
 Authoritative learner state remains governed by accepted Stage 1 and Stage 2 responsibilities.
 
@@ -898,7 +999,7 @@ It MUST NOT silently perform those decisions.
 
 ---
 
-# 31. Competency Evaluation
+# 32. Competency Evaluation
 
 Competency Evaluation remains an educational authority.
 
@@ -914,7 +1015,7 @@ It MUST NOT shortcut it merely because an engineering responsibility has access 
 
 ---
 
-# 32. Learning Debt
+# 33. Learning Debt
 
 Learning Debt remains a Stage 2 educational concept.
 
@@ -928,7 +1029,7 @@ Stage 4 MUST NOT reinterpret engineering defects as Learning Debt directly.
 
 ---
 
-# 33. Decision Engine
+# 34. Decision Engine
 
 The Stage 1 Decision Engine remains responsible for accepted educational decision semantics.
 
@@ -960,7 +1061,7 @@ Decision Engine Architecture
 
 ---
 
-# 34. Planning
+# 35. Planning
 
 Planning is an engineering activity governed by Stage 3.
 
@@ -979,7 +1080,7 @@ A development plan remains a revisable engineering hypothesis.
 
 ---
 
-# 35. Development Lifecycle
+# 36. Development Lifecycle
 
 Stage 3 defines the learner-product development lifecycle.
 
@@ -1006,7 +1107,7 @@ It MUST NOT use lifecycle enumeration as physical execution design.
 
 ---
 
-# 36. Activity Applicability
+# 37. Activity Applicability
 
 Stage 3 defines:
 
@@ -1025,7 +1126,7 @@ Likewise, Stage 4 MUST NOT impose unnecessary engineering ceremony where Stage 3
 
 ---
 
-# 37. Documentation
+# 38. Documentation
 
 Documentation obligations remain governed by Stage 1 and Stage 3.
 
@@ -1047,7 +1148,7 @@ Duplicated documentation SHOULD be avoided.
 
 ---
 
-# 38. Security
+# 39. Security
 
 Security remains an engineering and architectural constraint.
 
@@ -1063,7 +1164,7 @@ Educational interpretation remains bounded by accepted assessment authority.
 
 ---
 
-# 39. Engineering Done
+# 40. Engineering Done
 
 Engineering Done is an evidence-supported engineering completion claim governed by Stage 3.
 
@@ -1103,7 +1204,7 @@ Educational state MUST NOT substitute for missing engineering evidence.
 
 ---
 
-# 40. Educational Done
+# 41. Educational Done
 
 Educational Done remains governed by accepted Stage 2 completion semantics.
 
@@ -1117,7 +1218,7 @@ The claims remain independent.
 
 ---
 
-# 41. Completion Separation
+# 42. Completion Separation
 
 The normative invariant is:
 
@@ -1153,7 +1254,7 @@ Stage 4 MUST NOT force them into one global completion state.
 
 ---
 
-# 42. Engineering Completion Cannot Waive Learning Authority
+# 43. Engineering Completion Cannot Waive Learning Authority
 
 Engineering Done MAY provide educationally relevant observations.
 
@@ -1168,7 +1269,7 @@ Such conclusions require accepted educational authority.
 
 ---
 
-# 43. Educational Completion Cannot Waive Engineering Authority
+# 44. Educational Completion Cannot Waive Engineering Authority
 
 Educational Done MUST NOT:
 
@@ -1182,7 +1283,7 @@ Such conclusions require applicable engineering evidence and authority.
 
 ---
 
-# 44. Mixed Outputs
+# 45. Mixed Outputs
 
 One interaction MAY need to communicate both engineering and educational information.
 
@@ -1217,7 +1318,7 @@ Detailed output semantics belong to `06-Instruction-Outputs-Claims-and-Stage-5-C
 
 ---
 
-# 45. Mixed Context
+# 46. Mixed Context
 
 An instruction MAY need both project and learner context.
 
@@ -1246,7 +1347,7 @@ Context authority remains governed by `03-Context-and-Truth-Contracts.md`.
 
 ---
 
-# 46. Bounded Adaptation
+# 47. Bounded Adaptation
 
 Educational adaptation MAY change how engineering assistance is delivered.
 
@@ -1272,7 +1373,7 @@ It does not redefine engineering correctness.
 
 ---
 
-# 47. Educational Friction
+# 48. Educational Friction
 
 Educational strategy MAY intentionally avoid giving an immediate full solution where productive learner reasoning is required.
 
@@ -1290,7 +1391,7 @@ Educational friction is a teaching constraint, not permission to degrade enginee
 
 ---
 
-# 48. Time and Delivery Pressure
+# 49. Time and Delivery Pressure
 
 Project constraints MAY create pressure for faster engineering completion.
 
@@ -1307,7 +1408,7 @@ Where educational and delivery needs cannot both be fully satisfied, the tradeof
 
 ---
 
-# 49. Engineering-Educational Interaction Contract
+# 50. Engineering-Educational Interaction Contract
 
 Where an engineering and educational responsibility interact materially, the combined semantic contract SHOULD identify:
 
@@ -1329,7 +1430,7 @@ It MUST NOT prescribe a runtime schema.
 
 ---
 
-# 50. Interaction Example — Learner Implementation
+# 51. Interaction Example — Learner Implementation
 
 ```text id="ee41"
 Engineering Objective:
@@ -1342,7 +1443,7 @@ Engineering Rigor:
     R2 — Standard.
 
 Automation Level:
-    Learner-first implementation with bounded assistance.
+    ASSISTED
 
 Learner Participation:
     Learner proposes and implements the initial solution.
@@ -1374,7 +1475,7 @@ It does not define a prompt sequence or agent topology.
 
 ---
 
-# 51. Interaction Example — AI-Generated Implementation
+# 52. Interaction Example — AI-Generated Implementation
 
 ```text id="ee42"
 Engineering Objective:
@@ -1408,7 +1509,7 @@ This preserves engineering quality without falsely attributing authorship or ind
 
 ---
 
-# 52. Interaction Example — Engineering Review
+# 53. Interaction Example — Engineering Review
 
 ```text id="ee43"
 Engineering Responsibility:
@@ -1437,7 +1538,7 @@ The same activity contributes to both domains without merging their authority.
 
 ---
 
-# 53. Interaction Anti-Patterns
+# 54. Interaction Anti-Patterns
 
 The following patterns are prohibited or strongly discouraged.
 
@@ -1487,7 +1588,7 @@ Treating urgency as automatic permission to disregard educational authority or a
 
 ---
 
-# 54. Interaction Validation
+# 55. Interaction Validation
 
 A material engineering / educational interaction SHOULD be validated using the following questions:
 
@@ -1496,9 +1597,9 @@ A material engineering / educational interaction SHOULD be validated using the f
 3. What authority does each possess?
 4. What authority does each explicitly lack?
 5. What Engineering Rigor applies?
-6. What Automation Level or assistance constraint applies?
+6. What Automation Level applies?
 7. What learner participation is expected?
-8. What AI assistance is permitted?
+8. What permitted assistance applies?
 9. Does assistance attribution matter?
 10. What engineering evidence is required?
 11. What Candidate Educational Evidence may arise?
@@ -1515,7 +1616,7 @@ A design failing question 17 SHOULD be examined for premature Stage 5 coupling.
 
 ---
 
-# 55. Stage 5 Contract
+# 56. Stage 5 Contract
 
 Stage 5 MUST materialize engineering / educational interaction while preserving:
 
@@ -1545,7 +1646,7 @@ Those mechanisms MUST NOT redefine the semantic boundaries established here.
 
 ---
 
-# 56. Change Governance
+# 57. Change Governance
 
 Engineering / educational integration MAY reveal ambiguity in accepted upstream methodology or architecture.
 
@@ -1567,7 +1668,7 @@ Stage 4 MUST NOT resolve cross-domain ambiguity by silently modifying either Sta
 
 ---
 
-# 57. Acceptance Criteria
+# 58. Acceptance Criteria
 
 This document is satisfied when Stage 4 can consistently answer:
 
@@ -1599,7 +1700,7 @@ This document is satisfied when Stage 4 can consistently answer:
 
 ---
 
-# 58. Summary
+# 59. Summary
 
 Engineering and educational responsibilities interact throughout ALH development activity.
 
