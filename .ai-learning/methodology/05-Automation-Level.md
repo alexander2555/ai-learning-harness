@@ -21,16 +21,16 @@ Related Documents
 
 This document defines the Automation Level methodology of AI Learning Harness (ALH).
 
-Automation Level represents the degree of learner independence demonstrated while applying a competency.
+Automation Level represents the degree of automation applied to relevant learner activity by an external capability or AI.
 
 The purpose of Automation Level is to distinguish between:
 
-- work performed by the learner;
-- work performed with assistance;
-- work performed collaboratively;
-- work performed independently.
+- activity performed entirely by the learner;
+- activity performed with bounded external assistance;
+- activity performed collaboratively between learner and external capability;
+- activity performed primarily or entirely by external capability.
 
-Automation Level supports progressive independence and competency evaluation.
+Automation Level supports educational allocation and competency evaluation.
 
 This document defines educational meaning and evaluation principles.
 
@@ -45,9 +45,9 @@ It MUST NOT define:
 
 # Normative Definition
 
-Automation Level describes the degree of learner independence demonstrated during competency application.
+Automation Level describes the degree of automation applied to relevant learner activity by an external capability or AI during competency application.
 
-Automation Level refers to the learner's participation and independence.
+Automation Level refers to the extent of external capability delegation for the relevant activity.
 
 It does NOT describe:
 
@@ -67,7 +67,19 @@ SHARED
 FULL
 ```
 
-These levels represent increasing learner independence.
+These levels represent increasing automation of relevant learner activity by external capability.
+
+Consequently, learner independence with respect to this activity generally moves in the opposite direction:
+
+```
+FULL
+   ↓
+SHARED
+   ↓
+ASSISTED
+   ↓
+NONE
+```
 
 ---
 
@@ -76,9 +88,9 @@ These levels represent increasing learner independence.
 The Automation Level methodology covers:
 
 - definition of Automation Level;
-- levels of learner independence;
+- levels of automation of relevant learner activity;
 - progression between levels;
-- relationship between independence and competency;
+- relationship between automation and learner independence;
 - relationship between Automation Level and Learning Debt.
 
 The Automation Level methodology does not define:
@@ -107,7 +119,7 @@ Automation Level is represented by four levels:
 
     FULL
 
-The levels describe the degree of learner participation and independence in competency application.
+The levels describe the degree of automation of relevant learner activity in competency application.
 
 ---
 
@@ -115,7 +127,7 @@ The levels describe the degree of learner participation and independence in comp
 
 ## 4.1 NONE
 
-The learner performs the relevant activity without delegation to an external agent or automated capability.
+The relevant activity is not automated. The learner performs the substantive reasoning, execution, and verification necessary for the activity, with permissible educational support that does not itself perform the relevant activity for the learner.
 
 The learner is responsible for:
 
@@ -124,7 +136,9 @@ The learner is responsible for:
 - verification;
 - final result.
 
-This level provides the strongest direct evidence of independent application.
+Educational support at this level may include guidance, explanations, hints, or feedback that assist the learner's independent performance without delegating the substantive activity to an external capability.
+
+This level provides the strongest direct evidence of independent application of the relevant activity.
 
 ---
 
@@ -164,16 +178,19 @@ Shared execution MUST NOT be treated as equivalent to fully independent executio
 
 ## 4.4 FULL
 
-The learner independently performs the relevant activity and remains responsible for the result.
+The relevant activity is performed primarily or entirely by an external capability or AI. The learner may observe, specify requirements, review results, or receive explanations, but this observation or review alone does not constitute evidence of independent performance of the activity.
 
-The learner SHOULD be able to:
+The learner may:
 
-- select an appropriate approach;
-- execute the task;
-- verify the result;
-- explain relevant decisions.
+- observe the automated execution;
+- specify requirements or constraints;
+- review generated results;
+- request explanations of decisions;
+- provide approval or acceptance of the result.
 
-FULL represents the highest level of learner independence in the Automation Level model.
+FULL represents the highest level of automation of relevant learner activity by external capability.
+
+FULL may be educationally appropriate depending on educational strategy, learner state, current learning objective, and task context, for example for demonstration, scaffolding, or activities that are not the current practice objective.
 
 ---
 
@@ -193,7 +210,7 @@ Competency state describes the stage of competency development:
        ↓
     mastered
 
-Automation Level describes the degree of learner independence during application.
+Automation Level describes the degree of automation of relevant learner activity by external capability during application.
 
 Therefore:
 
@@ -227,32 +244,67 @@ Automation Level
 Learning Debt
 ```
 
+and:
+
+```
+Automation Level
+    ≠
+Learner Competency
+```
+
+and:
+
+```
+Automation Level
+    ≠
+Educational Correctness
+```
+
+and:
+
+```
+AI-Performed Engineering Work
+    ≠
+Educational Failure
+```
+
+and:
+
+```
+Observation of Automated Work
+    ≠
+Independent Learner Performance
+```
+
 ---
 
 # 6. Progressive Independence
 
-Learning SHOULD generally progress toward greater learner independence.
+Learning SHOULD generally progress toward greater learner independence for relevant activities, which typically corresponds to decreasing Automation Level for those activities over time.
 
-A typical progression is:
+A typical progression toward greater independence is:
 
-    NONE
-       ↓
-    ASSISTED
+    FULL
        ↓
     SHARED
        ↓
-    FULL
+    ASSISTED
+       ↓
+    NONE
 
 However, progression MUST be context-sensitive.
 
-A learner MAY temporarily use a lower Automation Level when:
+A learner MAY temporarily use a higher Automation Level when:
 
 - encountering a new competency;
 - working in an unfamiliar context;
 - attempting a more complex task;
-- receiving targeted educational support.
+- receiving targeted educational support;
+- engaging in demonstration or scaffolding activities.
 
-Temporary assistance MUST NOT automatically indicate regression in competency.
+Temporary automation MUST NOT automatically indicate regression in competency.
+
+Decreasing automation may create opportunities for more independent learner performance, but Automation Level itself does not prove competency. Transition to lower automation MUST NOT automatically be considered progression without Accepted Educational Evidence.
 
 ---
 
@@ -283,7 +335,7 @@ Automation Level and Learning Debt measure different properties.
 
 Learning Debt represents the remaining successful applications required for competency stabilization.
 
-Automation Level represents learner independence during application.
+Automation Level represents the degree of automation of relevant learner activity by external capability during application.
 
 Therefore:
 
@@ -294,7 +346,7 @@ Therefore:
 For example, a learner MAY:
 
 - have low Learning Debt while requiring assistance in unfamiliar contexts;
-- achieve FULL Automation Level for a familiar task while retaining Learning Debt for broader competency stabilization.
+- operate at FULL Automation Level for a familiar task while retaining Learning Debt for broader competency stabilization.
 
 ---
 
@@ -316,23 +368,29 @@ Claims of independence SHOULD NOT be accepted without supporting evidence where 
 
 # 10. Automation Level and Mastery
 
-FULL Automation Level MAY support evidence for mastery but MUST NOT be sufficient by itself.
+NONE Automation Level MAY support evidence for mastery but MUST NOT be sufficient by itself.
 
 Mastery SHOULD require evidence of:
 
 - sufficient competency understanding;
 - successful practical application;
 - reliable outcomes;
-- appropriate independence;
+- appropriate independence for the relevant activity;
 - ability to explain relevant decisions.
 
 Therefore:
 
-    Automation Level = FULL
+    Automation Level = NONE
 
 does not by itself imply:
 
     Competency State = mastered
+
+Conversely:
+
+    Automation Level = FULL
+
+does not by itself indicate lack of mastery or educational failure. FULL may be appropriate for demonstration, scaffolding, or activities that are not the current practice objective.
 
 ---
 
@@ -374,9 +432,11 @@ The Automation Level methodology does not define how this state is stored or imp
 
 Automation Level MUST:
 
-- describe learner independence;
+- describe the degree of automation of relevant learner activity by external capability;
 - remain distinct from competency state;
 - remain distinct from Learning Debt;
+- remain distinct from learner competency;
+- remain distinct from educational correctness;
 - be supported by observable evidence where possible.
 
 Automation Level MUST NOT:
@@ -386,11 +446,27 @@ Automation Level MUST NOT:
 - imply mastery without additional evidence;
 - define implementation mechanisms;
 - define prompt behavior;
-
 * be interpreted as system automation capability;
 * independently determine competency state;
 * independently determine mastery;
 * independently determine progression;
-* replace competency evaluation.
+* replace competency evaluation;
+* serve as a learner-first rule;
+* be inferred as educationally incorrect when set to FULL;
+* require learner-first allocation regardless of learning relevance.
+
+---
+
+# 14. Educational Boundaries
+
+This methodology preserves the following boundaries:
+
+- Automation Level is a measure of external capability automation of relevant learner activity, not a direct measure of learner independence
+- AI-performed engineering work is not automatically educational failure
+- Observation of automated work is not equivalent to independent learner performance
+- FULL Automation Level may be educationally appropriate depending on educational strategy, learner state, current learning objective, and task context
+- Learning relevance does not automatically require Automation Level to be NONE or ASSISTED
+- Decreasing automation may create opportunities for more independent learner performance, but Automation Level itself does not prove competency
+- Transition to lower automation must not automatically be considered progression without Accepted Educational Evidence
 
 ---
