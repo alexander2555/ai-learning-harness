@@ -26,8 +26,26 @@ This document does not establish learner truth, educational sufficiency, owner a
 | Durable identifiers and references preserve cross-record integrity                    | Generic durable-ID/reference index and directed-cycle validation                                                   | Integrity tests                                   |
 | Canonical instruction identity is byte-stable across supported CI environments        | Canonical instruction artifacts use deterministic byte representation                                              | Manifest/hash verification and cross-platform CI  |
 | Host/tool capability does not acquire educational authority                           | Host integration and external capabilities remain outside authoritative learner-state mutation paths               | Integration procedures and conformance boundaries |
-Educational responsibility governs participation and assistance before learning-relevant engineering execution | Educational responsibility is materialized before agent action selection | Behavioral verification of prospective allocation |
+| Educational responsibility governs activity-level participation and assistance before learning-relevant engineering execution | Prospective allocation identifies substantive learner participation and permitted assistance compatible with the current objective, relevant established learner state, concrete activity, educational strategy, and applicable Automation Level before agent action selection | Behavioral verification of prospective allocation quality and execution consistency |
 | Validator success does not establish educational correctness                          | Validator scope is limited to deterministic objective technical integrity                                          | Validator tests and conformance tests             |
+
+Activity-level allocation conformance preserves:
+
+```text
+Educational Allocation Observed
+!=
+Educational Allocation Correct
+
+Execution Consistent With Allocation
+!=
+Educational Effectiveness
+
+AI-First Demonstration
+!=
+Independent Learner Performance
+```
+
+Behavioral verification may establish that required allocation inputs, participation, assistance, ordering, and execution consistency were observable. It MUST NOT convert that verification into learner competency, pedagogical correctness, or educational effectiveness.
 
 ---
 
