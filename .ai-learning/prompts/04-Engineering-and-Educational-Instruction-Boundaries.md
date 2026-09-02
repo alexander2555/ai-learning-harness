@@ -577,6 +577,89 @@ Learner Preference
 Educational Strategy
 ```
 
+## 15.1 Activity-Level Educational Allocation
+
+For an engineering activity that is materially relevant to a current learning objective, educational allocation MUST be compatible with:
+
+- the current learning objective;
+- relevant established learner state;
+- the concrete engineering activity;
+- the applicable educational strategy;
+- the applicable Automation Level;
+- the expected learner participation;
+- the permitted assistance.
+
+Expected learner participation MUST identify substantive learner involvement relevant to the current learning objective when such participation is required by the educational strategy.
+
+Generic labels such as `active`, `shared`, `joint`, or `learner involved` are not sufficient by themselves to establish substantive participation.
+
+Meaningful learner participation MAY include, according to context:
+
+- reasoning about requirements or behavior;
+- prediction;
+- decomposition;
+- selecting or evaluating alternatives;
+- implementation;
+- debugging;
+- trade-off analysis;
+- review;
+- verification;
+- explanation or reconstruction;
+- correction or adaptation of AI-generated work;
+- other substantive activity relevant to the current learning objective.
+
+Meaningful participation does not require a fixed learner-first sequence, learner-authored code, Socratic questioning, or learner execution before AI assistance.
+
+Passive observation alone MUST NOT be treated as meaningful learner participation for a learning objective that requires the learner to practice or apply the relevant reasoning or skill.
+
+Passive observation or AI-first demonstration MAY nevertheless be educationally appropriate when selected by the applicable educational strategy, including for demonstration, scaffolding, or when the automated activity is not the current target of learner practice.
+
+Therefore:
+
+```text
+Passive Observation
+        ≠
+Meaningful Learner Participation
+```
+where substantive learner practice or application is required by the current learning objective.
+
+And:
+
+```text
+AI-First Demonstration
+        ≠
+Independent Learner Performance
+```
+
+When Automation Level is SHARED, the allocation MUST identify what substantive responsibility remains with the learner. The label SHARED alone MUST NOT establish meaningful learner participation.
+
+When Automation Level is FULL for an activity materially relevant to the current learning objective, the allocation MUST remain compatible with the applicable educational strategy and context. FULL MUST NOT be treated as educational failure merely because the AI or another external capability performs the activity.
+
+The educational basis for an allocation SHOULD be operationally inspectable to the extent necessary to establish its relationship to the current objective, relevant established learner state, concrete activity, and selected participation and assistance. This requirement does not require disclosure of hidden reasoning or chain-of-thought.
+
+Therefore:
+```text
+Educational Allocation Exists
+        ≠
+Educational Allocation Is Correct
+```
+and:
+```text
+Execution Consistent With Allocation
+        ≠
+Educational Allocation Is Correct
+```
+and:
+```text
+Demonstration
+        ≠
+Learner Performance
+```
+
+Educational allocation MUST preserve uncertainty where relevant learner truth is not established.
+
+Learner goals, preferences, and interaction cues MAY inform allocation, but they MUST NOT transfer educational strategy authority to the learner.
+
 ---
 
 # 16. Automation Level Does Not Change Engineering Quality
@@ -1552,7 +1635,7 @@ Treating demonstrated understanding as proof that the engineering task is comple
 
 ## 53.3 Automation Level Equals AI Permission
 
-Using learner-independence level as runtime execution authority.
+Using Automation Level or the degree of automation of relevant learner activity as runtime execution authority, AI autonomy, or tool permission.
 
 ## 53.4 Engineering Rigor Equals Automation Level
 

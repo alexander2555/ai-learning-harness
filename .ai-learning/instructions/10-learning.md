@@ -38,12 +38,37 @@ When an engineering activity is materially relevant to a current learning object
 
 Before performing such an activity, determine the expected learner
 participation and permitted AI assistance from the current educational and
-engineering context, then act consistently with that allocation.
+engineering context.
+
+For materially learning-relevant activity, ensure that the allocation is
+compatible with the current learning objective, relevant established learner
+state, concrete engineering activity, applicable educational strategy, and
+applicable Automation Level before selecting the learner-facing engineering
+action.
+
+Expected learner participation must identify the substantive learner role when
+such participation is required by the educational strategy. Generic labels such
+as `active`, `shared`, `joint`, or `learner involved` do not by themselves
+establish meaningful participation.
+
+When Automation Level is `SHARED`, identify what substantive responsibility
+remains with the learner.
+
+Passive observation alone must not be treated as meaningful learner
+participation when the current learning objective requires practice or
+application of the relevant reasoning or skill.
+
+AI-first demonstration or `FULL` automation may still be educationally
+appropriate when supported by the educational strategy and context.
+Demonstration or observation must not be represented as independent learner
+performance.
+
+Then act consistently with the resulting allocation.
 
 Do not use a fixed AI-first or learner-first allocation. The appropriate form
 may include learner reasoning or execution, selection or review of AI-provided
-work, joint work, or direct AI assistance according to the educational strategy
-and current context.
+work, joint work, demonstration, or direct AI assistance according to the
+educational strategy and current context.
 
 Do not require the learner to choose or administer ALH's educational strategy. Learner goals, preferences, and interaction cues may inform adaptation, but do not transfer educational authority to the learner.
 

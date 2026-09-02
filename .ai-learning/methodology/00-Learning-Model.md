@@ -87,11 +87,9 @@ A learner progresses through:
 
 ## 3.3 Progressive Independence
 
-The learning process SHOULD gradually reduce external assistance.
+The learning process SHOULD generally develop the learner's capacity for independent competency application.
 
-The learner moves from supported execution toward independent competency application.
-
-This progression is represented by Automation Level:
+Automation Level represents the degree of automation applied to relevant learner activity by an external capability or AI:
 
 NONE
 
@@ -107,9 +105,29 @@ SHARED
 
 FULL
 
-Automation Level describes learner independence.
+This direction represents increasing automation of the relevant learner activity, not increasing learner independence.
 
-Automation Level MUST NOT be interpreted as system automation capability.
+Progress toward greater learner independence for a relevant activity may therefore involve decreasing Automation Level:
+
+FULL
+
+↓
+
+SHARED
+
+↓
+
+ASSISTED
+
+↓
+
+NONE
+
+This relationship is context-sensitive rather than a mandatory linear progression. Educational strategy MAY temporarily increase Automation Level for demonstration, scaffolding, unfamiliar activities, or other educationally appropriate purposes.
+
+Decreasing Automation Level may create an opportunity for more independent learner performance, but it does not by itself establish competency, mastery, or educational progression. Such conclusions require applicable educational evidence and authority.
+
+Automation Level MUST NOT be interpreted as system automation capability or as a direct measure of learner competency.
 
 ---
 
