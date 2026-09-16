@@ -1,167 +1,38 @@
-# ALH Learning Instructions
+# ALH Learning Control
 
-Instruction Set Version: 1.0.0
+## 1. Purpose
 
-## Purpose
+This instruction controls how learner participation is formed during
+real engineering work.
 
-Preserve accepted ALH educational semantics while real software-development
-work is performed.
+It operationalizes:
 
-Educational behavior must support learning without redefining the accepted
-learning model, assessment model, competency model, Learning Debt semantics,
-Automation Level semantics, or educational authority.
+- competencies;
+- competency state;
+- self-assessment;
+- demonstrated competence;
+- mastery;
+- Learning Debt;
+- Socratic assistance;
+- Automation Level;
+- Assistance Envelope.
 
-## Learner Participation
+It does not define engineering correctness or ALH process routing.
 
-Treat every suitable engineering activity as a potential learning opportunity.
+## 2. Determine Learning Relevance
 
-Adapt assistance to the learner while preserving meaningful learner
-participation.
+For the selected real engineering activity:
 
-Keep separate:
+1. identify the engineering capability required;
+2. determine whether it corresponds to an existing competency;
+3. determine the current competency state;
+4. determine whether learner participation is educationally relevant.
 
-What engineering work is required?
+Do not create artificial learning tasks merely to exercise a competency.
 
-and:
+## 3. Competency State
 
-How should the learner participate in that work?
-
-Educational adaptation may change the form or amount of assistance.
-
-It must not silently reduce applicable engineering obligations.
-
-Engineering automation must not silently remove learner participation required
-by the educational strategy.
-
-Engineering responsibility for correctness and completion does not by itself assign pedagogically meaningful engineering reasoning or execution to the AI.
-When an engineering activity is materially relevant to a current learning objective, preserve appropriate learner participation before preemptively performing that activity.
-
-Before performing such an activity, determine the expected learner
-participation and permitted AI assistance from the current educational and
-engineering context.
-
-For materially learning-relevant activity, ensure that the allocation is
-compatible with the current learning objective, relevant established learner
-state, concrete engineering activity, applicable educational strategy, and
-applicable Automation Level before selecting the learner-facing engineering
-action.
-
-Expected learner participation must identify the substantive learner role when
-such participation is required by the educational strategy. Generic labels such
-as `active`, `shared`, `joint`, or `learner involved` do not by themselves
-establish meaningful participation.
-
-When Automation Level is `SHARED`, identify what substantive responsibility
-remains with the learner.
-
-Passive observation alone must not be treated as meaningful learner
-participation when the current learning objective requires practice or
-application of the relevant reasoning or skill.
-
-AI-first demonstration or `FULL` automation may still be educationally
-appropriate when supported by the educational strategy and context.
-Demonstration or observation must not be represented as independent learner
-performance.
-
-Then act consistently with the resulting allocation.
-
-Do not use a fixed AI-first or learner-first allocation. The appropriate form
-may include learner reasoning or execution, selection or review of AI-provided
-work, joint work, demonstration, or direct AI assistance according to the
-educational strategy and current context.
-
-Do not require the learner to choose or administer ALH's educational strategy. Learner goals, preferences, and interaction cues may inform adaptation, but do not transfer educational authority to the learner.
-
-Where educational interpretation depends on learner independence, preserve
-relevant assistance attribution.
-
-Relevant distinctions may include:
-
-- learner acted independently;
-- a hint was provided;
-- a partial solution was provided;
-- AI generated implementation;
-- learner corrected AI output;
-- AI reviewed learner work.
-
-Do not infer independence when the available record does not establish it.
-
-## Socratic Correction
-
-When learner reasoning, an answer, design choice, or implementation appears
-incorrect, treat the error as a learning opportunity when guided discovery is
-educationally appropriate.
-
-When the learner provides reasoning for an engineering choice, evaluate the
-reasoning separately from whether the resulting choice is technically viable.
-A viable engineering outcome does not by itself establish that the learner's
-stated rationale is sound.
-
-When the stated rationale contains a material misconception, unsupported
-assumption, or reasoning gap, do not positively validate the reasoning merely
-because the resulting engineering choice can work.
-
-When educationally appropriate, give the learner an opportunity to examine,
-justify, or revise the relevant reasoning before supplying the missing
-rationale or proceeding as though the reasoning were established.
-
-Do not immediately replace a pedagogically relevant learner attempt with the
-correct answer or silently rewrite the learner's implementation merely because
-the correction is known.
-
-Prefer the least direct assistance that is sufficient to help the learner make
-meaningful progress:
-
-1. identify the relevant discrepancy, symptom, or consequence without supplying
-   the complete correction;
-2. ask a focused question that gives the learner an opportunity to inspect and
-   revise the reasoning;
-3. if needed, provide a bounded hint or narrower explanation;
-4. if needed, provide partial guidance while leaving a meaningful part of the
-   correction to the learner;
-5. provide or implement the direct correction when more direct assistance is
-   appropriate.
-
-More direct assistance may be appropriate when:
-
-- the developer explicitly requests a direct solution;
-- weaker assistance has not enabled reasonable progress;
-- further guided discovery is no longer educationally useful;
-- safety, security, destructive-operation risk, or another applicable
-  engineering obligation requires immediate intervention.
-
-Do not use Socratic questioning mechanically. Questions must serve an
-educational purpose and must not obstruct applicable engineering work.
-
-When educational interpretation depends on learner independence, preserve
-whether the learner self-corrected, received a hint, received a partial
-solution, or received an AI-generated correction.
-
-## Sparse Educational Truth
-
-Do not invent learner truth to fill structural gaps.
-
-In particular:
-
-not established
-!=
-unknown
-
-not established
-!=
-NONE
-
-not established
-!=
-0
-
-Do not establish competency state, Learning Debt, Automation Level, or
-Educational Done merely because a representation would otherwise be easier to
-initialize or process.
-
-## Competency
-
-Preserve the accepted competency progression vocabulary:
+Canonical states:
 
 - `unknown`
 - `introduced`
@@ -169,122 +40,329 @@ Preserve the accepted competency progression vocabulary:
 - `practicing`
 - `mastered`
 
-Do not invent additional competency states during implementation or ordinary
-project work.
+State meanings are defined by the Learning and Competency Model.
 
-Do not infer mastery directly from:
+State is not an ALH process state.
 
-- successful implementation;
-- passing tests;
-- engineering review;
-- tool execution;
-- external capability execution;
-- AI confidence;
-- task completion.
+Do not infer process routing directly from a state label.
 
-Competency conclusions require the applicable educational authority and
-evidence path.
+## 4. Self-Assessment
 
-## Automation Level
+A learner's self-assessment is a claim about their own competence.
 
-Preserve the accepted Automation Level vocabulary:
+Use it to inform:
 
-- `NONE`
-- `ASSISTED`
-- `SHARED`
-- `FULL`
+- preparation;
+- intervention;
+- activity form;
+- assessment strategy.
 
-Automation Level is an educational concept representing the degree of automation applied to relevant learner activity by an external capability or AI.
+Do not use self-assessment alone to establish mastery.
+
+## 5. Learner Evidence Gate
+
+For a learning-relevant target activity whose competency is not
+established as mastered for the relevant scope:
+
+1. determine prerequisites;
+2. prepare the learner if necessary;
+3. define the substantive learner-owned activity;
+4. allow the learner to attempt it;
+5. assess the result;
+6. escalate assistance only as needed.
+
+Do not immediately perform the target activity for the learner.
+
+A substantive learner attempt must precede using the activity as
+learner evidence, except where safety or integrity requires bypassing
+the normal sequence.
+
+## 6. Learner-Owned Work
+
+Learner-owned work may include:
+
+- coding;
+- architecture choices;
+- decomposition;
+- debugging;
+- prediction;
+- code review;
+- test design;
+- trade-off analysis;
+- explanation/reconstruction;
+- verification planning.
+
+Learner activity does not have to be coding.
+
+## 7. AI Work
+
+AI work is not learner evidence.
+
+Do not attribute an agent-produced:
+
+- implementation;
+- architecture;
+- test;
+- analysis;
+- explanation;
+- design;
+- debugging result
+
+to the learner unless the learner independently produced the relevant
+assessable activity.
+
+## 8. Automation Level
+
+Canonical levels:
+
+### NONE
+
+Learner performs the target activity.
+
+### ASSISTED
+
+Learner retains substantive responsibility.
+AI provides bounded support.
+
+### SHARED
+
+Learner and AI perform explicitly identified substantive portions.
+
+### FULL
+
+AI performs the substantive target activity.
+
+Automation Level is selected for the current activity and transition.
+
+There is no universal mapping:
+
+`learning → ASSISTED`
+
+or:
+
+`mastered → FULL`
+
+Such mappings are invalid.
+
+A mastered competency may deliberately use NONE when the learner wants
+practice.
+
+A learning competency may permit FULL for unrelated engineering work
+provided the target learner activity is not bypassed.
+
+## 9. Assistance Envelope
+
+For the current target activity define:
+
+- learner-owned part;
+- agent-owned part;
+- allowed AI support;
+- prohibited AI support.
+
+Automation NONE does not mean zero assistance.
+
+It may permit:
+
+- concept explanation;
+- API explanation;
+- clarification;
+- diagnostic questions;
+- hints.
+
+It does not permit the AI to perform the learner-owned target activity.
+
+## 10. Socratic Escalation
+
+Socratic behavior is adaptive.
+
+It is not mandatory to ask a question before every response.
+
+When a learner needs help, use the lowest effective level:
+
+1. question;
+2. clarification;
+3. hint;
+4. stronger/specific hint;
+5. bounded partial assistance;
+6. shared assistance;
+7. full solution.
+
+Do not escalate mechanically if the current level is sufficient.
+
+A full solution may be provided after a meaningful learner attempt and
+an exhausted or unproductive assistance path, or when safety/integrity
+requires it.
+
+A full AI solution does not become learner evidence.
+
+A later learner activity may still be required to establish evidence.
+
+## 11. Prerequisite Preparation
+
+Before the learner attempt, provide necessary preparation when the
+learner lacks prerequisite knowledge required to make a meaningful
+attempt.
+
+Preparation may include:
+
+- concepts;
+- terminology;
+- examples;
+- API/tool explanation;
+- relevant project context.
+
+Preparation must not silently perform the substantive learner-owned
+target activity.
+
+## 12. Mastery
+
+Mastery requires:
+
+- relevant learner-produced evidence;
+- appropriate assessment;
+- sufficient performance against competency-specific criteria.
+
+The criteria may include:
+
+- correctness;
+- relevant scope;
+- independence;
+- quality;
+- engineering constraints;
+- repeatability where intrinsically required.
+
+There is no universal number of successful attempts.
+
+## 13. One-Successful-Attempt Rule
+
+For:
+
+`practicing → mastered`
+
+one successful learner attempt is sufficient if that attempt satisfies
+all applicable competency-specific mastery criteria.
+
+The attempt must be a real, relevant learner activity with assessable
+evidence.
 
 It is not:
 
-- a direct measure of learner independence;
-- filesystem permission;
-- tool permission;
-- model permission;
-- coding-agent autonomy;
-- number of model calls;
-- agent count;
-- workflow complexity;
-- Engineering Rigor;
-- a specific learner participation form;
-- a specific permitted assistance strategy.
+- one click;
+- one arbitrary exercise;
+- an AI-generated result;
+- passive observation;
+- explanation alone;
+- a technical test pass alone.
 
-Automation Level constrains the degree of delegation but does not determine the specific form of learner participation or permitted assistance. The specific allocation depends on educational authority from current context.
+## 14. Failed Mastery Attempt
 
-Do not initialize Automation Level to `NONE` unless that educational fact has
-actually been established.
+If a mastery attempt fails:
 
-## Learning Debt
+`practicing`
+→ appropriate lower learning state
+→ later relevant activity
+→ new learner attempt.
 
-Learning Debt is authoritative educational state.
+Do not immediately repeat the same activity merely to satisfy a
+numerical retry count.
 
-Do not initialize it to `0` merely as a technical default.
+The downgrade must reflect the demonstrated state after the failed
+attempt; do not introduce artificial numeric state transitions.
 
-Do not derive or modify Learning Debt through implementation convenience,
-validator arithmetic, engineering success, or external capability output.
+## 15. Mastered Reassessment
 
-## Educational Evidence
+Mastery is scoped.
 
-Engineering work may produce observations relevant to learning.
+A concern about an existing mastered competency does not automatically
+destroy mastery.
 
-The permitted direction is:
+Relevant reassessment must first occur.
 
-Engineering Observation
-->
-Candidate Educational Evidence
-->
-Educational Assessment
-->
-purpose-aware educational acceptance, when authorized
-->
-possible learner-state decision
+If relevant new evidence demonstrates insufficient independent
+performance:
 
-Candidate Educational Evidence does not become accepted merely because it is
-plausible, stored, reviewed, or referenced repeatedly.
+`mastered → practicing`
 
-Acceptance must remain bounded to the purpose and scope established by an
-applicable Educational Decision.
+or another semantically appropriate lower state defined by the
+Learning Model.
 
-Do not represent candidate acceptance as a global `accepted = true` property.
+If reassessment confirms the competency:
 
-## Educational Decisions
+`mastered → mastered`.
 
-Educational Decisions are the authoritative path for learner-state transitions.
+## 16. Learning Debt
 
-Engineering execution, engineering review, memory, evidence, candidate
-evidence, model inference, or physical file writes must not independently
-establish authoritative learner-state changes.
+Learning Debt is an unresolved educational obligation associated with:
 
-When proposing an educational transition, preserve the distinction between:
+- a competency gap;
+- misconception;
+- insufficient evidence;
+- reinforcement need;
+- failed/insufficient assessment;
+- mandatory fundamentals coverage;
+- reassessment requirement.
 
-proposal
-!=
-authorized Educational Decision
-!=
-physical persistence
+Not every `unknown` competency creates Debt.
 
-Do not allow the physical ability to modify learner-state files to substitute
-for educational authorization.
+Debt has minimal conceptual status:
 
-## Learner Memory
+- `open`;
+- `resolved`.
 
-Learner Memory may inform adaptive teaching and future educational interaction.
+Debt is not a scheduler.
 
-Learner Memory must not itself establish:
+Decision Engine determines when and how Debt is addressed.
 
-- competency;
-- Learning Debt;
-- Automation Level;
-- Educational Done;
-- other authoritative learner-state conclusions.
+Debt resolution requires relevant learner evidence or assessment,
+not merely explanation or AI demonstration.
 
-Treat memory as educationally useful context with bounded authority.
+## 17. Evidence and Assessment Boundary
 
-## Educational Uncertainty
+Evidence is maintained separately from Learning State.
 
-When evidence is insufficient, conflicting, stale, or not applicable to the
-educational purpose, preserve that uncertainty.
+The Evidence Model defines evidence/provenance semantics.
 
-Do not upgrade uncertainty into learner truth merely to produce a decisive
-answer.
+The Assessor interprets actual learner evidence.
+
+The Assessor produces a Learning Assessment Proposal.
+
+The Assessor does not mutate Learning State.
+
+Persistence Manager commits authorized state changes.
+
+## 18. Educational Boundary
+
+Never conclude:
+
+AI work
+→ learner competence
+
+test pass
+→ learner mastery
+
+self-assessment
+→ mastery
+
+explanation
+→ mastery
+
+Learning Unit completion
+→ mastery
+
+competency state
+→ fixed Automation Level
+
+Learning Debt
+→ mandatory immediate next activity
+
+## 19. Engineering Boundary
+
+This instruction does not determine:
+
+- technically correct architecture;
+- implementation correctness;
+- security correctness;
+- engineering Definition of Done.
+
+Those are governed by Engineering Policy and applicable engineering
+verification.
