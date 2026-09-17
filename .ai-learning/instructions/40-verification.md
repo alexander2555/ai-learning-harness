@@ -138,8 +138,9 @@ continuation changes
 → Persistence Manager
 → commit/reject
 → Decision Engine
-## 11. Completion Gate
 ```
+
+## 11. Completion Gate
 
 An engineering activity is complete only when its engineering
 completion conditions are satisfied.
