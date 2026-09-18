@@ -5,7 +5,7 @@
   "instructions": [
     {
       "path": ".ai-learning/instructions/00-orchestration.md",
-      "role": "ALH control loop and execution contract"
+      "role": "ALH initialization, control loop and execution contract"
     },
     {
       "path": ".ai-learning/instructions/10-learning.md",
@@ -17,7 +17,7 @@
     },
     {
       "path": ".ai-learning/instructions/30-persistence.md",
-      "role": "durable ALH state mutation"
+      "role": "durable state schemas, proposals, bootstrap, validation and atomic persistence"
     },
     {
       "path": ".ai-learning/instructions/40-verification.md",

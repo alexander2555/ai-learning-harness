@@ -26,6 +26,7 @@ For every substantive engineering request or continuation, follow the
 canonical 13-step control cycle defined in
 `.ai-learning/instructions/00-orchestration.md`:
 
+0. Initialize
 1. Restore
 2. Observe
 3. Resolve Intent
