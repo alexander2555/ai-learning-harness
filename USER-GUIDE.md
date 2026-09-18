@@ -10,7 +10,12 @@ For detailed architecture and methodology, see [.ai-learning/README.md](.ai-lear
 
 Open your project with the configured AI coding-agent Host.
 
-On first use, ALH performs its required state initialization automatically.
+On first use, ALH performs its required state initialization automatically,
+creating the canonical durable state under `.ai-learning/state/`
+(JSON records plus an append-only journal).
+
+You never maintain that state by hand: it changes only through typed
+proposals committed by the Persistence Manager.
 
 If you are responsible for setup, verify the ALH instruction set and the
 configured Superpowers version before starting normal development.
@@ -49,7 +54,22 @@ If the agent asks you to perform part of the work, treat it as part of the engin
 
 Do not ask the agent to silently bypass learner-owned work when you are expected to demonstrate the relevant competency.
 
-## 4. You Can State Your Preferred Level of Help
+## 4. What Happens Under the Hood (30 Seconds)
+
+You always talk to a single agent. Inside it, the ALH control layer runs a
+control loop: the Decision Engine chooses the next step, the Pipeline routes
+that step to the responsible role, and the role performs its work. Before
+substantive work, an Execution Contract defines who does what, which part is
+learner-owned, how much AI assistance is allowed, and how the result is
+verified. Afterward, the engineering result is verified, your learner-produced
+evidence is assessed where applicable, and durable state is updated only
+through the Persistence Manager.
+
+That is why the agent may ask you to reason, implement, review, or explain
+something yourself: learner-owned work is part of the engineering task, not
+an optional extra.
+
+## 5. You Can State Your Preferred Level of Help
 
 Ordinary requests are enough:
 
@@ -67,7 +87,7 @@ Please show me the solution now.
 
 These requests communicate your preference. They do not disable ALH or override its engineering, learning, verification, or safety constraints.
 
-## 5. Finish the Engineering Work Normally
+## 6. Finish the Engineering Work Normally
 
 Treat the project as real engineering work.
 
@@ -83,7 +103,7 @@ Use the applicable requirements for:
 
 A successful engineering result is not automatically evidence that you independently demonstrated the corresponding competency.
 
-## 6. Ask About Your Progress
+## 7. Ask About Your Progress
 
 You can ask:
 
@@ -99,7 +119,7 @@ What should I practice next?
 
 ALH should base answers on available evidence and state. If the available information is insufficient, uncertainty should remain explicit.
 
-## 7. Continue With Real Project Work
+## 8. Continue With Real Project Work
 
 Move to the next meaningful engineering activity.
 
@@ -120,4 +140,7 @@ If required project information is missing, provide it rather than expecting the
 
 If ALH appears to bypass its learning or engineering constraints, stop the affected activity and review the applicable project documentation before continuing.
 
-For the authoritative architecture and methodology, see [.ai-learning/README.md](.ai-learning/README.md).
+For the authoritative runtime contract, see [.ai-learning/README.md](.ai-learning/README.md).
+
+For the fundamental goals, purpose, and original architecture description,
+see [.ai-learning/docs/ALH - fundamental goals, purpose, and architecture.md](<.ai-learning/docs/ALH - fundamental goals, purpose, and architecture.md>).

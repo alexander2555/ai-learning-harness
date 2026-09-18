@@ -14,8 +14,10 @@ ALH has two simultaneous outcomes:
    the developer progressively develops the ability to independently
    understand, design, implement, verify and explain analogous solutions.
 
-Devin itself is the external execution environment.
-It is not part of ALH.
+The configured AI coding-agent Host is the external execution
+environment. It is not part of ALH. The Host is a configurable option,
+not a fixed dependency: the configured kind is stored in
+`.ai-learning/config/alh.json` (current default: `devin_cli`, Devin).
 
 The ALH instructions in `.ai-learning/instructions/` define the
 mandatory operating behavior of the ALH control layer.
