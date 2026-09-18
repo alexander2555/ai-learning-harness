@@ -1,44 +1,19 @@
 # AI Learning Harness
 
-AI Learning Harness (ALH) is a control layer over AI coding agents.
+AI Learning Harness (ALH) is a control layer over an AI coding-agent Host.
 
-It combines real software development with adaptive learner participation, engineering verification, and evidence-based learning.
+It combines real software development with adaptive learner participation,
+engineering verification, and evidence-based learning.
 
 ```text
 Developer
     ↕
-AI Coding Agent
-    ↕
-AI Learning Harness
+AI Coding Agent (ALH control layer)
     ↕
 Real Project
 ```
 
-## Using ALH
-
-If you are working in an ALH-enabled project, start with:
-
-- [USER-GUIDE.md](USER-GUIDE.md) — practical guidance for using ALH.
-
-For the internal v2 runtime model:
-
-- [.ai-learning/README.md](.ai-learning/README.md)
-
-For project-level agent instructions:
-
-- [AGENTS.md](AGENTS.md)
-
-For security reporting:
-
-- [SECURITY.md](SECURITY.md)
-
-For contribution requirements:
-
-- [CONTRIBUTING.md](CONTRIBUTING.md)
-
 ## Core Boundary
-
-ALH keeps engineering success and demonstrated learning separate:
 
 ```text
 Engineering Done != Educational Done
@@ -46,7 +21,14 @@ Engineering Result != Learner Competency
 AI Work != Learner Evidence
 ```
 
-A working implementation or passing test does not by itself establish what a developer can independently demonstrate.
+A working implementation or a passing test does not by itself establish
+what the developer can independently demonstrate.
+
+## Documentation
+
+- [USER-GUIDE.md](USER-GUIDE.md) — how to work with ALH (practical start)
+- [.ai-learning/docs/](.ai-learning/docs/) — fundamental goals, purpose, and architecture (original technical description)
+- [.ai-learning/README.md](.ai-learning/README.md) — internal v2 documentation: the runtime contract
 
 ## License
 

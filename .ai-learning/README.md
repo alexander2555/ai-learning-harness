@@ -3,7 +3,10 @@
 AI Learning Harness (ALH) is a control layer over an AI coding-agent Host.
 
 The Host is the external execution environment used by ALH.
-The current default configured Host kind is `devin_cli`.
+The Host is a configurable option, not a hard dependency of ALH.
+The configured Host kind is stored in `config/alh.json`;
+the current default configured Host is `devin_cli` (Devin),
+one of the supported agent options.
 
 ALH combines real software engineering with adaptive learner participation, verification, assessment, and durable state management.
 
@@ -19,24 +22,26 @@ The current ALH v2 runtime contract is intentionally compact:
 .ai-learning/
 ├── config/
 │   └── alh.json
-├── state/
-│   ├── manifest.json
-│   ├── learning-state.json
-│   ├── engineering-continuation.json
-│   ├── project-context.json
-│   ├── project-graph.json
-│   ├── evidence/
-│   │   └── *.json
-│   ├── proposals/
-│   │   └── *.json
-│   └── journal.jsonl
-└── instructions/
-    ├── instruction-set.json
-    ├── 00-orchestration.md
-    ├── 10-learning.md
-    ├── 20-engineering.md
-    ├── 30-persistence.md
-    └── 40-verification.md
+├── docs/
+│   └── ALH - fundamental goals, purpose, and architecture.md
+├── instructions/
+│   ├── instruction-set.json
+│   ├── 00-orchestration.md
+│   ├── 10-learning.md
+│   ├── 20-engineering.md
+│   ├── 30-persistence.md
+│   └── 40-verification.md
+└── state/
+    ├── manifest.json
+    ├── learning-state.json
+    ├── engineering-continuation.json
+    ├── project-context.json
+    ├── project-graph.json
+    ├── evidence/
+    │   └── *.json
+    ├── proposals/
+    │   └── *.json
+    └── journal.jsonl
 ```
 
 ### `state/`
@@ -143,6 +148,15 @@ Defines engineering verification, learner-evidence assessment routing, persisten
 
 Verification does not become educational authority.
 
+### `docs/`
+
+Fundamental documentation: the original technical description of ALH's
+goals, purpose, and architecture
+([`docs/ALH - fundamental goals, purpose, and architecture.md`](<docs/ALH - fundamental goals, purpose, and architecture.md>)).
+
+It records the original intent. It is not a runtime contract: where it
+differs from `instructions/`, the instructions are normative.
+
 ## Authority Boundaries
 
 The instruction set preserves the following boundaries:
@@ -187,7 +201,10 @@ Root [`../AGENTS.md`](../AGENTS.md) defines how the ALH instruction set is loade
 
 The instruction files under `instructions/` provide the active runtime behavior.
 
-This directory does not contain a second, competing architecture description.
+The fundamental description in `docs/` records the original intent;
+it is not a second, competing architecture. Normative runtime semantics
+live in `instructions/`; where the two differ, the instructions are
+authoritative.
 
 ## Working With the Documentation
 
@@ -203,6 +220,10 @@ For the active runtime instructions:
 
 - read [`instructions/instruction-set.json`](instructions/instruction-set.json);
 - then the five instruction files listed by that instruction set.
+
+For the fundamental goals, purpose, and original architecture description:
+
+- read [`docs/ALH - fundamental goals, purpose, and architecture.md`](<docs/ALH - fundamental goals, purpose, and architecture.md>).
 
 For security reporting:
 
