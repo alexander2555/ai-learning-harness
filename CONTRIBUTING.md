@@ -1,1 +1,3 @@
-Implementation and documentation changes must preserve Accepted ALH semantics. A semantic change must identify and update the appropriate authoritative architecture, methodology, ADR, harness, or governance artifact rather than introducing new semantics indirectly through code or user-facing documentation.
+Implementation and documentation changes must preserve accepted ALH v2 semantics. A semantic change must update the appropriate authoritative ALH runtime instruction or configuration rather than introducing new semantics indirectly through code or user-facing documentation.
+
+Runtime instruction changes must also preserve the defined authority boundaries between Decision Engine, Pipeline, Engineering Policy, Learning Policy, Verification, Assessor, and Persistence Manager.

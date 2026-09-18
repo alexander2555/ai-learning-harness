@@ -1,154 +1,217 @@
-# ALH Engineering Instructions
+# ALH Engineering Control
 
-Instruction Set Version: 1.0.0
+## 1. Purpose
 
-## Purpose
+Engineering quality is independent of learner level.
 
-Perform real software-development work according to applicable project
-requirements and accepted ALH development methodology while preserving the
-boundary between engineering responsibility and educational authority.
+The agent must produce software that is:
 
-## Engineering Work Is Real Work
+- working;
+- tested;
+- secure;
+- documented;
+- maintainable;
+- deployable where applicable.
 
-Treat the learner project as a real software project.
+Learning requirements never lower engineering quality.
 
-Determine applicable engineering obligations from the actual task, repository,
-requirements, architecture, risk, and current project state.
+## 2. Real Project First
 
-Apply only activities that are materially relevant.
+Engineering activity must arise from the actual project:
 
-Do not force work through a fixed procedural lifecycle merely because a
-conceptual development lifecycle exists.
-
-Feedback loops and revisiting earlier activities remain permitted when the work
-requires them.
-
-## Engineering Rigor
-
-Apply the Engineering Rigor required by the actual engineering context.
-
-Do not lower engineering rigor because:
-
-- the learner is inexperienced;
-- educational assistance is intentionally limited;
-- Automation Level is low or high;
-- the task is being used as a learning exercise.
-
-Educational strategy controls learner participation.
-
-It does not waive applicable engineering quality.
-
-## Requirements and Design
-
-Before material implementation where necessary:
-
-- understand the requested behavior;
-- identify material constraints;
-- inspect relevant existing project state;
-- preserve applicable architectural decisions;
-- identify verification obligations;
-- identify material security or operational implications.
-
-Do not invent requirements when authoritative requirements are unavailable.
-
-Expose material ambiguity when it cannot be resolved from authoritative
-context.
-
-## Implementation
-
-Prefer the smallest implementation sufficient for the established engineering
-requirement.
-
-Do not add speculative infrastructure merely because it may be useful later.
-
-Respect existing project structure and accepted architecture.
-
-Do not make unrelated changes without concrete justification.
-
-## Verification
-
-Verification requirements are determined by applicable engineering obligations,
-not by a universal checklist.
-
-Use appropriate evidence such as:
-
+- requirements;
+- user intent;
+- existing implementation;
+- dependencies;
+- architecture;
+- defects;
 - tests;
-- builds;
-- static analysis;
-- manual verification;
-- integration verification;
-- security verification;
-- operational verification;
-- review.
+- security;
+- documentation;
+- operational requirements.
 
-Do not claim that an operation ran unless execution evidence establishes that
-it ran.
+Do not create artificial engineering work solely for educational purposes.
 
-Do not claim success merely because:
+## 3. Planning
 
-- a command was generated;
-- execution was requested;
-- a tool invocation was attempted;
-- a model predicts success;
-- similar code usually works.
+Use proportional planning.
 
-Tests identified
-!=
-Tests requested
-!=
-Tests executed
-!=
-Tests passed
+Before material implementation:
 
-Build command known
-!=
-Build executed
-!=
-Build succeeded
+- understand the requirement;
+- inspect relevant existing code;
+- identify dependencies;
+- determine affected components;
+- identify risks;
+- define verification.
 
-## Engineering Review
+Do not over-engineer.
 
-Engineering Review evaluates engineering quality.
+## 4. Architecture
+
+Architecture decisions must be based on:
+
+- actual requirements;
+- constraints;
+- existing system;
+- expected change;
+- security;
+- maintainability;
+- operational needs.
+
+Explain material architectural decisions when they affect current work.
+
+Learning Policy may control who performs an architectural activity,
+but Learning Policy does not determine the technically correct
+architecture.
+
+## 5. Implementation
+
+Implementation must follow:
+
+- project requirements;
+- established architecture;
+- repository conventions;
+- Engineering Policy;
+- applicable Superpowers practices;
+- current Execution Contract.
+
+When implementation is learner-owned, respect the learner's permitted
+Automation Level and Assistance Envelope.
+
+When implementation is not learner-owned, perform it normally.
+
+## 6. Testing
+
+Testing is part of engineering completion.
+
+Determine appropriate:
+
+- unit tests;
+- integration tests;
+- end-to-end tests;
+- regression tests;
+- validation checks.
+
+Use proportional coverage appropriate to the change.
+
+A test pass demonstrates engineering correctness for the tested
+condition.
 
 It does not establish learner mastery.
 
-When review produces observations that may matter educationally, preserve them
-as engineering observations or Candidate Educational Evidence rather than
-directly changing learner state.
+## 7. Security
 
-Where independent engineering evaluation is required, preserve semantic
-independence using the least complex sufficient mechanism.
+Apply Security by Design.
 
-Do not assume that independence automatically requires another physical agent.
+Identify material security risks before delivery.
 
-## External Development Methodologies
+Material security findings require:
 
-An external methodology or capability may support engineering activity when
-applicable.
+security remediation
+→ verification
+→ confirmation that the material risk is resolved.
 
-Its execution contract does not become ALH semantic authority.
+Do not bypass security requirements for educational purposes.
 
-In particular, Superpowers may guide software-development workflow, but its
-output must still be interpreted under ALH engineering, evidence, educational,
-and completion boundaries.
+## 8. Documentation
 
-Superpowers must not directly establish:
+Documentation is required according to purpose.
 
-- learner competency;
-- Learning Debt;
-- Automation Level;
-- Educational Done.
+Document material:
 
-## Engineering Completion
+- usage;
+- architecture;
+- operational requirements;
+- security assumptions;
+- configuration;
+- decisions;
+- maintenance information
 
-Engineering Done answers whether the applicable software-development work is
-acceptably complete under the applicable engineering obligations.
+when needed for the project.
 
-Do not reduce Engineering Done to a single successful test, build, review, or
-tool invocation.
+If documentation itself is the learner-owned target activity, apply the
+Learning Control rules.
 
-Preserve outstanding obligations.
+## 9. Review
 
-If material project changes invalidate prior completion evidence, treat current
-Engineering Done as requiring reevaluation while preserving historical
-completion provenance.
+Review engineering quality for:
+
+- correctness;
+- maintainability;
+- architecture;
+- testing;
+- security;
+- consistency;
+- unnecessary complexity.
+
+A review of AI-produced engineering work is not automatically learner
+evidence.
+
+A review can be learner evidence only when the learner actually
+performs the relevant review activity.
+
+## 10. Definition of Done
+
+Determine completion using the project's actual requirements and
+context.
+
+Do not declare engineering completion merely because implementation
+exists.
+
+At minimum, when applicable:
+
+- implementation is complete;
+- relevant tests pass;
+- material security concerns are addressed;
+- documentation is adequate;
+- integration/operational concerns are addressed;
+- project-specific acceptance conditions are satisfied.
+
+## 11. Superpowers
+
+Superpowers is an immutable external engineering workflow foundation.
+
+ALH does not modify it.
+
+When an applicable Superpowers practice materially affects:
+
+- planning;
+- analysis;
+- architecture;
+- implementation;
+- debugging;
+- testing;
+- review;
+- verification;
+- delivery;
+
+account for the practice.
+
+When useful, state:
+
+- which practice applies;
+- why it applies;
+- how it affects the current work.
+
+Do not invent or modify Superpowers rules.
+
+## 12. Engineering Failure
+
+If verification fails:
+
+1. identify the responsible engineering role;
+2. perform correction;
+3. verify again;
+4. return to the Decision Engine.
+
+Do not route an engineering failure directly into an educational state
+transition.
+
+## 13. Engineering/Education Separation
+
+Engineering Result != Learner Competency.
+
+Engineering Done != Educational Done.
+
+The product must remain technically correct regardless of learner state.
