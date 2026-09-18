@@ -32,7 +32,7 @@ Do not create artificial learning tasks merely to exercise a competency.
 
 ## 3. Competency State
 
-Canonical states:
+The canonical competency state is one of:
 
 - `unknown`
 - `introduced`
@@ -40,12 +40,20 @@ Canonical states:
 - `practicing`
 - `mastered`
 
-Competency-state meanings are defined by the authoritative
-Learning and Competency Model.
+The meanings and allowed transitions of these states are defined by the
+canonical competency-state transition table in `30-persistence.md`.
 
-State is not an ALH process state.
+A competency state is durable Learning State.
 
-Do not infer process routing directly from a state label.
+Competency-state changes MUST be represented by an authorized
+`Learning Assessment Proposal` and committed through the Persistence Manager.
+
+The Assessor determines the proposed competency-state change from learner
+evidence. The Assessor MUST NOT directly mutate the persisted competency
+state.
+
+A competency state MUST NOT be changed solely because an engineering result
+was successfully produced by the AI coding agent.
 
 ## 4. Learning Unit
 
@@ -266,15 +274,30 @@ It is not:
 
 ## 15. Failed Mastery Attempt
 
-If a mastery attempt fails:
+A competency in `mastered` state may be reassessed when a later activity produces relevant learner evidence.
 
+If a mastery attempt fails:
 `practicing`
 → appropriate lower learning state
 → later relevant activity
 → new learner attempt.
 
-Do not immediately repeat the same activity merely to satisfy a
-numerical retry count.
+Reassessment MUST use the same evidence-based assessment process as any other competency-state change.
+Do not immediately repeat the same activity merely to satisfy a numerical retry count.
+
+If the reassessment provides sufficient evidence that the learner no longer
+meets the competency-specific mastery criteria, the Assessor MUST propose
+a lower competency state permitted by the canonical competency-state
+transition table in `30-persistence.md`.
+
+The transition MUST be represented by a `Learning Assessment Proposal`
+and committed through the Persistence Manager.
+
+The system MUST NOT use a universal retry count or arbitrary degradation
+rule to determine the resulting state.
+
+The resulting state MUST be justified by the relevant learner evidence and
+the competency-specific criteria.
 
 The downgrade must reflect the demonstrated state after the failed
 attempt; do not introduce artificial numeric state transitions.
@@ -325,6 +348,9 @@ Decision Engine determines when and how Debt is addressed.
 
 Debt resolution requires relevant learner evidence or assessment,
 not merely explanation or AI demonstration.
+
+Each Learning Debt record is persisted according to the Learning Debt
+record schema in `30-persistence.md`, Section 6.
 
 ## 18. Evidence and Assessment Boundary
 

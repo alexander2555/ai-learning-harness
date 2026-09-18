@@ -35,8 +35,7 @@ Possible outcomes include:
 - security failure;
 - environment/tooling limitation.
 
-Every non-terminal outcome must have an explicit route back into
-the ALH control loop.
+Every non-terminal outcome must have an explicit route back into the ALH control loop.
 
 ## 4. Engineering Failure
 
@@ -81,6 +80,18 @@ When learner-owned work occurred:
 Technical verification must not be used as a substitute for
 educational assessment.
 
+After verification and learner assessment, create only the typed proposals
+authorized by `30-persistence.md`.
+
+Learning Assessment Proposal is used for competency-state changes.
+
+Learning State Proposal is used for non-state Learning State mutations,
+including self-assessments, educational objectives, Learning Units,
+Learning Debt, misconceptions, practice obligations, learner preferences,
+and evidence references.
+
+All proposals must be committed through Persistence Manager.
+
 ## 7. Evidence Attribution
 
 Do not attribute an artifact to the learner merely because:
@@ -115,12 +126,25 @@ Do not force an arbitrary number of retries.
 If an attempted mastery demonstration fails:
 
 failed mastery attempt
-→ appropriate lower competency state
-→ later relevant engineering/learning activity
-→ new learner attempt
+→ determine appropriate lower competency state
+→ create Learning Assessment Proposal
+→ Persistence Manager
+→ return to Decision Engine
 
-Do not immediately repeat the same mastery attempt merely to satisfy
-a count.
+Do not immediately repeat the same mastery attempt merely to satisfy a count.
+
+The lower competency state MUST be one of the states permitted by the
+canonical competency-state transition table in 30-persistence.md.
+
+The Assessor MUST NOT directly mutate Learning State.
+
+The Learning Assessment Proposal MUST contain the evidence references and
+assessment context supporting the proposed state transition.
+
+The Persistence Manager validates and atomically commits the proposal or
+rejects it and records the rejection reason in the persistence journal.
+
+After persistence completes, control returns to the Decision Engine.
 
 ## 10. Persistence
 

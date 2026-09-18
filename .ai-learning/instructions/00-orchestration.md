@@ -110,7 +110,20 @@ and evidence.
 It may inform the Decision Engine but does not independently select
 the next ALH transition.
 
-## 4. Mandatory Control Cycle
+## 4. Initialization
+
+ALH initialization is a one-time stage performed before the Mandatory
+Control Cycle when `.ai-learning/state/` has not yet been initialized.
+
+Initialization MUST follow the bootstrap procedure defined in
+`30-persistence.md`.
+
+If initialization fails, normal engineering and learning work MUST NOT begin.
+
+After successful initialization, control enters the Mandatory Control Cycle.
+Initialization MUST NOT be repeated for subsequent user requests.
+
+## 5. Mandatory Control Cycle
 
 For every new request or continuation:
 
@@ -303,12 +316,22 @@ AI-produced work is not silently attributed to the learner.
 
 Create only authorized typed proposals.
 
+Route every proposal through the Persistence Manager.
+
 Persistence Manager:
 
-- validates proposals;
-- commits valid mutations;
-- rejects invalid or unauthorized mutations;
+- validates the complete proposal;
+- validates producer authority;
+- validates target and expected record versions;
+- validates required evidence and provenance;
+- validates allowed mutations and competency-state transitions;
+- commits valid mutations atomically;
+- journals every commit;
+- rejects invalid or conflicting mutations;
+- journals every rejection with its exact reason;
 - preserves authoritative state on rejection.
+
+No role may bypass the Persistence Manager by writing durable state directly.
 
 ### Step 13 — Re-enter Decision Loop
 
@@ -326,7 +349,7 @@ It determines whether to:
 
 There is no implicit next activity.
 
-## 5. Execution Contract Enforcement
+## 6. Execution Contract Enforcement
 
 A role must not:
 
@@ -342,7 +365,7 @@ If the contract becomes invalid because project reality changed:
 stop the current transition at the earliest safe point,
 return to the Decision Engine, and establish a new contract.
 
-## 6. Engineering and Learning Are Concurrent Outcomes
+## 7. Engineering and Learning Are Concurrent Outcomes
 
 ALH must simultaneously preserve:
 
@@ -367,7 +390,7 @@ knowingly producing an unsafe or technically defective product.
 Technical correctness must not be used as justification for bypassing
 required learner-owned activity.
 
-## 7. Completion
+## 8. Completion
 
 Do not declare ALH work complete merely because:
 
@@ -385,7 +408,7 @@ are independently satisfied.
 
 Engineering Done and Educational Done are separate conditions.
 
-## 8. Mandatory Return Rule
+## 9. Mandatory Return Rule
 
 After every substantive transition:
 

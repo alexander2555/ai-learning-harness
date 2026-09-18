@@ -8,12 +8,12 @@ For detailed architecture and methodology, see [.ai-learning/README.md](.ai-lear
 
 ## 1. Start with an ALH-Enabled Project
 
-Open your project with the supported AI coding agent after ALH has been initialized and verified.
+Open your project with the configured AI coding-agent Host.
+
+On first use, ALH performs its required state initialization automatically.
 
 If you are responsible for setup, verify the ALH instruction set and the
 configured Superpowers version before starting normal development.
-
-Do not manually invent learner state or competency records.
 
 ## 2. Give the Agent a Real Engineering Goal
 

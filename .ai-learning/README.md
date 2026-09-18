@@ -1,8 +1,13 @@
 # AI Learning Harness — Internal Documentation
 
-AI Learning Harness (ALH) is a control layer over an IDE-based AI coding agent.
+AI Learning Harness (ALH) is a control layer over an AI coding-agent Host.
+
+The Host is the external execution environment used by ALH.
+The current default configured Host kind is `devin_cli`.
 
 ALH combines real software engineering with adaptive learner participation, verification, assessment, and durable state management.
+
+ALH durable state is stored under `.ai-learning/state/` and is mutated only through the Persistence Manager.
 
 For normal developer use, start with [`../USER-GUIDE.md`](../USER-GUIDE.md).
 
@@ -14,6 +19,17 @@ The current ALH v2 runtime contract is intentionally compact:
 .ai-learning/
 ├── config/
 │   └── alh.json
+├── state/
+│   ├── manifest.json
+│   ├── learning-state.json
+│   ├── engineering-continuation.json
+│   ├── project-context.json
+│   ├── project-graph.json
+│   ├── evidence/
+│   │   └── *.json
+│   ├── proposals/
+│   │   └── *.json
+│   └── journal.jsonl
 └── instructions/
     ├── instruction-set.json
     ├── 00-orchestration.md
@@ -23,11 +39,31 @@ The current ALH v2 runtime contract is intentionally compact:
     └── 40-verification.md
 ```
 
+### `state/`
+
+`.ai-learning/state/` is the only canonical durable-state storage location.
+
+All durable ALH records are JSON except `journal.jsonl`, which is a JSON Lines append-only journal.
+
+The Persistence Manager is the only authority allowed to create, replace, or delete durable state records.
+
+The absence of `state/` means that ALH has not been initialized.
+The absence of an individual optional record does not authorize the agent to invent its contents;
+the record must be created only by the bootstrap procedure or an authorized persistence proposal.
+
 ### `config/alh.json`
 
 Runtime configuration for the ALH installation.
 
 It identifies the host environment, instruction-set version, and external engineering workflow foundation.
+
+### `state/`
+
+`.ai-learning/state/` is the canonical durable-state store.
+
+Its record schemas, proposal format, bootstrap procedure, validation rules,
+atomic commit rules, conflict handling, and journal semantics are defined
+by `instructions/30-persistence.md`.
 
 ### `instructions/instruction-set.json`
 
