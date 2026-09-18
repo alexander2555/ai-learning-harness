@@ -138,6 +138,9 @@ Restore all relevant durable ALH state:
 - Evidence references;
 - applicable configuration.
 
+Restore performs load-time validation of the state manifest and every
+restored record as defined in `30-persistence.md`, Section 12.
+
 Do not invent missing state.
 
 ### Step 2 — Observe

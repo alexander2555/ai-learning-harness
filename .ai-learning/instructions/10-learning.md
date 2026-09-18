@@ -316,8 +316,9 @@ performance:
 
 `mastered → practicing`
 
-or another semantically appropriate lower state defined by the
-Learning and Competency Model.
+or another semantically appropriate lower state permitted by the
+canonical competency-state transition table in `30-persistence.md`,
+Section 7.
 
 If reassessment confirms the competency:
 
@@ -357,7 +358,8 @@ record schema in `30-persistence.md`, Section 6.
 Evidence is maintained separately from Learning State.
 
 Evidence and provenance semantics are defined by
-`30-persistence.md`, Section 8.
+`30-persistence.md`, Section 17 (Evidence); the evidence record
+schema is defined in Section 3.5.
 
 The Assessor interprets actual learner evidence.
 

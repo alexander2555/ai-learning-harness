@@ -64,14 +64,14 @@ Schema:
 
 ```json
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "record_type": "alh_state_manifest",
   "record_id": "state-manifest",
   "version": 1,
   "created_at": "<ISO-8601>",
   "updated_at": "<ISO-8601>",
   "initialized": true,
-  "state_schema_version": "2.0.0"
+  "state_schema_version": "2.1.0"
 }
 ```
 
@@ -87,7 +87,7 @@ Schema:
 
 ```json
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "record_type": "alh_learning_state",
   "record_id": "learning-state",
   "version": 1,
@@ -146,7 +146,7 @@ Schema:
 
 ```json
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "record_type": "alh_engineering_continuation",
   "record_id": "engineering-continuation",
   "version": 1,
@@ -170,7 +170,7 @@ Schema:
 
 ```json
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "record_type": "alh_project_context",
   "record_id": "project-context",
   "version": 1,
@@ -196,7 +196,7 @@ Schema:
 
 ```json
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "record_type": "alh_evidence",
   "record_id": "<evidence_id>",
   "version": 1,
@@ -258,7 +258,7 @@ Schema:
 
 ```json
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "record_type": "alh_project_graph",
   "record_id": "project-graph",
   "version": 1,
@@ -293,7 +293,7 @@ Commit:
 
 ```json
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "record_type": "alh_journal_entry",
   "record_id": "<journal-entry-id>",
   "version": 1,
@@ -302,15 +302,29 @@ Commit:
   "proposal_id": "<proposal-id>",
   "proposal_type": "<proposal-type>",
   "target_record_ids": [],
-  "resulting_versions": []
+  "resulting_versions": [],
+  "mutation_summary": [
+    {
+      "record_id": "<record-id>",
+      "field": "<field>",
+      "from": "<previous-value-or-null>",
+      "to": "<new-value>"
+    }
+  ],
+  "evidence_refs": [],
+  "rationale": "<reason for the committed mutation>"
 }
 ```
+
+The `mutation_summary`, `evidence_refs` and `rationale` fields preserve
+the committed mutation content and its justification after the staged
+proposal is removed by the atomic commit.
 
 Rejection:
 
 ```json
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "record_type": "alh_journal_entry",
   "record_id": "<journal-entry-id>",
   "version": 1,
@@ -336,7 +350,7 @@ A proposal uses:
 
 ```json
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "record_type": "alh_proposal",
   "record_id": "<proposal-id>",
   "version": 1,
@@ -498,6 +512,16 @@ The rejection reason must identify the conflicting record and versions.
 
 The Decision Engine then determines the next transition.
 
+The canonical state store is tracked by the repository version control.
+Before executing a persistence operation, the Persistence Manager must
+synchronize the current worktree with the shared branch so that
+`expected_versions` are observed against the most recent committed state.
+
+If a version mismatch originates from another worktree that committed
+state first, the proposal is rejected by this section. The affected
+proposals are then re-derived against the synchronized authoritative
+state. No worktree-local copy of the state store is authoritative.
+
 ## 11. Bootstrap and Initialization
 
 ALH initialization is a distinct control-loop stage.
@@ -599,6 +623,11 @@ Manager, which performs filesystem I/O only according to this instruction.
 
 The agent must not invent an alternative storage location, record format,
 proposal format, or persistence mechanism.
+
+All durable state records are tracked by the repository version control
+and must never be excluded from it. Version control is the durability and
+audit substrate for the canonical store; no checkout-scoped or local-only
+copy of the state store is permitted.
 
 If the configured Host cannot perform the required atomic persistence
 operation, the Persistence Manager must return a persistence failure to the
