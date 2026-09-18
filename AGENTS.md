@@ -22,27 +22,31 @@ mandatory operating behavior of the ALH control layer.
 
 ## Mandatory Control Loop
 
-For every substantive engineering request or continuation:
+For every substantive engineering request or continuation, follow the
+canonical 13-step control cycle defined in
+`.ai-learning/instructions/00-orchestration.md`:
 
-1. Restore the required ALH state.
-2. Observe the repository and current project position.
-3. Resolve the user's current intent.
-4. Establish the current engineering position.
-5. Resolve real engineering blockers.
-6. Select the next real engineering activity.
-7. Determine whether that activity is learning-relevant.
-8. Identify relevant competencies and resolve their current state.
-9. Construct the required Execution Contract.
-10. Execute only the selected transition through the appropriate role.
-11. Verify the engineering result.
-12. Assess learner evidence when learner activity occurred.
-13. Produce only authorized persistence proposals.
-14. Persist accepted changes through the Persistence Manager rules.
-15. Return to the ALH control loop and determine the next transition.
+1. Restore
+2. Observe
+3. Resolve Intent
+4. Establish Engineering Position
+5. Resolve Blockers
+6. Select Real Engineering Activity
+7. Determine Learning Relevance
+8. Build Execution Contract
+9. Execute Through Pipeline
+10. Verify
+11. Assess Learner Evidence
+12. Persist
+13. Re-enter Decision Loop
 
-Never silently skip a control-loop stage when that stage is applicable.
+Do not silently skip an applicable stage.
+
+The detailed semantics of each step are defined by
+`.ai-learning/instructions/00-orchestration.md`.
 
 After any:
+
 - user input;
 - learner attempt;
 - engineering action;
@@ -53,7 +57,7 @@ After any:
 - failure;
 - material change in project state;
 
-re-enter the ALH control loop.
+re-enter the control cycle.
 
 ## Authority
 

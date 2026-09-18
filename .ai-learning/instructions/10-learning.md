@@ -40,13 +40,23 @@ Canonical states:
 - `practicing`
 - `mastered`
 
-State meanings are defined by the Learning and Competency Model.
+Competency-state meanings are defined by the authoritative
+Learning and Competency Model.
 
 State is not an ALH process state.
 
 Do not infer process routing directly from a state label.
 
-## 4. Self-Assessment
+## 4. Learning Unit
+
+A Learning Unit is an addressable learning unit that organizes
+knowledge, concepts, examples, preparation, or exercises around one
+or more competencies.
+
+A Learning Unit is not itself a competency and does not establish
+competence or mastery when completed.
+
+## 5. Self-Assessment
 
 A learner's self-assessment is a claim about their own competence.
 
@@ -59,7 +69,7 @@ Use it to inform:
 
 Do not use self-assessment alone to establish mastery.
 
-## 5. Learner Evidence Gate
+## 6. Learner Evidence Gate
 
 For a learning-relevant target activity whose competency is not
 established as mastered for the relevant scope:
@@ -77,7 +87,7 @@ A substantive learner attempt must precede using the activity as
 learner evidence, except where safety or integrity requires bypassing
 the normal sequence.
 
-## 6. Learner-Owned Work
+## 7. Learner-Owned Work
 
 Learner-owned work may include:
 
@@ -94,7 +104,7 @@ Learner-owned work may include:
 
 Learner activity does not have to be coding.
 
-## 7. AI Work
+## 8. AI Work
 
 AI work is not learner evidence.
 
@@ -111,7 +121,7 @@ Do not attribute an agent-produced:
 to the learner unless the learner independently produced the relevant
 assessable activity.
 
-## 8. Automation Level
+## 9. Automation Level
 
 Canonical levels:
 
@@ -150,7 +160,7 @@ practice.
 A learning competency may permit FULL for unrelated engineering work
 provided the target learner activity is not bypassed.
 
-## 9. Assistance Envelope
+## 10. Assistance Envelope
 
 For the current target activity define:
 
@@ -171,7 +181,7 @@ It may permit:
 
 It does not permit the AI to perform the learner-owned target activity.
 
-## 10. Socratic Escalation
+## 11. Socratic Escalation
 
 Socratic behavior is adaptive.
 
@@ -197,7 +207,7 @@ A full AI solution does not become learner evidence.
 
 A later learner activity may still be required to establish evidence.
 
-## 11. Prerequisite Preparation
+## 12. Prerequisite Preparation
 
 Before the learner attempt, provide necessary preparation when the
 learner lacks prerequisite knowledge required to make a meaningful
@@ -214,7 +224,7 @@ Preparation may include:
 Preparation must not silently perform the substantive learner-owned
 target activity.
 
-## 12. Mastery
+## 13. Mastery
 
 Mastery requires:
 
@@ -233,7 +243,7 @@ The criteria may include:
 
 There is no universal number of successful attempts.
 
-## 13. One-Successful-Attempt Rule
+## 14. One-Successful-Attempt Rule
 
 For:
 
@@ -254,7 +264,7 @@ It is not:
 - explanation alone;
 - a technical test pass alone.
 
-## 14. Failed Mastery Attempt
+## 15. Failed Mastery Attempt
 
 If a mastery attempt fails:
 
@@ -269,7 +279,7 @@ numerical retry count.
 The downgrade must reflect the demonstrated state after the failed
 attempt; do not introduce artificial numeric state transitions.
 
-## 15. Mastered Reassessment
+## 16. Mastered Reassessment
 
 Mastery is scoped.
 
@@ -284,13 +294,13 @@ performance:
 `mastered → practicing`
 
 or another semantically appropriate lower state defined by the
-Learning Model.
+Learning and Competency Model.
 
 If reassessment confirms the competency:
 
 `mastered → mastered`.
 
-## 16. Learning Debt
+## 17. Learning Debt
 
 Learning Debt is an unresolved educational obligation associated with:
 
@@ -316,11 +326,12 @@ Decision Engine determines when and how Debt is addressed.
 Debt resolution requires relevant learner evidence or assessment,
 not merely explanation or AI demonstration.
 
-## 17. Evidence and Assessment Boundary
+## 18. Evidence and Assessment Boundary
 
 Evidence is maintained separately from Learning State.
 
-The Evidence Model defines evidence/provenance semantics.
+Evidence and provenance semantics are defined by
+`30-persistence.md`, Section 8.
 
 The Assessor interprets actual learner evidence.
 
@@ -330,7 +341,11 @@ The Assessor does not mutate Learning State.
 
 Persistence Manager commits authorized state changes.
 
-## 18. Educational Boundary
+Evidence semantics used by this instruction are consumed from the
+authoritative persistence/evidence contract. This instruction does not
+define evidence storage, provenance schema, or persistence semantics.
+
+## 19. Educational Boundary
 
 Never conclude:
 
@@ -355,7 +370,7 @@ competency state
 Learning Debt
 → mandatory immediate next activity
 
-## 19. Engineering Boundary
+## 20. Engineering Boundary
 
 This instruction does not determine:
 

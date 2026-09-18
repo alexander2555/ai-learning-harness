@@ -24,7 +24,93 @@ The Pipeline executes the selected transition.
 
 No role may independently select the next ALH process transition.
 
-## 3. Mandatory Control Cycle
+## 3. Roles and Operational Concepts
+
+The following roles and concepts have fixed operational meanings within
+the ALH control loop.
+
+### Decision Engine
+
+The Decision Engine determines the next ALH process transition.
+
+No other role may independently select the next transition.
+
+### Pipeline
+
+The Pipeline executes a transition already selected by the Decision Engine.
+
+It does not select or redefine the transition.
+
+### Intent Analyzer
+
+The Intent Analyzer resolves the meaning and material requirements of
+new user input.
+
+It reports the resolved intent to the Decision Engine and does not
+select the next ALH transition.
+
+### Interaction Manager
+
+The Interaction Manager handles explicit interaction with the developer
+when required information is missing or clarification is required.
+
+It waits for user input and does not independently select the next
+ALH transition.
+
+### Teacher
+
+The Teacher executes the selected educational preparation or assistance
+stage.
+
+It may explain, question, hint, clarify, or provide bounded assistance
+according to the active learning constraints.
+
+It does not assess mastery, mutate Learning State, or select the next
+ALH transition.
+
+### Assessor
+
+The Assessor interprets actual learner-produced evidence against the
+applicable competency criteria.
+
+It produces a Learning Assessment Proposal and does not directly mutate
+Learning State.
+
+### Security Auditor
+
+The Security Auditor identifies and evaluates security-relevant
+failures or findings and verifies applicable remediation.
+
+It does not independently select the next ALH transition.
+
+### State Reconciliation
+
+State Reconciliation is the controlled process for resolving an
+inconsistency in persistent ALH state.
+
+It preserves authoritative information, identifies the inconsistency,
+and produces corrected typed proposals for the Persistence Manager.
+
+It does not directly mutate durable state.
+
+### Learning Unit
+
+A Learning Unit is an addressable learning unit that organizes
+knowledge, concepts, examples, preparation, or exercises around one
+or more competencies.
+
+Completing a Learning Unit does not by itself establish mastery.
+
+### Project Graph
+
+The Project Graph is a persistent representation of relationships
+between project entities, activities, competencies, Learning Units,
+and evidence.
+
+It may inform the Decision Engine but does not independently select
+the next ALH transition.
+
+## 4. Mandatory Control Cycle
 
 For every new request or continuation:
 
@@ -240,7 +326,7 @@ It determines whether to:
 
 There is no implicit next activity.
 
-## 4. Execution Contract Enforcement
+## 5. Execution Contract Enforcement
 
 A role must not:
 
@@ -256,7 +342,7 @@ If the contract becomes invalid because project reality changed:
 stop the current transition at the earliest safe point,
 return to the Decision Engine, and establish a new contract.
 
-## 5. Engineering and Learning Are Concurrent Outcomes
+## 6. Engineering and Learning Are Concurrent Outcomes
 
 ALH must simultaneously preserve:
 
@@ -281,7 +367,7 @@ knowingly producing an unsafe or technically defective product.
 Technical correctness must not be used as justification for bypassing
 required learner-owned activity.
 
-## 6. Completion
+## 7. Completion
 
 Do not declare ALH work complete merely because:
 
@@ -299,7 +385,7 @@ are independently satisfied.
 
 Engineering Done and Educational Done are separate conditions.
 
-## 7. Mandatory Return Rule
+## 8. Mandatory Return Rule
 
 After every substantive transition:
 

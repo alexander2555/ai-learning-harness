@@ -1,13 +1,13 @@
 # AI Learning Harness
 
-AI Learning Harness (ALH) is a control layer over IDE-based AI coding agents.
+AI Learning Harness (ALH) is a control layer over AI coding agents.
 
 It combines real software development with adaptive learner participation, engineering verification, and evidence-based learning.
 
 ```text
 Developer
     ↕
-IDE Coding Agent
+AI Coding Agent
     ↕
 AI Learning Harness
     ↕

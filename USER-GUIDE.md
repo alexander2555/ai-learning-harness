@@ -1,6 +1,6 @@
 # AI Learning Harness — User Guide
 
-AI Learning Harness (ALH) lets you work on a real software project with an IDE coding agent while the agent adapts its assistance to your demonstrated capability.
+AI Learning Harness (ALH) lets you work on a real software project with an AI coding agent while the agent adapts its assistance to your demonstrated capability.
 
 You do not need to manage ALH's internal learning state, evidence, or assessment yourself.
 
@@ -8,9 +8,10 @@ For detailed architecture and methodology, see [.ai-learning/README.md](.ai-lear
 
 ## 1. Start with an ALH-Enabled Project
 
-Open your project with the supported IDE coding agent after ALH has been initialized and verified.
+Open your project with the supported AI coding agent after ALH has been initialized and verified.
 
-If you are responsible for project setup, follow the project's setup and verification documentation before normal development.
+If you are responsible for setup, verify the ALH instruction set and the
+configured Superpowers version before starting normal development.
 
 Do not manually invent learner state or competency records.
 
