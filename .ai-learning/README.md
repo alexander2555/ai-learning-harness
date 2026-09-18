@@ -45,6 +45,10 @@ The current ALH v2 runtime contract is intentionally compact:
 
 All durable ALH records are JSON except `journal.jsonl`, which is a JSON Lines append-only journal.
 
+Its record schemas, proposal format, bootstrap procedure, validation rules,
+atomic commit rules, conflict handling, and journal semantics are defined
+by `instructions/30-persistence.md`.
+
 The Persistence Manager is the only authority allowed to create, replace, or delete durable state records.
 
 The absence of `state/` means that ALH has not been initialized.
@@ -56,14 +60,6 @@ the record must be created only by the bootstrap procedure or an authorized pers
 Runtime configuration for the ALH installation.
 
 It identifies the host environment, instruction-set version, and external engineering workflow foundation.
-
-### `state/`
-
-`.ai-learning/state/` is the canonical durable-state store.
-
-Its record schemas, proposal format, bootstrap procedure, validation rules,
-atomic commit rules, conflict handling, and journal semantics are defined
-by `instructions/30-persistence.md`.
 
 ### `instructions/instruction-set.json`
 
@@ -125,17 +121,19 @@ Engineering quality is independent of learner state.
 
 ### `instructions/30-persistence.md`
 
-Defines durable ALH state mutation.
+Defines the durable ALH state contract: storage, schemas, proposals,
+bootstrap, validation and atomic persistence.
 
 It establishes:
 
 - Persistence Manager as the only durable-state mutation authority;
-- durable ALH state categories;
-- typed proposals;
-- proposal producers;
-- validation;
-- rejection behavior;
-- persistence boundaries.
+- the canonical storage layout under `state/` and the durable state record schemas;
+- typed proposals, proposal producers and the proposal type/target/authority matrix;
+- the canonical competency-state transition matrix;
+- ordered validation and rejection with exact journalized reasons;
+- the atomic commit transaction and conflict handling;
+- bootstrap/initialization, load-time validation and state reconciliation;
+- the persistence execution mechanism and the persistence completion gate.
 
 Other roles propose state changes; they do not mutate durable ALH state directly.
 
