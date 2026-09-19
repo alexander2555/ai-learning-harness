@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "record_type": "alh_instruction_set",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "instructions": [
     {
       "path": ".ai-learning/instructions/00-orchestration.md",
@@ -22,6 +22,10 @@
     {
       "path": ".ai-learning/instructions/40-verification.md",
       "role": "engineering verification, learner assessment routing and continuation"
+    },
+    {
+      "path": ".ai-learning/instructions/50-practical-learning-protocol.md",
+      "role": "concrete mechanisms for requesting learner attempts and adaptive assistance"
     }
   ]
 }

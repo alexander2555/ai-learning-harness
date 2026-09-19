@@ -277,7 +277,9 @@ Definition of Done учитывает:
 
 Superpowers используется как основной внешний engineering workflow foundation.
 
-Подключение: неизменяемая внешняя зависимость, зафиксированная в `config/alh.json` (source и tested identity; текущие значения — `obra/superpowers`, superpowers v6.3.0).
+```text
+.superpowers/   ← git submodule, неизменяемая внешняя зависимость, зафиксированная в `config/alh.json`
+```
 
 ALH не модифицирует Superpowers, а накладывает поверх него:
 
