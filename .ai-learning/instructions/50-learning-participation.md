@@ -4,37 +4,25 @@
 
 This instruction provides concrete mechanisms for implementing the learner-owned work principle in practice. It bridges the gap between theoretical learning control and actual AI behavior during design, architecture, and implementation activities.
 
-## 2. Mandatory Learner Attempt Protocol
+## 2. Mandatory Learner Participation
 
-Before providing any substantive solution (architecture, design, implementation, debugging result), the agent MUST:
+Before any substantive project activity, the agent MUST determine whether
+the activity is learning-relevant.
 
-### 2.1 Attempt Request Sequence
+For every learning-relevant activity, the agent MUST complete the
+Learner Participation Gate before substantive target work:
 
-1. **Identify the target competency** - what skill/knowledge is being exercised
-2. **Check competency state** - is this `unknown`, `introduced`, `learning`, `practicing`, or `mastered`?
-3. **Determine if learner attempt is required** - see Section 3
-4. **Request learner attempt** - use the structured format in Section 4
-5. **Wait for learner response** - do not proceed until learner provides attempt or explicitly requests assistance
-6. **Assess the attempt** - evaluate against competency criteria
-7. **Provide adaptive assistance** - based on attempt quality (Section 5)
+- required prerequisite preparation; or
+- an adequate learning-relevant learner-owned activity.
 
-### 2.2 When Attempt is Required
+The selected learner-participation stage MUST be explicitly recorded in the
+Execution Contract.
 
-A learner attempt is REQUIRED when:
+**The agent MUST NOT perform substantive target work before the required
+learner-participation stage is completed.**
 
-- Competency state is `unknown` or `introduced` AND the activity is the first exposure
-- Competency state is `learning` AND the activity is a core practice opportunity
-- Competency state is `practicing` AND mastery is the explicit goal
-- The user has not explicitly requested direct assistance
-- The activity is not blocked by safety/security/integrity concerns
-
-A learner attempt is NOT required when:
-
-- Competency state is `mastered` (unless learner requests practice)
-- User explicitly requests direct assistance ("show me the solution", "I'm stuck, help me")
-- Safety/security/integrity requires immediate intervention
-- The activity is purely informational/explanatory
-- Previous attempts show insufficient prerequisite knowledge
+For a non-learning-relevant activity, the Execution Contract MUST explicitly
+record why learner participation is not required.
 
 ## 3. Competency-Specific Attempt Triggers
 
@@ -119,11 +107,18 @@ After receiving a learner attempt, provide assistance at the appropriate level:
 - Learner fills in key parts
 - Competency progression: `introduced` → `learning`
 
-### Level 5: Full Solution (When necessary)
-- Only after failed attempts or explicit request
-- Explain reasoning thoroughly
-- Schedule follow-up practice opportunity
-- Competency progression: may remain at current state
+### Level 5: Full Solution
+
+Provide a full solution only when permitted by the active Execution Contract.
+
+Before full assistance, the agent MUST record the reason in the active
+Execution Contract.
+
+After full assistance, the agent MUST record the learner-participation
+outcome and return control to the Decision Engine.
+
+The Decision Engine determines whether follow-up learner practice is
+required.
 
 ## 6. Integration with Brainstorming Process
 
@@ -189,11 +184,16 @@ Every Execution Contract MUST include:
 ## 9. Special Cases
 
 ### 9.1 Time-Critical Situations
-If immediate engineering progress is critical (blocking deployment, security issue):
-- Document the educational trade-off
-- Provide solution
-- Create Learning Debt record for follow-up learning
-- Schedule practice opportunity
+
+When immediate engineering action is required:
+
+1. the Decision Engine MUST authorize the learning-participation override;
+2. the agent MUST execute the authorized engineering action;
+3. the agent MUST record the educational bypass and create the required
+   Learning Debt proposal through the Persistence Manager;
+4. control MUST return to the Decision Engine.
+
+The Decision Engine determines when and how the Learning Debt is addressed.
 
 ### 9.2 Complete Novice (True Beginner)
 If learner has absolutely no context:
@@ -201,24 +201,37 @@ If learner has absolutely no context:
 - Request small, meaningful attempt
 - Avoid overwhelming with full solution
 
-### 9.3 Expert Learner Requesting Practice
-Even for mastered competencies, if learner requests practice:
-- Treat as `practicing` state
-- Request attempt
-- Provide appropriate level of challenge
+### 9.3 Learner Requesting Practice
 
-## 10. Logging and Evidence
+When a learner requests practice for a mastered competency:
 
-Every learner attempt request and response must be logged:
+- preserve the current competency state;
+- create a learning-relevant practice activity;
+- require a learner attempt;
+- assess the resulting evidence;
+- change competency state only through an authorized Learning Assessment Proposal.
 
-- Timestamp of request
-- Competency targeted
-- Specific task requested
-- Learner's response (or explicit decline)
-- Assistance level provided
-- Assessment outcome
+## 10. Evidence and Persistence
 
-This becomes part of the evidence record for competency assessment.
+Every learner-owned activity that produces learning-relevant evidence MUST
+produce an `Evidence Proposal`.
+
+The Evidence record MUST preserve:
+- the learner activity;
+- the agent activity, when applicable;
+- the engineering activity;
+- the target competency;
+- the assessment context;
+- the provenance of the evidence.
+
+Learner participation requests, responses, assistance, and outcomes MUST NOT
+create a separate activity log.
+
+All authorized persistence of learner evidence MUST go through the
+Persistence Manager.
+
+The `journal.jsonl` records the resulting persistence commit or rejection; it
+is not a learner-activity log.
 
 ## 11. Revision History
 

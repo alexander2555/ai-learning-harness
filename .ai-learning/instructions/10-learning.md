@@ -77,23 +77,31 @@ Use it to inform:
 
 Do not use self-assessment alone to establish mastery.
 
-## 6. Learner Evidence Gate
+## 6. Learner Participation Gate
 
-For a learning-relevant target activity whose competency is not
-established as mastered for the relevant scope:
+For every learning-relevant engineering activity whose target competency
+is not established as mastered for the relevant scope, the agent MUST NOT
+begin the substantive target activity until one of the following has been
+completed:
 
-1. determine prerequisites;
-2. prepare the learner if necessary;
-3. define the substantive learner-owned activity;
-4. allow the learner to attempt it;
-5. assess the result;
-6. escalate assistance only as needed.
+1. prerequisite preparation required for a meaningful learner attempt; or
+2. an adequate learning-relevant learner-owned activity.
 
-Do not immediately perform the target activity for the learner.
+The selected preparation or learner-owned activity MUST be explicitly
+identified in the Execution Contract.
 
-A substantive learner attempt must precede using the activity as
-learner evidence, except where safety or integrity requires bypassing
-the normal sequence.
+The agent MUST execute the selected learner-participation stage before
+performing the substantive target activity.
+
+After the learner-participation stage, the agent MUST assess the resulting
+learner activity and determine the permitted assistance and next transition.
+
+The agent MUST NOT bypass this gate by performing the substantive target
+activity automatically.
+
+Safety, security, integrity, or other explicitly authorized emergency
+conditions may override the normal sequence. Such an override MUST be
+explicitly recorded and MUST produce the required follow-up learning action.
 
 ## 7. Learner-Owned Work
 

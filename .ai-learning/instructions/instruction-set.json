@@ -24,8 +24,8 @@
       "role": "engineering verification, learner assessment routing and continuation"
     },
     {
-      "path": ".ai-learning/instructions/50-practical-learning-protocol.md",
-      "role": "concrete mechanisms for requesting learner attempts and adaptive assistance"
+      "path": ".ai-learning/instructions/50-learning-participation.md",
+      "role": "mandatory learner participation, prerequisite preparation, attempt handling and adaptive assistance"
     }
   ]
 }

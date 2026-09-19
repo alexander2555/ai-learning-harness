@@ -30,7 +30,8 @@ The current ALH v2 runtime contract is intentionally compact:
 │   ├── 10-learning.md
 │   ├── 20-engineering.md
 │   ├── 30-persistence.md
-│   └── 40-verification.md
+│   ├── 40-verification.md
+│   └── 50-learning-participation.md
 └── state/
     ├── manifest.json
     ├── learning-state.json
