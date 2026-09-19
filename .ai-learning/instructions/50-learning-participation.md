@@ -21,6 +21,17 @@ Execution Contract.
 **The agent MUST NOT perform substantive target work before the required
 learner-participation stage is completed.**
 
+For a learning-relevant target learner activity:
+
+- `FULL` MUST NOT be used for not `mastered` competency state;
+- `FULL` MUST NOT be used when it would perform the learner-owned target
+  activity;
+- the selected Automation Level MUST preserve the learner-owned substantive
+  activity defined in the Execution Contract.
+
+If no valid learner-owned portion remains, the activity MUST NOT be executed
+under the current contract; control MUST return to the Decision Engine.
+
 For a non-learning-relevant activity, the Execution Contract MUST explicitly
 record why learner participation is not required.
 
