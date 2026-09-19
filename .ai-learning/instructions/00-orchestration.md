@@ -255,15 +255,21 @@ Before substantive execution, establish:
 ```text
 Engineering Activity
 Purpose
+SDLC Phase
 Responsible Role
 
 Learning-Relevant
+Learning Relevance Rationale
 Target Competency
 Competency State
 
-Learner-Owned Work
-Agent-Owned Work
+Learner Participation Required
+Prerequisite Preparation
+Learner-Owned Activity
+Learner Attempt Required
+Learner Attempt Status
 
+Agent-Owned Work
 Automation Level
 Assistance Envelope
 
@@ -281,6 +287,21 @@ Failure Route
 Next Decision Trigger
 ```
 The contract is binding for the selected transition.
+
+The Execution Contract is a mandatory execution gate.
+
+No role may begin substantive work until the contract is established.
+
+For a learning-relevant activity, no substantive target work may begin until
+the required Learner Participation Requirement is completed.
+
+For a non-learning-relevant activity, the contract MUST explicitly record
+why learner participation is not required.
+
+A role MUST NOT change, omit, or bypass these requirements.
+
+If project reality invalidates the contract, execution MUST stop and control
+MUST return to the Decision Engine.
 
 ### Step 9 — Execute Through Pipeline
 
@@ -367,6 +388,25 @@ If the contract becomes invalid because project reality changed:
 
 stop the current transition at the earliest safe point,
 return to the Decision Engine, and establish a new contract.
+
+Before substantive execution of a learning-relevant activity, the active
+Execution Contract MUST identify:
+
+- the required learner-participation stage;
+- prerequisite preparation, if required;
+- the learner-owned activity;
+- the learner attempt requirement;
+- the permitted assistance envelope;
+- the condition that must be satisfied before substantive agent execution.
+
+A role MUST NOT begin substantive agent-owned execution while the required
+learner-participation stage is incomplete.
+
+If the required learner-participation stage cannot be completed, the role
+MUST stop and return control to the Decision Engine.
+
+No role may override, reinterpret, or silently omit the learner-participation
+requirement defined by the Execution Contract.
 
 ## 7. Engineering and Learning Are Concurrent Outcomes
 

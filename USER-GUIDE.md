@@ -20,6 +20,36 @@ proposals committed by the Persistence Manager.
 If you are responsible for setup, verify the ALH instruction set and the
 configured Superpowers version before starting normal development.
 
+### Installing the Superpowers Submodule
+
+Superpowers is the external engineering workflow foundation that ALH
+builds on. It is an immutable submodule checked out under
+`.superpowers/`: you never edit it, and ALH never modifies it.
+
+If the project already tracks it, initialize the checkout:
+
+```bash
+git submodule update --init .superpowers
+```
+
+When setting up a new ALH-enabled project, add the repository recorded
+as `superpowers.source` in `.ai-learning/config/alh.json`
+(currently `obra/superpowers`) once:
+
+```bash
+git submodule add https://github.com/obra/superpowers.git .superpowers
+```
+
+After checking out the sub-repository, check out the version matching `superpowers.tested_identity`
+from the same configuration file and confirm it before starting normal development.
+
+If `.superpowers/` is missing, stale, or locally modified:
+
+- restore the pinned version instead of editing the sub-repository;
+- never commit local changes to `.superpowers/`;
+- if the pinned version cannot be restored, stop and report it instead
+  of substituting a different version.
+
 ## 2. Give the Agent a Real Engineering Goal
 
 Describe what you actually want to accomplish.
