@@ -246,7 +246,8 @@ If learning-relevant:
 - resolve Learning State;
 - determine learner ownership;
 - determine required preparation;
-- determine permitted automation.
+- determine the permitted Automation Level according to `10-learning.md`;
+- verify that the selected Automation Level does not bypass the required Learner Participation Gate.
 
 ### Step 8 — Build Execution Contract
 
@@ -290,7 +291,24 @@ The contract is binding for the selected transition.
 
 The Execution Contract is a mandatory execution gate.
 
+For every learning-relevant activity, the Execution Contract MUST contain an
+Automation Level that is explicitly justified by the target learner activity,
+competency state, learner ownership, and Assistance Envelope.
+
+If the activity is the target learner activity:
+
+- `FULL` MUST NOT be selected for not `mastered` competency state;
+- `FULL` MUST NOT be selected when doing so would perform the learner-owned target activity;
+- the contract MUST identify the learner-owned substantive portion before execution.
+
+An invalid Automation Level makes the Execution Contract invalid.
+
 No role may begin substantive work until the contract is established.
+
+A role MUST NOT increase Automation Level after the contract is established.
+
+Any change of Automation Level requires a new Decision Engine decision and a
+new Execution Contract.
 
 For a learning-relevant activity, no substantive target work may begin until
 the required Learner Participation Requirement is completed.
@@ -398,6 +416,12 @@ Execution Contract MUST identify:
 - the learner attempt requirement;
 - the permitted assistance envelope;
 - the condition that must be satisfied before substantive agent execution.
+
+A role MUST reject an Execution Contract that assigns `FULL` to a target
+learner activity when the competency state is not `mastered`.
+
+The role MUST NOT execute the activity until the Decision Engine establishes a
+valid Automation Level and Execution Contract.
 
 A role MUST NOT begin substantive agent-owned execution while the required
 learner-participation stage is incomplete.

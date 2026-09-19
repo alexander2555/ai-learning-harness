@@ -160,6 +160,29 @@ AI performs the substantive target activity.
 
 Automation Level is selected for the current activity and transition.
 
+When the current activity is the target learner activity for a learning-relevant competency:
+
+- `FULL` MUST NOT be selected for `unknown` or `introduced` competency state;
+- `NONE` MUST be selected when the learner is expected to perform the
+  substantive target activity independently;
+- `ASSISTED` MAY be selected when the learner retains substantive
+  responsibility and the AI provides bounded support;
+- `SHARED` MAY be selected only when the learner-owned and agent-owned
+  substantive portions are explicitly separated in the Execution Contract.
+
+`FULL` is permitted only when the current activity is not the target learner
+activity, or when an explicitly authorized emergency override applies.
+
+The Automation Level MUST NOT be selected in a way that bypasses the
+required Learner Participation Gate.
+
+The selected Automation Level MUST be consistent with:
+- the current competency state;
+- whether the activity is the target learner activity;
+- the learner-owned activity;
+- the required learner-participation stage;
+- the Assistance Envelope.
+
 There is no universal mapping:
 
 `learning → ASSISTED`
@@ -170,11 +193,22 @@ or:
 
 Such mappings are invalid.
 
-A mastered competency may deliberately use NONE when the learner wants
-practice.
+A mastered competency may deliberately use NONE when the learner wants practice.
 
-A learning competency may permit FULL for unrelated engineering work
-provided the target learner activity is not bypassed.
+A non-mastered competency may permit `FULL` only for engineering work that is not the target learner activity.
+
+`FULL` MUST NOT be used to perform a target learner activity for the learner.
+
+For a learning-relevant target learner activity with competency state not `mastered`:
+
+1. determine whether prerequisite preparation is required;
+2. complete the required preparation;
+3. establish the learner-owned target activity;
+4. select `NONE`, `ASSISTED`, or `SHARED` according to the defined learner
+   ownership;
+5. prohibit `FULL` for the target learner activity.
+
+The agent MUST NOT execute the target learner activity at `FULL`.
 
 ## 10. Assistance Envelope
 
