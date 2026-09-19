@@ -316,7 +316,8 @@ project-root/              # проект под управлением ALH
     │   ├── 10-learning.md
     │   ├── 20-engineering.md
     │   ├── 30-persistence.md
-    │   └── 40-verification.md
+    │   ├── 40-verification.md
+    │   └── 50-learning-participation.md
     └── state/             # каноническое durable-состояние (изменяет только Persistence Manager)
         ├── manifest.json
         ├── learning-state.json
@@ -328,7 +329,7 @@ project-root/              # проект под управлением ALH
         └── journal.jsonl
 ```
 
-v1-каталоги (`architecture/`, `methodology/`, `development/`, `prompts/`, `memory/`, `project/`, `commands/`, `validation/`, …) больше не используются. Концепция `memory/` и «проектной памяти» заменена каноническим `state/` + Persistence Manager + typed proposals.
+Концепция `memory/` и «проектной памяти» заменена каноническим `state/` + Persistence Manager + typed proposals.
 
 ---
 

@@ -71,7 +71,14 @@ Schema:
   "created_at": "<ISO-8601>",
   "updated_at": "<ISO-8601>",
   "initialized": true,
-  "state_schema_version": "2.1.0"
+  "state_schema_version": "2.1.0",
+  "runtime_dependencies": {
+  "superpowers": {
+    "repository": "https://github.com/obra/superpowers.git",
+    "revision": "<detected-revision>",
+    "version": "<detected-version-or-null>"
+  }
+}
 }
 ```
 
@@ -536,6 +543,9 @@ INITIALIZE
 → create canonical state layout
 → create manifest
 → create empty authoritative state records
+→ initialize `.superpowers` Git submodule
+→ determine current Superpowers revision automatically
+→ verify `.superpowers` is available
 → validate records
 → mark manifest initialized
 → RESTORE
@@ -565,6 +575,19 @@ competency state is `unknown`.
 
 Initialization is complete only after all bootstrap records pass load-time
 validation.
+
+The `.superpowers` dependency MUST be initialized as a Git submodule.
+
+Initialization MUST use the submodule revision recorded by the current
+repository checkout.
+
+ALH MUST NOT require or hard-code a specific Superpowers version or commit.
+
+During initialization, the current Superpowers revision MUST be determined
+automatically from the initialized submodule.
+
+Initialization MUST fail if `.superpowers` cannot be initialized or is not
+available after initialization.
 
 ## 12. Load-Time Validation
 
