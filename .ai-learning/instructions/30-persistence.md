@@ -551,6 +551,9 @@ INITIALIZE
 → verify `.superpowers` is available
 → create manifest with `runtime_dependencies.superpowers` populated
 → create empty authoritative state records
+→ initialize `.superpowers` Git submodule
+→ determine current Superpowers revision automatically
+→ verify `.superpowers` is available
 → validate records
 → mark manifest initialized
 → RESTORE
