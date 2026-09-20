@@ -115,21 +115,15 @@ the next ALH transition.
 ALH initialization is a one-time stage performed before the Mandatory
 Control Cycle when `.ai-learning/state/` has not yet been initialized.
 
-Initialization MUST:
+Initialization MUST follow the initialization procedure defined in
+`30-persistence.md`, Section 11:
 
-1. initialize Superpowers as a Git submodule at `.superpowers`;
-2. determine the latest stable released Superpowers version;
-3. checkout that stable version in `.superpowers`;
-4. verify that the selected Superpowers version is available;
-5. adapt the project's required Superpowers integration files and
-   configuration to the ALH protocols;
-6. validate the resulting ALH and Superpowers integration;
-7. initialize the canonical ALH state according to `30-persistence.md`.
+1. provision the Superpowers submodule at `.superpowers` (recorded
+   revision; recorded in the state manifest);
+2. bootstrap the canonical ALH state;
+3. validate all bootstrap records.
 
-If Superpowers initialization, stable-version selection, integration
-adaptation, or validation fails, normal engineering and learning work MUST
-NOT begin.
-
+If any step fails, normal engineering and learning work MUST NOT begin.
 After successful initialization, control enters the Mandatory Control Cycle.
 
 Initialization MUST NOT be repeated for subsequent user requests.

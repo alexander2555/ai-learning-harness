@@ -71,14 +71,14 @@ Schema:
   "created_at": "<ISO-8601>",
   "updated_at": "<ISO-8601>",
   "initialized": true,
-  "state_schema_version": "2.1.0",
+  "state_schema_version": "2.3.0",
   "runtime_dependencies": {
-  "superpowers": {
-    "repository": "https://github.com/obra/superpowers.git",
-    "revision": "<detected-revision>",
-    "version": "<detected-version-or-null>"
+    "superpowers": {
+      "repository": "<resolved-from-config-superpowers.source>",
+      "revision": "<detected-revision>",
+      "version": "<detected-version-or-null>"
+    }
   }
-}
 }
 ```
 
@@ -541,7 +541,15 @@ If `.ai-learning/state/` does not exist:
 ```text
 INITIALIZE
 → create canonical state layout
-→ create manifest
+→ provision `.superpowers` Git submodule:
+   • if repository already tracks the submodule: `git submodule update --init .superpowers`
+   • otherwise: add from `superpowers.source` in `config/alh.json` (currently `obra/superpowers`)
+     via `git submodule add <source-url> .superpowers`; the resulting checkout
+     revision becomes the recorded revision
+→ determine current Superpowers revision automatically from the initialized submodule
+→ detect Superpowers version from the submodule (tag/version file) if available
+→ verify `.superpowers` is available
+→ create manifest with `runtime_dependencies.superpowers` populated
 → create empty authoritative state records
 → initialize `.superpowers` Git submodule
 → determine current Superpowers revision automatically
@@ -579,12 +587,14 @@ validation.
 The `.superpowers` dependency MUST be initialized as a Git submodule.
 
 Initialization MUST use the submodule revision recorded by the current
-repository checkout.
+repository checkout (the gitlink in the superproject).
 
 ALH MUST NOT require or hard-code a specific Superpowers version or commit.
 
 During initialization, the current Superpowers revision MUST be determined
-automatically from the initialized submodule.
+automatically from the initialized submodule. The Superpowers version
+MUST be detected automatically (from tags/version files in the submodule)
+and recorded in the manifest.
 
 Initialization MUST fail if `.superpowers` cannot be initialized or is not
 available after initialization.

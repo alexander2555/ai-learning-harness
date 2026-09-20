@@ -5,10 +5,9 @@
     "kind": "devin_cli"
   },
   "instruction_set": {
-    "version": "2.1.0"
+    "version": "2.3.0"
   },
   "superpowers": {
-    "source": "obra/superpowers",
-    "tested_identity": "superpowers"
+    "source": "obra/superpowers"
   }
 }

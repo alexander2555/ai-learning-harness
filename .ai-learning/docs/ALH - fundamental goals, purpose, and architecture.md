@@ -2,7 +2,7 @@
 
 > Базовое исходное техническое описание ALH.
 > Нормативная runtime-семантика — в `.ai-learning/instructions/`
-> (instruction set v2.1.0). При расхождении с этим документом
+> (актуальная версия см. в `instructions/instruction-set.json`). При расхождении с этим документом
 > нормативны instructions.
 
 ## 1. Назначение
@@ -278,7 +278,9 @@ Definition of Done учитывает:
 Superpowers используется как основной внешний engineering workflow foundation.
 
 ```text
-.superpowers/   ← git submodule, неизменяемая внешняя зависимость, зафиксированная в `config/alh.json`
+.superpowers/   ← git submodule, неизменяемая внешняя зависимость; ревизия фиксируется
+                   checkout-ом репозитория и в manifest.runtime_dependencies;
+                   source — в `config/alh.json` (superpowers.source)
 ```
 
 ALH не модифицирует Superpowers, а накладывает поверх него:
@@ -289,6 +291,13 @@ ALH не модифицирует Superpowers, а накладывает пов�
 * assessment;
 * persistence (durable state);
 * дополнительные ограничения.
+
+При инициализации ALH:
+- если submodule уже отслеживается — `git submodule update --init .superpowers`;
+- иначе — `git submodule add <source-url> .superpowers` из `config/alh.json`;
+- ревизия submodule становится recorded revision;
+- версия Superpowers детектируется автоматически (tags/version files) и пишется в manifest;
+- ALH не требует и не хардкодит конкретную версию/коммит.
 
 ---
 
@@ -335,7 +344,7 @@ project-root/              # проект под управлением ALH
 
 ## 14. Статус формализации и источник истины
 
-Single Source Of Truth runtime-семантики — instruction set v2 в `.ai-learning/instructions/` (текущая версия 2.1.0), а не история чатов или Architecture Snapshot. Этот документ описывает исходное намерение; при расхождении нормативны instructions.
+Single Source Of Truth runtime-семантики — instruction set v2 в `.ai-learning/instructions/` (актуальная версия см. в `instructions/instruction-set.json`, сейчас 2.3.0), а не история чатов или Architecture Snapshot. Этот документ описывает исходное намерение; при расхождении нормативны instructions.
 
 **Уже являются каноническими runtime-контрактами:**
 
@@ -354,5 +363,5 @@ Single Source Of Truth runtime-семантики — instruction set v2 в `.ai
 * схемы entity/relationship Project Graph (`entities` / `relationships` — открытые списки);
 * таксономия типов Learning Debt (поле `type` не перечислено);
 * процесс ADR/LDR;
-* контракт ALH ↔ Superpowers сверх «учитывать применимые практики» (в конфигурации зафиксированы только source и tested identity);
+* контракт ALH ↔ Superpowers сверх «учитывать применимые практики» (в конфигурации зафиксирован source; версия не зафиксирована — revision определяется submodule checkout'ом);
 * политика версионирования instruction set.

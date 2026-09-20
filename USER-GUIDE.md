@@ -10,45 +10,31 @@ For detailed architecture and methodology, see [.ai-learning/README.md](.ai-lear
 
 Open your project with the configured AI coding-agent Host.
 
-On first use, ALH performs its required state initialization automatically,
-creating the canonical durable state under `.ai-learning/state/`
-(JSON records plus an append-only journal).
+On first use, ALH performs one-time initialization automatically:
+it provisions the Superpowers submodule (`.superpowers/`) and creates
+the canonical durable state under `.ai-learning/state/` (see
+`00-orchestration.md` §4 and `30-persistence.md` §11).
 
 You never maintain that state by hand: it changes only through typed
 proposals committed by the Persistence Manager.
 
-If you are responsible for setup, verify the ALH instruction set and the
-configured Superpowers version before starting normal development.
+If you are responsible for setup, verify that the instruction-set version
+in `config/alh.json` matches `instructions/instruction-set.json` and
+that `.superpowers/` is initialized.
 
-### Installing the Superpowers Submodule
+### Superpowers Submodule
 
 Superpowers is the external engineering workflow foundation that ALH
-builds on. It is an immutable submodule checked out under
-`.superpowers/`: you never edit it, and ALH never modifies it.
+builds on. It is provisioned as an immutable Git submodule under
+`.superpowers/` during ALH initialization; the source of truth is
+`superpowers.source` in `.ai-learning/config/alh.json`.
+The installation procedure is defined by the ALH initialization
+instructions (`00-orchestration.md` §4, `30-persistence.md` §11).
 
-If the project already tracks it, initialize the checkout:
-
-```bash
-git submodule update --init .superpowers
-```
-
-When setting up a new ALH-enabled project, add the repository recorded
-as `superpowers.source` in `.ai-learning/config/alh.json`
-(currently `obra/superpowers`) once:
-
-```bash
-git submodule add https://github.com/obra/superpowers.git .superpowers
-```
-
-After checking out the sub-repository, check out the version matching `superpowers.tested_identity`
-from the same configuration file and confirm it before starting normal development.
-
-If `.superpowers/` is missing, stale, or locally modified:
-
-- restore the pinned version instead of editing the sub-repository;
-- never commit local changes to `.superpowers/`;
-- if the pinned version cannot be restored, stop and report it instead
-  of substituting a different version.
+Rules: never edit `.superpowers/`; never commit local changes to it;
+if it is missing or stale, let ALH re-run initialization (or
+`git submodule update --init .superpowers`) instead of substituting
+another version.
 
 ## 2. Give the Agent a Real Engineering Goal
 
