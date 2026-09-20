@@ -1,7 +1,7 @@
 {
-  "schema_version": "2.2.0",
+  "schema_version": "2.3.0",
   "record_type": "alh_instruction_set",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "instructions": [
     {
       "path": ".ai-learning/instructions/00-orchestration.md",
@@ -22,10 +22,6 @@
     {
       "path": ".ai-learning/instructions/40-verification.md",
       "role": "engineering verification, learner assessment routing and continuation"
-    },
-    {
-      "path": ".ai-learning/instructions/50-learning-participation.md",
-      "role": "mandatory learner participation, prerequisite preparation, attempt handling and adaptive assistance"
     }
   ]
 }

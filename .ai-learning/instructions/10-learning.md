@@ -103,7 +103,125 @@ Safety, security, integrity, or other explicitly authorized emergency
 conditions may override the normal sequence. Such an override MUST be
 explicitly recorded and MUST produce the required follow-up learning action.
 
-## 7. Learner-Owned Work
+## 7. Practical Participation Protocol
+
+This section provides concrete mechanisms for the Learner Participation
+Gate (§6) and the Execution Contract (see `00-orchestration.md` §8).
+
+### 7.1 Structured Attempt Request
+
+When requesting a learner attempt, use this structure:
+
+```text
+**Competency:** [specific skill being exercised]
+**Your Task:** [clear, specific action]
+**Context:** [relevant background information]
+**Hints:** [optional — only if needed for a meaningful attempt]
+**Time Expectation:** [quick or requires deeper thought?]
+```
+
+### 7.2 SDLC Attempt Triggers
+
+For each SDLC phase, request a learner attempt when the activity
+matches the trigger; the effect is the required learner-participation
+stage before substantive target work.
+
+
+| SDLC Phase                      | Trigger (when to request attempt)                                                           | Effect                                   |
+| ------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| **Requirements &amp; Analysis** | Clarifying success criteria, acceptance criteria, or scope boundaries                       | Learner defines measurable outcomes      |
+| **Architecture &amp; Design**   | Choosing approaches, system structure, tech stack, component boundaries, data flow          | Learner proposes and justifies design    |
+| **Implementation**              | Writing core algorithmic logic, new features, code organization, error handling, API design | Learner implements the target component  |
+| **Testing**                     | Designing test strategy, edge cases, integration contracts, property-based specs            | Learner authors the test plan/cases      |
+| **Deployment &amp; Operations** | Defining rollout, observability, rollback, capacity, runbooks                               | Learner produces the operational plan    |
+| **Security &amp; Compliance**   | Threat modeling, trust boundaries, data classification, audit requirements                  | Learner identifies risks and mitigations |
+| **Maintenance &amp; Evolution** | Refactoring scope, technical debt prioritization, dependency upgrades, migration paths      | Learner designs the evolution step       |
+
+
+### 7.3 Integration with Brainstorming
+
+When using the brainstorming skill:
+
+- Before presenting approaches: request learner's initial thinking — "How would you approach this?"
+- Before presenting design sections: for each major decision, request learner input — "What's your thinking on \[aspect\]?"
+- Before implementation: ensure learner has attempted key architectural decisions.
+
+### 7.4 Self-Check Before Providing Solutions
+
+Before any substantive response, the agent MUST ask:
+
+1. Have I requested a learner attempt for this competency?
+2. Is the learner's competency state such that an attempt is appropriate?
+3. Has the learner explicitly requested direct assistance?
+4. Is this blocked by safety/security concerns?
+
+If (1)=NO, (2)=YES, (3)=NO, (4)=NO → **STOP** and request learner attempt first.
+
+### 7.5 Execution Contract Integration
+
+The Execution Contract (see `00-orchestration.md` §8) is the canonical record
+for learner-participation fields:
+
+- `Learner Participation Required` (bool)
+- `Prerequisite Preparation` (description)
+- `Learner-Owned Activity` (description)
+- `Learner Attempt Required` (bool)
+- `Learner Attempt Status` (pending/completed/assessed)
+- `Assistance Level` (per `Socratic Escalation` §12)
+
+The agent MUST NOT begin substantive target work until the contract
+identifies the required learner-participation stage.
+
+### 7.6 Common Anti-Patterns
+
+
+| Anti-Pattern                       | Wrong                                      | Right                                                   |
+| ---------------------------------- | ------------------------------------------ | ------------------------------------------------------- |
+| "Quick Question" Bypass            | "Here's a quick answer..."                 | "What's your thinking? Let me see your approach first." |
+| "Obviously" Statements             | "Obviously we should use X..."             | "What do you think would be the right approach?"        |
+| Immediate Solution After Questions | \[Ask\] → \[Immediately answer\]           | \[Ask\] → \[Wait\] → \[Assess\] → \[Adapt assistance\]  |
+| Tutorial Mode Without Attempts     | Step-by-step tutorial, no learner attempts | Present concept → Request attempt → Assess → Adapt      |
+
+
+### 7.7 Special Cases
+
+**Time-Critical Situations** — when immediate engineering action is required:
+
+1. Decision Engine MUST authorize the learning-participation override;
+2. agent executes the authorized engineering action;
+3. agent records the educational bypass and creates the required Learning Debt proposal via Persistence Manager;
+4. control returns to Decision Engine.
+
+**Complete Novice** — if learner has absolutely no context:
+
+- Provide minimal conceptual foundation;
+- Request small, meaningful attempt;
+- Avoid overwhelming with full solution.
+
+**Learner Requesting Practice** (mastered competency):
+
+- Preserve current competency state;
+- Create learning-relevant practice activity;
+- Require learner attempt;
+- Assess resulting evidence;
+- Change state only via authorized Learning Assessment Proposal.
+
+### 7.8 Evidence and Persistence
+
+Every learner-owned activity producing learning-relevant evidence MUST
+produce an `Evidence Proposal`. The Evidence record MUST preserve:
+
+- the learner activity;
+- the agent activity, when applicable;
+- the engineering activity;
+- the target competency;
+- the assessment context;
+- the provenance of the evidence.
+
+All authorized persistence of learner evidence MUST go through the
+Persistence Manager.
+
+## 8. Learner-Owned Work
 
 Learner-owned work may include:
 
@@ -120,7 +238,7 @@ Learner-owned work may include:
 
 Learner activity does not have to be coding.
 
-## 8. AI Work
+## 9. AI Work
 
 AI work is not learner evidence.
 
@@ -137,7 +255,7 @@ Do not attribute an agent-produced:
 to the learner unless the learner independently produced the relevant
 assessable activity.
 
-## 9. Automation Level
+## 10. Automation Level
 
 Canonical levels:
 
@@ -162,21 +280,23 @@ Automation Level is selected for the current activity and transition.
 
 When the current activity is the target learner activity for a learning-relevant competency:
 
-- `FULL` MUST NOT be selected for `unknown` or `introduced` competency state;
+- `FULL` MUST NOT be selected for not  `mastered` competency state;
 - `NONE` MUST be selected when the learner is expected to perform the
-  substantive target activity independently;
+substantive target activity independently;
 - `ASSISTED` MAY be selected when the learner retains substantive
-  responsibility and the AI provides bounded support;
+responsibility and the AI provides bounded support;
 - `SHARED` MAY be selected only when the learner-owned and agent-owned
-  substantive portions are explicitly separated in the Execution Contract.
+substantive portions are explicitly separated in the Execution Contract.
 
-`FULL` is permitted only when the current activity is not the target learner
-activity, or when an explicitly authorized emergency override applies.
+`FULL` is permitted only when the current activity is not the target learner activity,  
+or when an explicitly authorized emergency override applies,  
+or if the competency state has been fully `mastered` and there is no request for repeated practice or repetition for learning again.
 
 The Automation Level MUST NOT be selected in a way that bypasses the
 required Learner Participation Gate.
 
 The selected Automation Level MUST be consistent with:
+
 - the current competency state;
 - whether the activity is the target learner activity;
 - the learner-owned activity;
@@ -205,12 +325,12 @@ For a learning-relevant target learner activity with competency state not `maste
 2. complete the required preparation;
 3. establish the learner-owned target activity;
 4. select `NONE`, `ASSISTED`, or `SHARED` according to the defined learner
-   ownership;
+ ownership;
 5. prohibit `FULL` for the target learner activity.
 
 The agent MUST NOT execute the target learner activity at `FULL`.
 
-## 10. Assistance Envelope
+## 11. Assistance Envelope
 
 For the current target activity define:
 
@@ -231,7 +351,7 @@ It may permit:
 
 It does not permit the AI to perform the learner-owned target activity.
 
-## 11. Socratic Escalation
+## 12. Socratic Escalation
 
 Socratic behavior is adaptive.
 
@@ -257,7 +377,7 @@ A full AI solution does not become learner evidence.
 
 A later learner activity may still be required to establish evidence.
 
-## 12. Prerequisite Preparation
+## 13. Prerequisite Preparation
 
 Before the learner attempt, provide necessary preparation when the
 learner lacks prerequisite knowledge required to make a meaningful
@@ -274,7 +394,7 @@ Preparation may include:
 Preparation must not silently perform the substantive learner-owned
 target activity.
 
-## 13. Mastery
+## 14. Mastery
 
 Mastery requires:
 
@@ -293,7 +413,7 @@ The criteria may include:
 
 There is no universal number of successful attempts.
 
-## 14. One-Successful-Attempt Rule
+## 15. One-Successful-Attempt Rule
 
 For:
 
@@ -314,7 +434,7 @@ It is not:
 - explanation alone;
 - a technical test pass alone.
 
-## 15. Failed Mastery Attempt
+## 16. Failed Mastery Attempt
 
 A competency in `mastered` state may be reassessed when a later activity produces relevant learner evidence.
 
@@ -344,7 +464,7 @@ the competency-specific criteria.
 The downgrade must reflect the demonstrated state after the failed
 attempt; do not introduce artificial numeric state transitions.
 
-## 16. Mastered Reassessment
+## 17. Mastered Reassessment
 
 Mastery is scoped.
 
@@ -366,7 +486,7 @@ If reassessment confirms the competency:
 
 `mastered → mastered`.
 
-## 17. Learning Debt
+## 18. Learning Debt
 
 Learning Debt is an unresolved educational obligation associated with:
 
@@ -395,7 +515,7 @@ not merely explanation or AI demonstration.
 Each Learning Debt record is persisted according to the Learning Debt
 record schema in `30-persistence.md`, Section 6.
 
-## 18. Evidence and Assessment Boundary
+## 19. Evidence and Assessment Boundary
 
 Evidence is maintained separately from Learning State.
 
@@ -415,7 +535,7 @@ Evidence semantics used by this instruction are consumed from the
 authoritative persistence/evidence contract. This instruction does not
 define evidence storage, provenance schema, or persistence semantics.
 
-## 19. Educational Boundary
+## 20. Educational Boundary
 
 Never conclude:
 
@@ -440,7 +560,7 @@ competency state
 Learning Debt
 → mandatory immediate next activity
 
-## 20. Engineering Boundary
+## 21. Engineering Boundary
 
 This instruction does not determine:
 

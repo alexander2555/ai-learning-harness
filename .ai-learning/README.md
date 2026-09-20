@@ -30,8 +30,7 @@ The current ALH v2 runtime contract is intentionally compact:
 │   ├── 10-learning.md
 │   ├── 20-engineering.md
 │   ├── 30-persistence.md
-│   ├── 40-verification.md
-│   └── 50-learning-participation.md
+│   └── 40-verification.md
 └── state/
     ├── manifest.json
     ├── learning-state.json
@@ -71,7 +70,7 @@ It identifies the host environment, instruction-set version, and external engine
 
 Defines the active ALH instruction set and the instruction files that constitute it.
 
-The current instruction set is v2.
+The current instruction set version is recorded in this file (currently 2.3.0).
 
 ### `instructions/00-orchestration.md`
 
@@ -84,7 +83,8 @@ It establishes:
 - the mandatory control cycle;
 - execution contracts;
 - engineering and learning outcomes;
-- verification, assessment, persistence, and re-entry into the decision loop.
+- verification, assessment, persistence, and re-entry into the decision loop;
+- the one-time initialization stage (Superpowers submodule provisioning + state bootstrap).
 
 ### `instructions/10-learning.md`
 
@@ -220,7 +220,7 @@ For the repository-level operating contract:
 For the active runtime instructions:
 
 - read [`instructions/instruction-set.json`](instructions/instruction-set.json);
-- then the five instruction files listed by that instruction set.
+- then the instruction files listed by that instruction set (currently 5).
 
 For the fundamental goals, purpose, and original architecture description:
 

@@ -24,6 +24,12 @@ AI Work != Learner Evidence
 A working implementation or a passing test does not by itself establish
 what the developer can independently demonstrate.
 
+## Setup / First Use
+
+On first use, ALH performs one-time initialization: it provisions the
+Superpowers submodule (`.superpowers/`) and creates the canonical
+durable state under `.ai-learning/state/` (see USER-GUIDE.md §1).
+
 ## Documentation
 
 - [USER-GUIDE.md](USER-GUIDE.md) — how to work with ALH (practical start)

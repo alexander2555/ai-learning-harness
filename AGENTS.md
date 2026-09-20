@@ -25,23 +25,25 @@ mandatory operating behavior of the ALH control layer.
 ## Mandatory Control Loop
 
 For every substantive engineering request or continuation, follow the
-canonical 13-step control cycle defined in
+canonical control cycle defined in
 `.ai-learning/instructions/00-orchestration.md`:
 
-0. Initialize
-1. Restore
-2. Observe
-3. Resolve Intent
-4. Establish Engineering Position
-5. Resolve Blockers
-6. Select Real Engineering Activity
-7. Determine Learning Relevance
-8. Build Execution Contract
-9. Execute Through Pipeline
-10. Verify
-11. Assess Learner Evidence
-12. Persist
-13. Re-enter Decision Loop
+- **Step 0 — Initialize** (one-time, pre-cycle): provision Superpowers submodule +
+  bootstrap canonical state; if `.ai-learning/state/` exists, skip.
+- **Steps 1–13 — Mandatory Control Cycle** (per request/continuation):
+  1. Restore
+  2. Observe
+  3. Resolve Intent
+  4. Establish Engineering Position
+  5. Resolve Blockers
+  6. Select Real Engineering Activity
+  7. Determine Learning Relevance
+  8. Build Execution Contract
+  9. Execute Through Pipeline
+  10. Verify
+  11. Assess Learner Evidence
+  12. Persist
+  13. Re-enter Decision Loop
 
 Do not silently skip an applicable stage.
 
@@ -95,7 +97,11 @@ The Execution Contract defines:
 - learning relevance;
 - target competency, when applicable;
 - competency state;
-- learner-owned work;
+- learner participation required;
+- prerequisite preparation;
+- learner-owned activity;
+- learner attempt required;
+- learner attempt status;
 - agent-owned work;
 - Automation Level;
 - Assistance Envelope;
@@ -189,7 +195,8 @@ Never:
 - automatically map `learning` to ASSISTED;
 - automatically map `mastered` to FULL;
 - perform learner-owned target work merely because doing so is technically easier;
-- create additional semantic states merely to simplify routing.
+- create additional semantic states merely to simplify routing;
+- bypass the required Learner Participation Gate.
 
 The objective is not merely to complete the user's request.
 
